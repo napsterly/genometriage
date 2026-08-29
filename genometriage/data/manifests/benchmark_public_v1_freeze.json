@@ -1,0 +1,21 @@
+{
+  "artifacts": {
+    "data/cases/benchmark_public_v1.jsonl": "fb5cdeaa164919948a301a409ed4ffcfc88052bfa7d1edd0b6a63d1a3223c74b",
+    "data/evidence/evidence_public_v1.jsonl": "9e08a12746f9d60425217f6b0b9822129ca3cbdfe3d9f377f37b654fdbcd5f73",
+    "data/evidence/evidence_public_v1_manifest.json": "ec44d259475cda4fdc64c2a4bacf2c6e7f5e5efcbaf4748ea052c6db748e4a4c",
+    "data/ground_truth/benchmark_public_v1_ground_truth.jsonl": "792f2fd0565a8178557869e5193a84d9b7f76ab93450cb44d77460d83af8c6fb",
+    "data/public/clinvar/benchmark_public_v1_query_pool.json": "68fb52036c9c57a2b47875ba621cf4e136733b4b5617ce82075f4acdcf5817a1",
+    "data/public/clinvar/benchmark_public_v1_selected_records.json": "9274d6865b3cd3887aa9f47c972412736d4977bcfce2bf6ade65ab8691e91e92",
+    "data/public/clinvar/benchmark_public_v1_source_manifest.json": "1b435bf8ddeac68f508bef9a4779c8726616414bf4d30566e80b43cdf24bb25c",
+    "scripts/build_public_benchmark.py": "6f0a61b96af7e0c000bb8114efc35ab1242a8f27f38ba8a85607996600dc4739"
+  },
+  "benchmark_created_before_model_predictions": true,
+  "candidate_count": 30,
+  "case_count": 10,
+  "external_live_dependency_during_evaluation": false,
+  "freeze_id": "benchmark_public_v1",
+  "frozen_at_utc": "2026-08-29T13:58:31+00:00",
+  "hash_algorithm": "sha256",
+  "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+  "source_snapshot_id": "clinvar_eutils_public_v1"
+}

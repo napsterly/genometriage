@@ -1,0 +1,24 @@
+{
+  "evidence_file": "data/evidence/evidence_public_v1.jsonl",
+  "evidence_file_sha256": "9e08a12746f9d60425217f6b0b9822129ca3cbdfe3d9f377f37b654fdbcd5f73",
+  "external_live_dependency": false,
+  "notes": [
+    "The raw query pool and exact selected VCV accession versions are retained locally.",
+    "Ground truth is stored separately and is not read by system runners.",
+    "No network access is used during evidence retrieval or benchmark evaluation.",
+    "ClinVar classifications are submitted/aggregated data and require expert review."
+  ],
+  "provenance_model": "deterministic_clinvar_esummary_transform_v1",
+  "record_count": 90,
+  "snapshot_date": "2026-08-29",
+  "snapshot_version": "evidence_public_v1",
+  "source_fixture": "data/cases/benchmark_public_v1.jsonl",
+  "source_fixture_sha256": "fb5cdeaa164919948a301a409ed4ffcfc88052bfa7d1edd0b6a63d1a3223c74b",
+  "source_metadata": {
+    "license_or_terms_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+    "retrieved_at_utc": "2026-08-29T13:58:31+00:00",
+    "source_record_sha256": "9274d6865b3cd3887aa9f47c972412736d4977bcfce2bf6ade65ab8691e91e92",
+    "source_release": "pinned VCV accession-version subset 2026-08-29",
+    "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/"
+  }
+}
