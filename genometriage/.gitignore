@@ -1,0 +1,24 @@
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.pytest-tmp/
+pytest-cache-files-*/
+tests/.runtime_tmp/
+.coverage
+.benchmarks/
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Generated benchmark artifacts (keep directory placeholders).
+predictions/*.json
+results/*.json
+predictions/*.tmp
+results/*.tmp
+
+# Retain the validated Phase 1 baseline evidence.
+!predictions/baseline-gemini.json
+!results/baseline-gemini.json

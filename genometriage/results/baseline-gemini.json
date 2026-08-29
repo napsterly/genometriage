@@ -1,0 +1,421 @@
+{
+  "schema_version": "1.0",
+  "benchmark_version": "benchmark_v1",
+  "system": "baseline-gemini",
+  "model": "gemini-3.1-flash-lite",
+  "execution_config": {
+    "temperature": 0,
+    "max_output_tokens": 8192,
+    "thinking_level": "low",
+    "structured_output": "response_json_schema",
+    "min_request_interval_seconds": 13.0
+  },
+  "primary_k": 5,
+  "k_values": [
+    1,
+    3,
+    5
+  ],
+  "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+  "generated_at_utc": "2026-08-29T04:43:16.692916+00:00",
+  "benchmark_sha256": "b4532e0d4b581e17a0e12aefa392a279170f1cabb25c768e6469b778f8388d4f",
+  "prompt_sha256": "2b34b3311302e5658548f87906479e297510528c87c017e08412cde41ecc324e",
+  "metric_definitions": {
+    "recall_at_k": "Relevant Variant Recall@K = relevant variants in the first K ranks divided by all relevant variants. Negative controls are null and excluded from the macro mean.",
+    "precision_at_k": "Precision@K = relevant variants in the first K ranks divided by K. Missing ranks, negative controls, and failed runs therefore contribute zero.",
+    "mean_reciprocal_rank": "Mean reciprocal rank of the first relevant variant over positive cases; a miss or failed run scores zero, and negative controls are excluded.",
+    "false_positive_count_at_k": "Count of returned variants in the first K ranks that are not evaluator-labeled relevant.",
+    "unsupported_claim_rate": "Automated proxy: fraction of ranked-variant reasons in the primary-K shortlist whose evidence_source_ids are empty, unknown, or not attached to that candidate. This does not semantically fact-check prose.",
+    "sent_for_human_review": "Number of returned variants in the primary-K shortlist.",
+    "estimated_cost_usd": "Computed only when provider token usage and both user-supplied per-million-token prices were available; otherwise null."
+  },
+  "aggregate": {
+    "evaluated_case_count": 12,
+    "failed_case_count": 0,
+    "negative_control_count": 1,
+    "recall_at_k": {
+      "1": 0.8636363636363636,
+      "3": 1.0,
+      "5": 1.0
+    },
+    "precision_at_k": {
+      "1": 0.9166666666666666,
+      "3": 0.38888888888888884,
+      "5": 0.23333333333333336
+    },
+    "mean_reciprocal_rank": 1.0,
+    "false_positive_count_at_k": {
+      "1": 0,
+      "3": 9,
+      "5": 9
+    },
+    "unsupported_claim_rate": 0.0,
+    "total_variants_sent_for_human_review": 23,
+    "mean_variants_sent_for_human_review": 1.9166666666666667,
+    "mean_runtime_seconds": 2.321433533333296,
+    "total_estimated_cost_usd": 0.0,
+    "costed_case_count": 12
+  },
+  "cases": [
+    {
+      "case_id": "GT-001",
+      "difficulty": "straightforward",
+      "status": "evaluated",
+      "relevant_count": 1,
+      "returned_count": 1,
+      "sent_for_human_review": 1,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.3333333333333333,
+        "5": 0.2
+      },
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0
+      },
+      "reciprocal_rank": 1.0,
+      "unsupported_claim_count": 0,
+      "evaluated_claim_count": 1,
+      "unsupported_claim_rate": 0.0,
+      "runtime_seconds": 2.1175178999992568,
+      "estimated_cost_usd": 0.0,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-002",
+      "difficulty": "straightforward",
+      "status": "evaluated",
+      "relevant_count": 1,
+      "returned_count": 3,
+      "sent_for_human_review": 3,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.3333333333333333,
+        "5": 0.2
+      },
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 2,
+        "5": 2
+      },
+      "reciprocal_rank": 1.0,
+      "unsupported_claim_count": 0,
+      "evaluated_claim_count": 3,
+      "unsupported_claim_rate": 0.0,
+      "runtime_seconds": 2.4154324999999517,
+      "estimated_cost_usd": 0.0,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-003",
+      "difficulty": "moderate",
+      "status": "evaluated",
+      "relevant_count": 1,
+      "returned_count": 1,
+      "sent_for_human_review": 1,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.3333333333333333,
+        "5": 0.2
+      },
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0
+      },
+      "reciprocal_rank": 1.0,
+      "unsupported_claim_count": 0,
+      "evaluated_claim_count": 1,
+      "unsupported_claim_rate": 0.0,
+      "runtime_seconds": 1.6515508000002228,
+      "estimated_cost_usd": 0.0,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-004",
+      "difficulty": "ambiguous",
+      "status": "evaluated",
+      "relevant_count": 2,
+      "returned_count": 2,
+      "sent_for_human_review": 2,
+      "recall_at_k": {
+        "1": 0.5,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.6666666666666666,
+        "5": 0.4
+      },
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0
+      },
+      "reciprocal_rank": 1.0,
+      "unsupported_claim_count": 0,
+      "evaluated_claim_count": 2,
+      "unsupported_claim_rate": 0.0,
+      "runtime_seconds": 2.523223700000017,
+      "estimated_cost_usd": 0.0,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-005",
+      "difficulty": "conflicting",
+      "status": "evaluated",
+      "relevant_count": 1,
+      "returned_count": 2,
+      "sent_for_human_review": 2,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.3333333333333333,
+        "5": 0.2
+      },
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 1,
+        "5": 1
+      },
+      "reciprocal_rank": 1.0,
+      "unsupported_claim_count": 0,
+      "evaluated_claim_count": 2,
+      "unsupported_claim_rate": 0.0,
+      "runtime_seconds": 2.275900699999511,
+      "estimated_cost_usd": 0.0,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-006",
+      "difficulty": "challenging",
+      "status": "evaluated",
+      "relevant_count": 2,
+      "returned_count": 3,
+      "sent_for_human_review": 3,
+      "recall_at_k": {
+        "1": 0.5,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.6666666666666666,
+        "5": 0.4
+      },
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 1,
+        "5": 1
+      },
+      "reciprocal_rank": 1.0,
+      "unsupported_claim_count": 0,
+      "evaluated_claim_count": 3,
+      "unsupported_claim_rate": 0.0,
+      "runtime_seconds": 2.2355145000001357,
+      "estimated_cost_usd": 0.0,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-007",
+      "difficulty": "moderate",
+      "status": "evaluated",
+      "relevant_count": 1,
+      "returned_count": 2,
+      "sent_for_human_review": 2,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.3333333333333333,
+        "5": 0.2
+      },
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 1,
+        "5": 1
+      },
+      "reciprocal_rank": 1.0,
+      "unsupported_claim_count": 0,
+      "evaluated_claim_count": 2,
+      "unsupported_claim_rate": 0.0,
+      "runtime_seconds": 2.168146500000148,
+      "estimated_cost_usd": 0.0,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-008",
+      "difficulty": "ambiguous",
+      "status": "evaluated",
+      "relevant_count": 1,
+      "returned_count": 1,
+      "sent_for_human_review": 1,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.3333333333333333,
+        "5": 0.2
+      },
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0
+      },
+      "reciprocal_rank": 1.0,
+      "unsupported_claim_count": 0,
+      "evaluated_claim_count": 1,
+      "unsupported_claim_rate": 0.0,
+      "runtime_seconds": 1.9735581999993883,
+      "estimated_cost_usd": 0.0,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-009",
+      "difficulty": "challenging",
+      "status": "evaluated",
+      "relevant_count": 1,
+      "returned_count": 3,
+      "sent_for_human_review": 3,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.3333333333333333,
+        "5": 0.2
+      },
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 2,
+        "5": 2
+      },
+      "reciprocal_rank": 1.0,
+      "unsupported_claim_count": 0,
+      "evaluated_claim_count": 3,
+      "unsupported_claim_rate": 0.0,
+      "runtime_seconds": 2.4092258000000584,
+      "estimated_cost_usd": 0.0,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-010",
+      "difficulty": "moderate",
+      "status": "evaluated",
+      "relevant_count": 0,
+      "returned_count": 0,
+      "sent_for_human_review": 0,
+      "recall_at_k": {
+        "1": null,
+        "3": null,
+        "5": null
+      },
+      "precision_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0
+      },
+      "reciprocal_rank": null,
+      "unsupported_claim_count": 0,
+      "evaluated_claim_count": 0,
+      "unsupported_claim_rate": null,
+      "runtime_seconds": 3.470081100000243,
+      "estimated_cost_usd": 0.0,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-011",
+      "difficulty": "moderate",
+      "status": "evaluated",
+      "relevant_count": 1,
+      "returned_count": 2,
+      "sent_for_human_review": 2,
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.3333333333333333,
+        "5": 0.2
+      },
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 1,
+        "5": 1
+      },
+      "reciprocal_rank": 1.0,
+      "unsupported_claim_count": 0,
+      "evaluated_claim_count": 2,
+      "unsupported_claim_rate": 0.0,
+      "runtime_seconds": 2.1695831000006365,
+      "estimated_cost_usd": 0.0,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-012",
+      "difficulty": "challenging",
+      "status": "evaluated",
+      "relevant_count": 2,
+      "returned_count": 3,
+      "sent_for_human_review": 3,
+      "recall_at_k": {
+        "1": 0.5,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.6666666666666666,
+        "5": 0.4
+      },
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 1,
+        "5": 1
+      },
+      "reciprocal_rank": 1.0,
+      "unsupported_claim_count": 0,
+      "evaluated_claim_count": 3,
+      "unsupported_claim_rate": 0.0,
+      "runtime_seconds": 2.4474675999999818,
+      "estimated_cost_usd": 0.0,
+      "error_message": null
+    }
+  ]
+}

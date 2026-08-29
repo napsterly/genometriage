@@ -1,0 +1,12 @@
+{
+  "benchmark_version": "benchmark_v1",
+  "schema_version": "1.0",
+  "case_count": 12,
+  "data_origin": "fully_synthetic",
+  "coordinate_system": "GRCh38-shaped synthetic coordinates; do not treat as real loci",
+  "model_visible_fixture": "data/cases/benchmark_v1.jsonl",
+  "evaluator_only_fixture": "data/ground_truth/benchmark_v1_ground_truth.jsonl",
+  "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+  "notes": "All genes, coordinates, case contexts, evidence records, and labels are invented for software benchmarking. Similarity to real people or biological findings is coincidental."
+}
+

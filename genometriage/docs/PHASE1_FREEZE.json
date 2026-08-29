@@ -1,0 +1,23 @@
+{
+  "freeze_id": "phase1-gemini-baseline",
+  "frozen_at_utc": "2026-08-29T04:43:16.692916+00:00",
+  "hash_algorithm": "sha256",
+  "artifacts": {
+    "data/benchmark_manifest.json": "c6ba160a09b7eb14dabc9f42fcd1ed63efd238166a80ec0bc7e0e890a7fd847f",
+    "data/cases/benchmark_v1.jsonl": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+    "data/ground_truth/benchmark_v1_ground_truth.jsonl": "a1b6bf165368c29465b80a120d731955f1586d09660408a71f6994547d47661b",
+    "prompts/baseline_v1.md": "2b34b3311302e5658548f87906479e297510528c87c017e08412cde41ecc324e",
+    "predictions/baseline-gemini.json": "2fb210d21adcda3e2377a79ab0f8a238ab29469fa3fc6da5fe991d5e636d116e",
+    "results/baseline-gemini.json": "1864b23be25a76501551b666c7ba2373c3e20d5801bccbd26465aa9c871f446a"
+  },
+  "baseline_metrics": {
+    "recall_at_1": 0.8636363636363636,
+    "recall_at_3": 1.0,
+    "recall_at_5": 1.0,
+    "mean_reciprocal_rank": 1.0,
+    "precision_at_5": 0.23333333333333336,
+    "false_positive_count_at_5": 9,
+    "total_variants_sent_for_human_review": 23
+  },
+  "safety_disclaimer": "For research/expert review. Not a medical diagnosis."
+}
