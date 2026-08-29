@@ -1,0 +1,22 @@
+{
+  "freeze_id": "conflict_arbitration_v1",
+  "policy_version": "conflict_arbitration_v1",
+  "system_version": "conflict-arbitrated-v3",
+  "frozen_at_utc": "2026-08-29T00:00:00+00:00",
+  "hash_algorithm": "sha256",
+  "spec_path": "docs/CONFLICT_ARBITRATION_SPEC.md",
+  "spec_sha256": "73e1479cbfaac7bc671dbe147e396695397669b49259ca68e1a14158d3080a98",
+  "held_out_benchmark": {
+    "freeze_id": "benchmark_conflict_v1",
+    "freeze_commit": "e5b91d0a0b2ee4745866322c886b4085b29129d8",
+    "freeze_tag": "benchmark-conflict-v1-freeze",
+    "cases_sha256": "2dce889f428c2662ba5a26dbae227212f87be7023eec87bfb0f2c4efa4809aae"
+  },
+  "preregistration": {
+    "benchmark_frozen_before_spec": true,
+    "implementation_completed_before_spec": false,
+    "evaluation_run_before_spec": false,
+    "post_hoc_changes_permitted": false
+  },
+  "safety_disclaimer": "For research/expert review. Not a medical diagnosis."
+}
