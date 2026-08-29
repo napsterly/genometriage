@@ -166,6 +166,31 @@ def test_gemini_output_text_extraction_reports_block_reason() -> None:
         )
 
 
+def test_gemini_37_omits_deprecated_temperature(monkeypatch) -> None:
+    captured = []
+
+    def fake_urlopen(request, timeout):
+        captured.append(request)
+        return FakeHTTPResponse(
+            {
+                "candidates": [
+                    {"content": {"parts": [{"text": "{}"}]}, "finishReason": "STOP"}
+                ]
+            }
+        )
+
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+    provider = GeminiGenerateContentProvider(
+        api_key="test-only-gemini-key",
+        model="gemini-3.7-flash",
+        base_url="https://example.invalid/v1beta",
+    )
+    provider.complete("synthetic case", {"type": "object"})
+    config = json.loads(captured[0].data.decode("utf-8"))["generationConfig"]
+    assert "temperature" not in config
+    assert "temperature" not in provider.execution_config
+
+
 def test_provider_factory_rejects_unknown_provider() -> None:
     with pytest.raises(ProviderError, match="unsupported provider"):
         create_provider("unknown")

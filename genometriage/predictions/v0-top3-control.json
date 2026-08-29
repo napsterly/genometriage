@@ -1,0 +1,588 @@
+{
+  "schema_version": "1.0",
+  "run_status": "completed",
+  "system": "v0-top3-control",
+  "benchmark_version": "benchmark_v1",
+  "prompt_version": "deterministic_v0_top3_control_v1",
+  "model": "gemini-3.1-flash-lite",
+  "created_at_utc": "2026-08-29T04:37:12.195044+00:00",
+  "benchmark_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+  "prompt_sha256": "2b34b3311302e5658548f87906479e297510528c87c017e08412cde41ecc324e",
+  "execution_config": {
+    "control": "deterministic_v0_top3_control_v1",
+    "max_ranked_variants": 3,
+    "no_model_calls": true,
+    "source_artifact": "predictions/baseline-gemini.json",
+    "source_run_sha256": "2fb210d21adcda3e2377a79ab0f8a238ab29469fa3fc6da5fe991d5e636d116e",
+    "source_execution_config": {
+      "temperature": 0,
+      "max_output_tokens": 8192,
+      "thinking_level": "low",
+      "structured_output": "response_json_schema",
+      "min_request_interval_seconds": 13.0
+    }
+  },
+  "records": [
+    {
+      "case_id": "GT-001",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-001",
+        "system": "v0-top3-control",
+        "prompt_version": "deterministic_v0_top3_control_v1",
+        "model": "gemini-3.1-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT001-V1",
+            "rank": 1,
+            "reason": "Strong evidence supports this variant: it is a de novo missense mutation with functional assay data showing reduced activity and segregation consistent with the phenotype.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "GT001-E1",
+              "GT001-E2"
+            ],
+            "claims": []
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic top-3 control derived from the retained frozen V0 prediction. No model call was made. Source notes: Only GT001-V1 warrants expert attention. Other variants (GT001-V2, GT001-V3) have evidence against them, and GT001-V4 and GT001-V5 lack supporting evidence.",
+        "runtime_seconds": 2.1175178999992568,
+        "usage": {
+          "input_tokens": 1400,
+          "output_tokens": 293,
+          "total_tokens": 1693
+        },
+        "estimated_cost_usd": null,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-002",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-002",
+        "system": "v0-top3-control",
+        "prompt_version": "deterministic_v0_top3_control_v1",
+        "model": "gemini-3.1-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT002-V1",
+            "rank": 1,
+            "reason": "Strong evidence for pathogenicity: homozygous stop-gained variant in a gene linked to the observed metabolic phenotype, with segregation consistent with autosomal recessive inheritance.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "GT002-E1",
+              "GT002-E2"
+            ],
+            "claims": []
+          },
+          {
+            "variant_id": "GT002-V4",
+            "rank": 2,
+            "reason": "Weak candidate; evidence suggests the gene is associated with hearing phenotypes rather than the metabolic findings observed in this case.",
+            "confidence": 0.3,
+            "evidence_source_ids": [
+              "GT002-E4"
+            ],
+            "claims": []
+          },
+          {
+            "variant_id": "GT002-V2",
+            "rank": 3,
+            "reason": "Unlikely candidate; high population frequency and lack of a second rare allele contradict the autosomal recessive hypothesis.",
+            "confidence": 0.1,
+            "evidence_source_ids": [
+              "GT002-E3"
+            ],
+            "claims": []
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic top-3 control derived from the retained frozen V0 prediction. No model call was made. Source notes: For research/expert review. Not a medical diagnosis. GT002-V1 is the primary candidate warranting clinical correlation.",
+        "runtime_seconds": 2.4154324999999517,
+        "usage": {
+          "input_tokens": 1395,
+          "output_tokens": 456,
+          "total_tokens": 1851
+        },
+        "estimated_cost_usd": null,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-003",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-003",
+        "system": "v0-top3-control",
+        "prompt_version": "deterministic_v0_top3_control_v1",
+        "model": "gemini-3.1-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT003-V1",
+            "rank": 1,
+            "reason": "Strong evidence of splice donor effect and phenotypic match to retinal dysfunction; de novo inheritance aligns with the dominant/de novo hypothesis.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "GT003-E1",
+              "GT003-E2"
+            ],
+            "claims": []
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic top-3 control derived from the retained frozen V0 prediction. No model call was made. Source notes: Only GT003-V1 presents credible evidence supporting the clinical hypothesis. Other variants lack supporting evidence, are common in population controls, or have evidence against their involvement.",
+        "runtime_seconds": 1.6515508000002228,
+        "usage": {
+          "input_tokens": 1795,
+          "output_tokens": 276,
+          "total_tokens": 2071
+        },
+        "estimated_cost_usd": null,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-004",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-004",
+        "system": "v0-top3-control",
+        "prompt_version": "deterministic_v0_top3_control_v1",
+        "model": "gemini-3.1-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT004-V1",
+            "rank": 1,
+            "reason": "This variant is very rare and has moderate evidence supporting phenotype overlap, though the assay is unavailable and there is weak uncertainty regarding a nearby residue.",
+            "confidence": 0.85,
+            "evidence_source_ids": [
+              "GT004-E1",
+              "GT004-E2"
+            ],
+            "claims": []
+          },
+          {
+            "variant_id": "GT004-V2",
+            "rank": 2,
+            "reason": "This variant shows moderate support for altered ion transport and phenotype overlap, but the gene-disease relationship is provisional, introducing uncertainty.",
+            "confidence": 0.75,
+            "evidence_source_ids": [
+              "GT004-E3",
+              "GT004-E4"
+            ],
+            "claims": []
+          }
+        ],
+        "escalated_uncertainty": true,
+        "notes": "Deterministic top-3 control derived from the retained frozen V0 prediction. No model call was made. Source notes: Variants GT004-V3, GT004-V4, and GT004-V5 were excluded due to lack of supporting evidence, high population frequency, or intergenic location. For research/expert review. Not a medical diagnosis.",
+        "runtime_seconds": 2.523223700000017,
+        "usage": {
+          "input_tokens": 1447,
+          "output_tokens": 397,
+          "total_tokens": 1844
+        },
+        "estimated_cost_usd": null,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-005",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-005",
+        "system": "v0-top3-control",
+        "prompt_version": "deterministic_v0_top3_control_v1",
+        "model": "gemini-3.1-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT005-V1",
+            "rank": 1,
+            "reason": "This missense variant in GTQ5 has conflicting functional evidence (two assays support gain of activity, one reports no difference) and is associated with an unaffected carrier, suggesting potential reduced penetrance or lack of relevance.",
+            "confidence": 0.6,
+            "evidence_source_ids": [
+              "GT005-E1",
+              "GT005-E2",
+              "GT005-E3"
+            ],
+            "claims": []
+          },
+          {
+            "variant_id": "GT005-V3",
+            "rank": 2,
+            "reason": "This missense variant in GTR5 has moderate evidence against its relevance due to the gene's association with structural cardiomyopathy, which is absent in this case.",
+            "confidence": 0.4,
+            "evidence_source_ids": [
+              "GT005-E4"
+            ],
+            "claims": []
+          }
+        ],
+        "escalated_uncertainty": true,
+        "notes": "Deterministic top-3 control derived from the retained frozen V0 prediction. No model call was made. Source notes: For research/expert review. Not a medical diagnosis. GT005-V1 is the primary candidate due to conflicting functional data, while GT005-V3 is included as a secondary candidate despite evidence suggesting it may be unrelated to the phenotype. Other variants (GT005-V2, GT005-V4, GT005-V5) lack supporting evidence and have high population allele frequencies.",
+        "runtime_seconds": 2.275900699999511,
+        "usage": {
+          "input_tokens": 1389,
+          "output_tokens": 474,
+          "total_tokens": 1863
+        },
+        "estimated_cost_usd": null,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-006",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-006",
+        "system": "v0-top3-control",
+        "prompt_version": "deterministic_v0_top3_control_v1",
+        "model": "gemini-3.1-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT006-V1",
+            "rank": 1,
+            "reason": "Strong evidence for loss of function and confirmed trans-phase with GT006-V2, supporting a compound heterozygous model for GTT6.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "GT006-E1",
+              "GT006-E2"
+            ],
+            "claims": []
+          },
+          {
+            "variant_id": "GT006-V2",
+            "rank": 2,
+            "reason": "Moderate functional evidence and confirmed trans-phase with GT006-V1, supporting a compound heterozygous model for GTT6.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "GT006-E3",
+              "GT006-E4"
+            ],
+            "claims": []
+          },
+          {
+            "variant_id": "GT006-V3",
+            "rank": 3,
+            "reason": "Stop-gained variant in GTU6, but lacks a second allele and phenotype mapping is inconsistent with the case.",
+            "confidence": 0.4,
+            "evidence_source_ids": [
+              "GT006-E5"
+            ],
+            "claims": []
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic top-3 control derived from the retained frozen V0 prediction. No model call was made. Source notes: For research/expert review. Not a medical diagnosis. Variants GT006-V1 and GT006-V2 are prioritized as a pair due to the compound heterozygous inheritance hypothesis.",
+        "runtime_seconds": 2.2355145000001357,
+        "usage": {
+          "input_tokens": 1597,
+          "output_tokens": 487,
+          "total_tokens": 2084
+        },
+        "estimated_cost_usd": null,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-007",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-007",
+        "system": "v0-top3-control",
+        "prompt_version": "deterministic_v0_top3_control_v1",
+        "model": "gemini-3.1-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT007-V1",
+            "rank": 1,
+            "reason": "Strong evidence links this homozygous missense variant to the patient's renal salt wasting phenotype, supported by both gene-to-phenotype mapping and functional assay data.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "GT007-E1",
+              "GT007-E2"
+            ],
+            "claims": []
+          },
+          {
+            "variant_id": "GT007-V2",
+            "rank": 2,
+            "reason": "While this variant is a stop-gained mutation, it is strongly contradicted by the phenotype mismatch, as the associated gene is linked to skin fragility, which is absent in this case.",
+            "confidence": 0.6,
+            "evidence_source_ids": [
+              "GT007-E3",
+              "GT007-E4"
+            ],
+            "claims": []
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic top-3 control derived from the retained frozen V0 prediction. No model call was made. Source notes: For research/expert review. Not a medical diagnosis. Variant GT007-V1 is the primary candidate matching the clinical phenotype. Variant GT007-V2 is a likely decoy due to phenotype mismatch.",
+        "runtime_seconds": 2.168146500000148,
+        "usage": {
+          "input_tokens": 1393,
+          "output_tokens": 414,
+          "total_tokens": 1807
+        },
+        "estimated_cost_usd": null,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-008",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-008",
+        "system": "v0-top3-control",
+        "prompt_version": "deterministic_v0_top3_control_v1",
+        "model": "gemini-3.1-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT008-V1",
+            "rank": 1,
+            "reason": "Strong functional evidence and tissue-specific distribution align with the post-zygotic mosaic hypothesis, though low read counts necessitate caution regarding potential artifacts.",
+            "confidence": 0.85,
+            "evidence_source_ids": [
+              "GT008-E1",
+              "GT008-E2",
+              "GT008-E3"
+            ],
+            "claims": []
+          }
+        ],
+        "escalated_uncertainty": true,
+        "notes": "Deterministic top-3 control derived from the retained frozen V0 prediction. No model call was made. Source notes: Only GT008-V1 warrants expert review due to supporting functional data and tissue-specific distribution. Other variants (GT008-V2 through GT008-V5) lack supporting evidence or are contradicted by the clinical hypothesis. For research/expert review. Not a medical diagnosis.",
+        "runtime_seconds": 1.9735581999993883,
+        "usage": {
+          "input_tokens": 1401,
+          "output_tokens": 325,
+          "total_tokens": 1726
+        },
+        "estimated_cost_usd": null,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-009",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-009",
+        "system": "v0-top3-control",
+        "prompt_version": "deterministic_v0_top3_control_v1",
+        "model": "gemini-3.1-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT009-V1",
+            "rank": 1,
+            "reason": "Strong functional evidence from reporter assay and segregation with phenotype in affected relatives support this promoter variant.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "GT009-E1",
+              "GT009-E2"
+            ],
+            "claims": []
+          },
+          {
+            "variant_id": "GT009-V3",
+            "rank": 2,
+            "reason": "Weak computational evidence only; lacks functional or phenotypic support.",
+            "confidence": 0.3,
+            "evidence_source_ids": [
+              "GT009-E3"
+            ],
+            "claims": []
+          },
+          {
+            "variant_id": "GT009-V4",
+            "rank": 3,
+            "reason": "Strong evidence against pathogenicity due to recessive mechanism requirement not met by this heterozygous variant.",
+            "confidence": 0.2,
+            "evidence_source_ids": [
+              "GT009-E4"
+            ],
+            "claims": []
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic top-3 control derived from the retained frozen V0 prediction. No model call was made. Source notes: For research/expert review. Not a medical diagnosis. GT009-V1 is the primary candidate. GT009-V2 and GT009-V5 were excluded due to lack of evidence and high population frequency.",
+        "runtime_seconds": 2.4092258000000584,
+        "usage": {
+          "input_tokens": 1410,
+          "output_tokens": 455,
+          "total_tokens": 1865
+        },
+        "estimated_cost_usd": null,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-010",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-010",
+        "system": "v0-top3-control",
+        "prompt_version": "deterministic_v0_top3_control_v1",
+        "model": "gemini-3.1-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic top-3 control derived from the retained frozen V0 prediction. No model call was made. Source notes: This is a synthetic negative-control case. All provided variants have strong evidence against pathogenicity or lack credible phenotype associations. For research/expert review. Not a medical diagnosis.",
+        "runtime_seconds": 3.470081100000243,
+        "usage": {
+          "input_tokens": 1311,
+          "output_tokens": 905,
+          "total_tokens": 2216
+        },
+        "estimated_cost_usd": null,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-011",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-011",
+        "system": "v0-top3-control",
+        "prompt_version": "deterministic_v0_top3_control_v1",
+        "model": "gemini-3.1-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT011-V1",
+            "rank": 1,
+            "reason": "Strong evidence from synthetic RNA assay showing splice junction loss and consistent X-linked pedigree pattern matching the clinical hypothesis.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "GT011-E1",
+              "GT011-E2"
+            ],
+            "claims": []
+          },
+          {
+            "variant_id": "GT011-V2",
+            "rank": 2,
+            "reason": "While the variant causes protein truncation, there is strong evidence against its relevance due to the mismatch between the gene's associated condition and the observed phenotype.",
+            "confidence": 0.6,
+            "evidence_source_ids": [
+              "GT011-E3",
+              "GT011-E4"
+            ],
+            "claims": []
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic top-3 control derived from the retained frozen V0 prediction. No model call was made. Source notes: For research/expert review. Not a medical diagnosis. GT011-V1 is the primary candidate. GT011-V2 is included as a decoy/negative control due to the phenotype mismatch.",
+        "runtime_seconds": 2.1695831000006365,
+        "usage": {
+          "input_tokens": 1401,
+          "output_tokens": 430,
+          "total_tokens": 1831
+        },
+        "estimated_cost_usd": null,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-012",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-012",
+        "system": "v0-top3-control",
+        "prompt_version": "deterministic_v0_top3_control_v1",
+        "model": "gemini-3.1-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT012-V1",
+            "rank": 1,
+            "reason": "Part of a compound heterozygous pair in GAQ2; shows partial abnormal splicing and is in trans with GT012-V2. High priority due to recessive hypothesis.",
+            "confidence": 0.85,
+            "evidence_source_ids": [
+              "GT012-E1",
+              "GT012-E2"
+            ],
+            "claims": []
+          },
+          {
+            "variant_id": "GT012-V2",
+            "rank": 2,
+            "reason": "Part of a compound heterozygous pair in GAQ2; shows moderate function loss. However, presence in an unaffected relative introduces significant uncertainty regarding penetrance.",
+            "confidence": 0.75,
+            "evidence_source_ids": [
+              "GT012-E3",
+              "GT012-E4",
+              "GT012-E5"
+            ],
+            "claims": []
+          },
+          {
+            "variant_id": "GT012-V3",
+            "rank": 3,
+            "reason": "Strong de novo stop-gained variant, but evidence explicitly states the phenotype does not overlap with the clinical presentation, making it a likely decoy.",
+            "confidence": 0.4,
+            "evidence_source_ids": [
+              "GT012-E6",
+              "GT012-E7"
+            ],
+            "claims": []
+          }
+        ],
+        "escalated_uncertainty": true,
+        "notes": "Deterministic top-3 control derived from the retained frozen V0 prediction. No model call was made. Source notes: The GAQ2 variants (V1/V2) are the primary candidates for the recessive hypothesis, but the presence of an unaffected relative carrying both alleles suggests incomplete penetrance or modifier effects. GT012-V3 is a strong de novo variant but lacks phenotypic correlation. For research/expert review. Not a medical diagnosis.",
+        "runtime_seconds": 2.4474675999999818,
+        "usage": {
+          "input_tokens": 1865,
+          "output_tokens": 559,
+          "total_tokens": 2424
+        },
+        "estimated_cost_usd": null,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    }
+  ]
+}

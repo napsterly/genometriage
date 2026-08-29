@@ -36,7 +36,11 @@ def _parse_k_values(value: str) -> List[int]:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--system", choices=["baseline"], required=True)
+    parser.add_argument(
+        "--system",
+        choices=["baseline", "v0-top3-control", "v1", "v2"],
+        required=True,
+    )
     parser.add_argument("--provider", choices=["gemini", "openai"], default="gemini")
     parser.add_argument(
         "--predictions",
@@ -76,6 +80,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     if args.predictions:
         run = load_system_run(args.predictions)
     else:
+        if args.system != "baseline":
+            raise SystemExit(
+                "non-baseline evaluation requires a retained --predictions artifact"
+            )
         try:
             provider = create_provider(args.provider, model=args.model)
         except ProviderError as exc:
@@ -113,7 +121,13 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             ),
         )
 
-    if run.system not in {args.system, "baseline-gemini", "baseline-openai"}:
+    allowed_systems = {
+        "baseline": {"baseline", "baseline-gemini", "baseline-openai"},
+        "v0-top3-control": {"v0-top3-control"},
+        "v1": {"evidence-grounded-v1"},
+        "v2": {"verified-v2"},
+    }
+    if run.system not in allowed_systems[args.system]:
         raise SystemExit(
             f"prediction system mismatch: requested {args.system!r}, file has {run.system!r}"
         )

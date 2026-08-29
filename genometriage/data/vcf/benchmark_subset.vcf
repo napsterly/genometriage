@@ -1,0 +1,6 @@
+##fileformat=VCFv4.3
+##reference=GRCh38-synthetic
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+chr1	101001	GT001-V1	g	a	.	PASS	.
+5	502001	GT002-V1	C	T	.	PASS	.
+9	900100	SYN-MULTI	A	C,G	.	PASS	.

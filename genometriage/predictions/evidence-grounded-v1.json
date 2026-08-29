@@ -1,0 +1,839 @@
+{
+  "schema_version": "1.0",
+  "run_status": "completed",
+  "system": "evidence-grounded-v1",
+  "benchmark_version": "benchmark_v1",
+  "prompt_version": "evidence_grounded_v1",
+  "model": "gemini-3.5-flash-lite",
+  "created_at_utc": "2026-08-29T08:47:14.235401+00:00",
+  "benchmark_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+  "prompt_sha256": "6bd8d75a23bbd04aff7abdc2f0b2ae300259c727a4671fb679321bd33d537302",
+  "execution_config": {
+    "temperature": 0,
+    "max_output_tokens": 8192,
+    "thinking_level": "low",
+    "structured_output": "response_json_schema",
+    "min_request_interval_seconds": 13.0,
+    "normalization": "literal_vcf_subset_v1",
+    "retrieval": "exact_canonical_variant_match_v1",
+    "claim_identifiers": "deterministic_case_variant_order_v1",
+    "evidence_snapshot_version": "evidence_v1",
+    "evidence_snapshot_sha256": "c0b632fd3a001678d947fc387ad7feeb94945acad7c805859e3f3a9d6ed33934",
+    "max_review_variants": 3
+  },
+  "records": [
+    {
+      "case_id": "GT-001",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-001",
+        "system": "evidence-grounded-v1",
+        "prompt_version": "evidence_grounded_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT001-V1",
+            "rank": 1,
+            "reason": "De novo variant with functional assay support and phenotype concordance.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "GT001-E1",
+              "GT001-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-001:GT001-V1:C1",
+                "claim": "Curated synthetic functional assay reports a large activity reduction for this exact allele.",
+                "evidence_ids": [
+                  "GT001-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-001:GT001-V1:C2",
+                "claim": "Synthetic segregation record confirms absence in both parents and phenotype concordance.",
+                "evidence_ids": [
+                  "GT001-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "For research/expert review. Not a medical diagnosis.",
+        "runtime_seconds": 2.440480799999932,
+        "usage": {
+          "input_tokens": 2899,
+          "output_tokens": 297,
+          "total_tokens": 3196
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-002",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-002",
+        "system": "evidence-grounded-v1",
+        "prompt_version": "evidence_grounded_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT002-V1",
+            "rank": 1,
+            "reason": "Variant GT002-V1 is a homozygous stop-gained change in GTD2 with supportive evidence regarding metabolite M processing and expected recessive segregation in the pedigree. For research/expert review. Not a medical diagnosis.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "GT002-E1",
+              "GT002-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-002:GT002-V1:C1",
+                "claim": "Predicted early truncation in a synthetic gene linked to metabolite M processing.",
+                "evidence_ids": [
+                  "GT002-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-002:GT002-V1:C2",
+                "claim": "Synthetic affected sibling is homozygous; both unaffected parents are heterozygous.",
+                "evidence_ids": [
+                  "GT002-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Variant GT002-V1 is strongly supported by the evidence for autosomal recessive inheritance matching the case phenotype. For research/expert review. Not a medical diagnosis.",
+        "runtime_seconds": 2.196502500000861,
+        "usage": {
+          "input_tokens": 2894,
+          "output_tokens": 353,
+          "total_tokens": 3247
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-003",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-003",
+        "system": "evidence-grounded-v1",
+        "prompt_version": "evidence_grounded_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT003-V1",
+            "rank": 1,
+            "reason": "For research/expert review. Not a medical diagnosis. Variant GT003-V1 shows strong supporting evidence linking it to exon skipping and retinal dysfunction matching the case phenotype.",
+            "confidence": 0.9,
+            "evidence_source_ids": [
+              "GT003-E1",
+              "GT003-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-003:GT003-V1:C1",
+                "claim": "Synthetic RNA record shows exon skipping for the exact allele.",
+                "evidence_ids": [
+                  "GT003-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-003:GT003-V1:C2",
+                "claim": "The invented gene-to-phenotype map strongly matches retinal dysfunction.",
+                "evidence_ids": [
+                  "GT003-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "For research/expert review. Not a medical diagnosis. Only GT003-V1 has positive supporting evidence matching the clinical phenotype.",
+        "runtime_seconds": 2.6035355999993044,
+        "usage": {
+          "input_tokens": 3430,
+          "output_tokens": 336,
+          "total_tokens": 3766
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-004",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-004",
+        "system": "evidence-grounded-v1",
+        "prompt_version": "evidence_grounded_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT004-V1",
+            "rank": 1,
+            "reason": "For research/expert review. Not a medical diagnosis. Variant shows moderate synthetic phenotype overlap despite unavailable assay and weak nearby observation.",
+            "confidence": 0.6,
+            "evidence_source_ids": [
+              "GT004-E1",
+              "GT004-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-004:GT004-V1:C1",
+                "claim": "Synthetic phenotype overlap is strong, but the assay is unavailable.",
+                "evidence_ids": [
+                  "GT004-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-004:GT004-V1:C2",
+                "claim": "Only one unrelated synthetic observation exists for a nearby residue.",
+                "evidence_ids": [
+                  "GT004-E2"
+                ],
+                "interpretation": "uncertainty_or_conflict",
+                "status": "supported"
+              }
+            ]
+          },
+          {
+            "variant_id": "GT004-V2",
+            "rank": 2,
+            "reason": "For research/expert review. Not a medical diagnosis. Variant displays altered ion transport and partial overlap, though the gene-disease relationship is provisional.",
+            "confidence": 0.55,
+            "evidence_source_ids": [
+              "GT004-E3",
+              "GT004-E4"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-004:GT004-V2:C1",
+                "claim": "Synthetic cellular record reports altered ion transport and partial phenotype overlap.",
+                "evidence_ids": [
+                  "GT004-E3"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-004:GT004-V2:C2",
+                "claim": "The invented gene-disease relationship is provisional.",
+                "evidence_ids": [
+                  "GT004-E4"
+                ],
+                "interpretation": "uncertainty_or_conflict",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": true,
+        "notes": "For research/expert review. Not a medical diagnosis. Only two candidates warrant review due to incomplete evidence and high allele frequency or lack of evidence for others.",
+        "runtime_seconds": 3.110862100000304,
+        "usage": {
+          "input_tokens": 3290,
+          "output_tokens": 560,
+          "total_tokens": 3850
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-005",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-005",
+        "system": "evidence-grounded-v1",
+        "prompt_version": "evidence_grounded_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT005-V1",
+            "rank": 1,
+            "reason": "Conflicting evidence and uncertain penetrance in a rare candidate. For research/expert review. Not a medical diagnosis.",
+            "confidence": 0.5,
+            "evidence_source_ids": [
+              "GT005-E1",
+              "GT005-E2",
+              "GT005-E3"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-005:GT005-V1:C1",
+                "claim": "Assays show both gain of activity and no measurable difference.",
+                "evidence_ids": [
+                  "GT005-E1",
+                  "GT005-E2"
+                ],
+                "interpretation": "uncertainty_or_conflict",
+                "status": "conflicting"
+              },
+              {
+                "claim_id": "GT-005:GT005-V1:C2",
+                "claim": "Unaffected carrier could reflect reduced penetrance or argue against relevance.",
+                "evidence_ids": [
+                  "GT005-E3"
+                ],
+                "interpretation": "uncertainty_or_conflict",
+                "status": "conflicting"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": true,
+        "notes": "For research/expert review. Not a medical diagnosis.",
+        "runtime_seconds": 2.396715300001233,
+        "usage": {
+          "input_tokens": 2902,
+          "output_tokens": 336,
+          "total_tokens": 3238
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-006",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-006",
+        "system": "evidence-grounded-v1",
+        "prompt_version": "evidence_grounded_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT006-V1",
+            "rank": 1,
+            "reason": "Maternal heterozygous variant in GTT6 with loss of function prediction and opposite phase to the second GTT6 candidate, fitting the compound heterozygous recessive hypothesis.",
+            "confidence": 0.9,
+            "evidence_source_ids": [
+              "GT006-E1",
+              "GT006-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-006:GT006-V1:C1",
+                "claim": "Synthetic transcript record predicts loss of function.",
+                "evidence_ids": [
+                  "GT006-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-006:GT006-V1:C2",
+                "claim": "Maternal phase is opposite the second GTT6 candidate.",
+                "evidence_ids": [
+                  "GT006-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          },
+          {
+            "variant_id": "GT006-V2",
+            "rank": 2,
+            "reason": "Paternal heterozygous variant in GTT6 with substantial residual-activity loss and opposite phase to the first GTT6 candidate, completing the compound heterozygous pair.",
+            "confidence": 0.9,
+            "evidence_source_ids": [
+              "GT006-E3",
+              "GT006-E4"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-006:GT006-V2:C1",
+                "claim": "Synthetic functional assay shows substantial residual-activity loss.",
+                "evidence_ids": [
+                  "GT006-E3"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-006:GT006-V2:C2",
+                "claim": "Paternal phase is opposite the first GTT6 candidate.",
+                "evidence_ids": [
+                  "GT006-E4"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "For research/expert review. Not a medical diagnosis.",
+        "runtime_seconds": 2.5571259999996983,
+        "usage": {
+          "input_tokens": 3460,
+          "output_tokens": 538,
+          "total_tokens": 3998
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-007",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-007",
+        "system": "evidence-grounded-v1",
+        "prompt_version": "evidence_grounded_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT007-V1",
+            "rank": 1,
+            "reason": "Homozygous missense variant with supporting phenotype match and functional assay data for autosomal recessive inheritance. For research/expert review. Not a medical diagnosis.",
+            "confidence": 0.9,
+            "evidence_source_ids": [
+              "GT007-E1",
+              "GT007-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-007:GT007-V1:C1",
+                "claim": "Gene-to-phenotype map matches renal salt wasting.",
+                "evidence_ids": [
+                  "GT007-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-007:GT007-V1:C2",
+                "claim": "Transport assay reports partial loss of function and recessive segregation.",
+                "evidence_ids": [
+                  "GT007-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          },
+          {
+            "variant_id": "GT007-V2",
+            "rank": 2,
+            "reason": "Truncating variant with conflicting evidence regarding phenotype relevance. For research/expert review. Not a medical diagnosis.",
+            "confidence": 0.4,
+            "evidence_source_ids": [
+              "GT007-E3",
+              "GT007-E4"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-007:GT007-V2:C1",
+                "claim": "Expected to truncate the synthetic protein.",
+                "evidence_ids": [
+                  "GT007-E3"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-007:GT007-V2:C2",
+                "claim": "Invented GTY7 phenotype is isolated skin fragility, absent from this context.",
+                "evidence_ids": [
+                  "GT007-E4"
+                ],
+                "interpretation": "argues_against_attention",
+                "status": "contradicted"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "For research/expert review. Not a medical diagnosis.",
+        "runtime_seconds": 2.81021359999977,
+        "usage": {
+          "input_tokens": 2904,
+          "output_tokens": 575,
+          "total_tokens": 3479
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-008",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-008",
+        "system": "evidence-grounded-v1",
+        "prompt_version": "evidence_grounded_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT008-V1",
+            "rank": 1,
+            "reason": "Variant GT008-V1 shows low-fraction presence in affected tissue and functional support from assay data, warranting research review despite artifact uncertainty. For research/expert review. Not a medical diagnosis.",
+            "confidence": 0.8,
+            "evidence_source_ids": [
+              "GT008-E1",
+              "GT008-E2",
+              "GT008-E3"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-008:GT008-V1:C1",
+                "claim": "Variant is present at low fraction in affected synthetic tissue and absent from blood.",
+                "evidence_ids": [
+                  "GT008-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-008:GT008-V1:C2",
+                "claim": "Synthetic pathway assay reports increased signaling for the exact allele.",
+                "evidence_ids": [
+                  "GT008-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-008:GT008-V1:C3",
+                "claim": "Low read count makes an artifact possible; orthogonal confirmation is pending.",
+                "evidence_ids": [
+                  "GT008-E3"
+                ],
+                "interpretation": "uncertainty_or_conflict",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": true,
+        "notes": "For research/expert review. Not a medical diagnosis.",
+        "runtime_seconds": 2.5166850999994494,
+        "usage": {
+          "input_tokens": 2918,
+          "output_tokens": 416,
+          "total_tokens": 3334
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-009",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-009",
+        "system": "evidence-grounded-v1",
+        "prompt_version": "evidence_grounded_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT009-V1",
+            "rank": 1,
+            "reason": "Variant GT009-V1 shows strong functional impact with reduced promoter activity and segregation with the phenotype in affected relatives. For research/expert review. Not a medical diagnosis.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "GT009-E1",
+              "GT009-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-009:GT009-V1:C1",
+                "claim": "Synthetic reporter assay shows sharply reduced promoter activity for the exact allele.",
+                "evidence_ids": [
+                  "GT009-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-009:GT009-V1:C2",
+                "claim": "Allele tracks with the phenotype in two synthetic affected relatives and is absent in one older unaffected relative.",
+                "evidence_ids": [
+                  "GT009-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "For research/expert review. Not a medical diagnosis.",
+        "runtime_seconds": 2.212148700000398,
+        "usage": {
+          "input_tokens": 2927,
+          "output_tokens": 328,
+          "total_tokens": 3255
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-010",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-010",
+        "system": "evidence-grounded-v1",
+        "prompt_version": "evidence_grounded_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [],
+        "escalated_uncertainty": true,
+        "notes": "All candidates present strong benign evidence or lack positive support. For research/expert review. Not a medical diagnosis.",
+        "runtime_seconds": 1.6996478000000934,
+        "usage": {
+          "input_tokens": 2494,
+          "output_tokens": 50,
+          "total_tokens": 2544
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-011",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-011",
+        "system": "evidence-grounded-v1",
+        "prompt_version": "evidence_grounded_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT011-V1",
+            "rank": 1,
+            "reason": "Variant GT011-V1 shows complete loss of expected splice junction and fits the X-linked recessive inheritance model matching the case context.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "GT011-E1",
+              "GT011-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-011:GT011-V1:C1",
+                "claim": "Synthetic RNA assay shows complete loss of the expected splice junction.",
+                "evidence_ids": [
+                  "GT011-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-011:GT011-V1:C2",
+                "claim": "Synthetic pedigree pattern and invented phenotype map fit an X-linked model.",
+                "evidence_ids": [
+                  "GT011-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "For research/expert review. Not a medical diagnosis.",
+        "runtime_seconds": 1.9977878000008786,
+        "usage": {
+          "input_tokens": 2909,
+          "output_tokens": 314,
+          "total_tokens": 3223
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-012",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-012",
+        "system": "evidence-grounded-v1",
+        "prompt_version": "evidence_grounded_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT012-V1",
+            "rank": 1,
+            "reason": "For research/expert review. Not a medical diagnosis. Variant is part of a phased recessive pair in GAQ2 with partial abnormal splicing evidence.",
+            "confidence": 0.7,
+            "evidence_source_ids": [
+              "GT012-E1",
+              "GT012-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-012:GT012-V1:C1",
+                "claim": "Synthetic RNA record shows partial abnormal splicing under stimulated conditions only.",
+                "evidence_ids": [
+                  "GT012-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-012:GT012-V1:C2",
+                "claim": "Maternal allele is in trans with GT012-V2.",
+                "evidence_ids": [
+                  "GT012-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          },
+          {
+            "variant_id": "GT012-V2",
+            "rank": 2,
+            "reason": "For research/expert review. Not a medical diagnosis. Forms a phased recessive pair with GT012-V1 showing moderate function loss, though an older unaffected relative carries both alleles.",
+            "confidence": 0.6,
+            "evidence_source_ids": [
+              "GT012-E3",
+              "GT012-E4",
+              "GT012-E5"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-012:GT012-V2:C1",
+                "claim": "Synthetic stimulated-cell assay reports moderate function loss.",
+                "evidence_ids": [
+                  "GT012-E3"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-012:GT012-V2:C2",
+                "claim": "Paternal allele is in trans with GT012-V1.",
+                "evidence_ids": [
+                  "GT012-E4"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-012:GT012-V2:C3",
+                "claim": "An older unaffected synthetic relative carries both alleles, suggesting incomplete penetrance or non-causality.",
+                "evidence_ids": [
+                  "GT012-E5"
+                ],
+                "interpretation": "uncertainty_or_conflict",
+                "status": "conflicting"
+              }
+            ]
+          },
+          {
+            "variant_id": "GT012-V3",
+            "rank": 3,
+            "reason": "For research/expert review. Not a medical diagnosis. De novo truncation but phenotype conflicts with case context.",
+            "confidence": 0.5,
+            "evidence_source_ids": [
+              "GT012-E6",
+              "GT012-E7"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-012:GT012-V3:C1",
+                "claim": "Expected severe truncation with confirmed synthetic de novo status.",
+                "evidence_ids": [
+                  "GT012-E6"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-012:GT012-V3:C2",
+                "claim": "Invented GAR2 phenotype concerns congenital bone formation and has no overlap here.",
+                "evidence_ids": [
+                  "GT012-E7"
+                ],
+                "interpretation": "argues_against_attention",
+                "status": "contradicted"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": true,
+        "notes": "For research/expert review. Not a medical diagnosis. Case exhibits incomplete penetrance and potentially confounding features.",
+        "runtime_seconds": 3.7269646000004286,
+        "usage": {
+          "input_tokens": 4728,
+          "output_tokens": 968,
+          "total_tokens": 5696
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    }
+  ]
+}

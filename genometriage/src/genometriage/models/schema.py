@@ -8,6 +8,7 @@ from typing import Dict, List, Literal, Optional
 from pydantic import BaseModel, Field, root_validator, validator
 
 from genometriage import SAFETY_DISCLAIMER
+from genometriage.models.phase2 import MaterialClaim, VerifiedClaim
 
 
 SCHEMA_VERSION = "1.0"
@@ -134,6 +135,7 @@ class RankedVariant(StrictModel):
     reason: str = Field(..., min_length=1)
     confidence: float = Field(..., ge=0.0, le=1.0)
     evidence_source_ids: List[str] = Field(default_factory=list)
+    claims: List[MaterialClaim] = Field(default_factory=list)
 
     @validator("evidence_source_ids")
     def evidence_ids_are_unique(cls, value: List[str]) -> List[str]:
@@ -161,6 +163,7 @@ class Prediction(StrictModel):
     runtime_seconds: float = Field(..., ge=0.0)
     usage: TokenUsage = Field(default_factory=TokenUsage)
     estimated_cost_usd: Optional[float] = Field(None, ge=0.0)
+    verified_claims: List[VerifiedClaim] = Field(default_factory=list)
 
     @root_validator
     def ranking_is_well_formed(cls, values: Dict[str, object]) -> Dict[str, object]:
@@ -220,9 +223,24 @@ class CaseEvaluation(StrictModel):
     unsupported_claim_count: int = Field(..., ge=0)
     evaluated_claim_count: int = Field(..., ge=0)
     unsupported_claim_rate: Optional[float]
+    review_burden: int = Field(0, ge=0)
+    false_positive_count: int = Field(0, ge=0)
+    review_burden_at_full_recall: Optional[int] = Field(None, ge=0)
+    citation_traceability_error_count: int = Field(0, ge=0)
+    citation_traceability_claim_count: int = Field(0, ge=0)
+    citation_traceability_error_rate: Optional[float] = None
+    semantically_supported_claim_count: int = Field(0, ge=0)
+    system_supported_claim_count: int = Field(0, ge=0)
+    claim_support_precision: Optional[float] = None
     runtime_seconds: Optional[float]
     estimated_cost_usd: Optional[float]
     error_message: Optional[str] = None
+    input_tokens: Optional[int] = Field(None, ge=0)
+    output_tokens: Optional[int] = Field(None, ge=0)
+    total_tokens: Optional[int] = Field(None, ge=0)
+    shortlist_relevant_count: int = Field(0, ge=0)
+    shortlist_returned_count: int = Field(0, ge=0)
+    shortlist_precision: Optional[float] = Field(None, ge=0.0, le=1.0)
 
 
 class AggregateMetrics(StrictModel):
@@ -239,6 +257,19 @@ class AggregateMetrics(StrictModel):
     mean_runtime_seconds: Optional[float]
     total_estimated_cost_usd: Optional[float]
     costed_case_count: int = Field(..., ge=0)
+    review_burden: int = Field(0, ge=0)
+    false_positives_per_case: Optional[float] = None
+    review_burden_at_full_recall: Optional[int] = Field(None, ge=0)
+    recall_constraint_at_3: Optional[float] = None
+    recall_constraint_met: Optional[bool] = None
+    citation_traceability_error_rate: Optional[float] = None
+    claim_support_precision: Optional[float] = None
+    total_input_tokens: Optional[int] = Field(None, ge=0)
+    total_output_tokens: Optional[int] = Field(None, ge=0)
+    total_tokens: Optional[int] = Field(None, ge=0)
+    shortlist_relevant_count: int = Field(0, ge=0)
+    shortlist_returned_count: int = Field(0, ge=0)
+    shortlist_precision: Optional[float] = Field(None, ge=0.0, le=1.0)
 
 
 class EvaluationResult(StrictModel):

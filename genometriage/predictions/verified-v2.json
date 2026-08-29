@@ -1,0 +1,1191 @@
+{
+  "schema_version": "1.0",
+  "run_status": "completed",
+  "system": "verified-v2",
+  "benchmark_version": "benchmark_v1",
+  "prompt_version": "independent_verifier_v1",
+  "model": "gemini-3.5-flash-lite+gemini-3.5-flash",
+  "created_at_utc": "2026-08-29T08:53:20.752281+00:00",
+  "benchmark_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+  "prompt_sha256": "c113a334bccede36222f729b1f92af97b3be16afeef0e031a042aab9f2aae719",
+  "execution_config": {
+    "prioritizer_model": "gemini-3.5-flash-lite",
+    "verifier_model": "gemini-3.5-flash",
+    "verifier": {
+      "temperature": 0,
+      "max_output_tokens": 8192,
+      "thinking_level": "low",
+      "structured_output": "response_json_schema"
+    },
+    "min_request_interval_seconds": 13.0,
+    "evidence_snapshot_version": "evidence_v1",
+    "evidence_snapshot_sha256": "c0b632fd3a001678d947fc387ad7feeb94945acad7c805859e3f3a9d6ed33934",
+    "v1_run_sha256": "46a919f28b54f0ed9e3b7f73f1af832378103221dc29670dd666dd0169cfc676",
+    "filter_policy": "retain_supported_attention_or_supported_uncertainty_v1"
+  },
+  "records": [
+    {
+      "case_id": "GT-001",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-001",
+        "system": "verified-v2",
+        "prompt_version": "independent_verifier_v1",
+        "model": "gemini-3.5-flash-lite+gemini-3.5-flash",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT001-V1",
+            "rank": 1,
+            "reason": "Independent verification retained: Curated synthetic functional assay reports a large activity reduction for this exact allele.; Synthetic segregation record confirms absence in both parents and phenotype concordance.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "GT001-E1",
+              "GT001-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-001:GT001-V1:C1",
+                "claim": "Curated synthetic functional assay reports a large activity reduction for this exact allele.",
+                "evidence_ids": [
+                  "GT001-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-001:GT001-V1:C2",
+                "claim": "Synthetic segregation record confirms absence in both parents and phenotype concordance.",
+                "evidence_ids": [
+                  "GT001-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Verification-only stage. Removed candidates: ['none']. Verifier notes: All claims were successfully verified against the provided synthetic evidence records.",
+        "runtime_seconds": 6.531621499998437,
+        "usage": {
+          "input_tokens": 4179,
+          "output_tokens": 875,
+          "total_tokens": 5054
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [
+          {
+            "claim_id": "GT-001:GT001-V1:C1",
+            "variant_id": "GT001-V1",
+            "claim": "Curated synthetic functional assay reports a large activity reduction for this exact allele.",
+            "evidence_ids": [
+              "GT001-E1"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT001-E1 explicitly states that a curated synthetic functional assay reports a large activity reduction for this exact allele, which directly supports the claim."
+          },
+          {
+            "claim_id": "GT-001:GT001-V1:C2",
+            "variant_id": "GT001-V1",
+            "claim": "Synthetic segregation record confirms absence in both parents and phenotype concordance.",
+            "evidence_ids": [
+              "GT001-E2"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT001-E2 explicitly states that a synthetic segregation record confirms absence in both parents and phenotype concordance, which directly supports the claim."
+          }
+        ]
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-002",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-002",
+        "system": "verified-v2",
+        "prompt_version": "independent_verifier_v1",
+        "model": "gemini-3.5-flash-lite+gemini-3.5-flash",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT002-V1",
+            "rank": 1,
+            "reason": "Independent verification retained: Predicted early truncation in a synthetic gene linked to metabolite M processing.; Synthetic affected sibling is homozygous; both unaffected parents are heterozygous.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "GT002-E1",
+              "GT002-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-002:GT002-V1:C1",
+                "claim": "Predicted early truncation in a synthetic gene linked to metabolite M processing.",
+                "evidence_ids": [
+                  "GT002-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-002:GT002-V1:C2",
+                "claim": "Synthetic affected sibling is homozygous; both unaffected parents are heterozygous.",
+                "evidence_ids": [
+                  "GT002-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Verification-only stage. Removed candidates: ['none']. Verifier notes: All claims are fully supported by their respective cited synthetic benchmark evidence records.",
+        "runtime_seconds": 4.656362600000648,
+        "usage": {
+          "input_tokens": 4170,
+          "output_tokens": 663,
+          "total_tokens": 4833
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [
+          {
+            "claim_id": "GT-002:GT002-V1:C1",
+            "variant_id": "GT002-V1",
+            "claim": "Predicted early truncation in a synthetic gene linked to metabolite M processing.",
+            "evidence_ids": [
+              "GT002-E1"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT002-E1 explicitly states 'Predicted early truncation in a synthetic gene linked to metabolite M processing.' with a direction of 'supports' and strong strength."
+          },
+          {
+            "claim_id": "GT-002:GT002-V1:C2",
+            "variant_id": "GT002-V1",
+            "claim": "Synthetic affected sibling is homozygous; both unaffected parents are heterozygous.",
+            "evidence_ids": [
+              "GT002-E2"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT002-E2 explicitly states 'Synthetic affected sibling is homozygous; both unaffected parents are heterozygous.' with a direction of 'supports' and strong strength."
+          }
+        ]
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-003",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-003",
+        "system": "verified-v2",
+        "prompt_version": "independent_verifier_v1",
+        "model": "gemini-3.5-flash-lite+gemini-3.5-flash",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT003-V1",
+            "rank": 1,
+            "reason": "Independent verification retained: Synthetic RNA record shows exon skipping for the exact allele.; The invented gene-to-phenotype map strongly matches retinal dysfunction.",
+            "confidence": 0.9,
+            "evidence_source_ids": [
+              "GT003-E1",
+              "GT003-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-003:GT003-V1:C1",
+                "claim": "Synthetic RNA record shows exon skipping for the exact allele.",
+                "evidence_ids": [
+                  "GT003-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-003:GT003-V1:C2",
+                "claim": "The invented gene-to-phenotype map strongly matches retinal dysfunction.",
+                "evidence_ids": [
+                  "GT003-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Verification-only stage. Removed candidates: ['none']. Verifier notes: none",
+        "runtime_seconds": 6.2938854999993055,
+        "usage": {
+          "input_tokens": 4706,
+          "output_tokens": 908,
+          "total_tokens": 5614
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [
+          {
+            "claim_id": "GT-003:GT003-V1:C1",
+            "variant_id": "GT003-V1",
+            "claim": "Synthetic RNA record shows exon skipping for the exact allele.",
+            "evidence_ids": [
+              "GT003-E1"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT003-E1 explicitly states that the synthetic RNA record shows exon skipping for the exact allele, which directly supports the claim."
+          },
+          {
+            "claim_id": "GT-003:GT003-V1:C2",
+            "variant_id": "GT003-V1",
+            "claim": "The invented gene-to-phenotype map strongly matches retinal dysfunction.",
+            "evidence_ids": [
+              "GT003-E2"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT003-E2 explicitly states that the invented gene-to-phenotype map strongly matches retinal dysfunction, which directly supports the claim."
+          }
+        ]
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-004",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-004",
+        "system": "verified-v2",
+        "prompt_version": "independent_verifier_v1",
+        "model": "gemini-3.5-flash-lite+gemini-3.5-flash",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT004-V1",
+            "rank": 1,
+            "reason": "Independent verification retained: Synthetic phenotype overlap is strong, but the assay is unavailable.; Only one unrelated synthetic observation exists for a nearby residue.",
+            "confidence": 0.6,
+            "evidence_source_ids": [
+              "GT004-E1",
+              "GT004-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-004:GT004-V1:C1",
+                "claim": "Synthetic phenotype overlap is strong, but the assay is unavailable.",
+                "evidence_ids": [
+                  "GT004-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-004:GT004-V1:C2",
+                "claim": "Only one unrelated synthetic observation exists for a nearby residue.",
+                "evidence_ids": [
+                  "GT004-E2"
+                ],
+                "interpretation": "uncertainty_or_conflict",
+                "status": "supported"
+              }
+            ]
+          },
+          {
+            "variant_id": "GT004-V2",
+            "rank": 2,
+            "reason": "Independent verification retained: Synthetic cellular record reports altered ion transport and partial phenotype overlap.; The invented gene-disease relationship is provisional.",
+            "confidence": 0.55,
+            "evidence_source_ids": [
+              "GT004-E3",
+              "GT004-E4"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-004:GT004-V2:C1",
+                "claim": "Synthetic cellular record reports altered ion transport and partial phenotype overlap.",
+                "evidence_ids": [
+                  "GT004-E3"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-004:GT004-V2:C2",
+                "claim": "The invented gene-disease relationship is provisional.",
+                "evidence_ids": [
+                  "GT004-E4"
+                ],
+                "interpretation": "uncertainty_or_conflict",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": true,
+        "notes": "Verification-only stage. Removed candidates: ['none']. Verifier notes: All claims were successfully verified against their respective synthetic benchmark evidence records.",
+        "runtime_seconds": 6.347757499999716,
+        "usage": {
+          "input_tokens": 5598,
+          "output_tokens": 1065,
+          "total_tokens": 6663
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [
+          {
+            "claim_id": "GT-004:GT004-V1:C1",
+            "variant_id": "GT004-V1",
+            "claim": "Synthetic phenotype overlap is strong, but the assay is unavailable.",
+            "evidence_ids": [
+              "GT004-E1"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT004-E1 contains the exact statement matching the claim."
+          },
+          {
+            "claim_id": "GT-004:GT004-V1:C2",
+            "variant_id": "GT004-V1",
+            "claim": "Only one unrelated synthetic observation exists for a nearby residue.",
+            "evidence_ids": [
+              "GT004-E2"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT004-E2 contains the exact statement matching the claim."
+          },
+          {
+            "claim_id": "GT-004:GT004-V2:C1",
+            "variant_id": "GT004-V2",
+            "claim": "Synthetic cellular record reports altered ion transport and partial phenotype overlap.",
+            "evidence_ids": [
+              "GT004-E3"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT004-E3 contains the exact statement matching the claim."
+          },
+          {
+            "claim_id": "GT-004:GT004-V2:C2",
+            "variant_id": "GT004-V2",
+            "claim": "The invented gene-disease relationship is provisional.",
+            "evidence_ids": [
+              "GT004-E4"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT004-E4 contains the exact statement matching the claim."
+          }
+        ]
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-005",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-005",
+        "system": "verified-v2",
+        "prompt_version": "independent_verifier_v1",
+        "model": "gemini-3.5-flash-lite+gemini-3.5-flash",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT005-V1",
+            "rank": 1,
+            "reason": "Independent verification retained: Assays show both gain of activity and no measurable difference.; Unaffected carrier could reflect reduced penetrance or argue against relevance.",
+            "confidence": 0.5,
+            "evidence_source_ids": [
+              "GT005-E1",
+              "GT005-E2",
+              "GT005-E3"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-005:GT005-V1:C1",
+                "claim": "Assays show both gain of activity and no measurable difference.",
+                "evidence_ids": [
+                  "GT005-E1",
+                  "GT005-E2"
+                ],
+                "interpretation": "uncertainty_or_conflict",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-005:GT005-V1:C2",
+                "claim": "Unaffected carrier could reflect reduced penetrance or argue against relevance.",
+                "evidence_ids": [
+                  "GT005-E3"
+                ],
+                "interpretation": "uncertainty_or_conflict",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": true,
+        "notes": "Verification-only stage. Removed candidates: ['none']. Verifier notes: none",
+        "runtime_seconds": 6.60594200000196,
+        "usage": {
+          "input_tokens": 4597,
+          "output_tokens": 1062,
+          "total_tokens": 5659
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [
+          {
+            "claim_id": "GT-005:GT005-V1:C1",
+            "variant_id": "GT005-V1",
+            "claim": "Assays show both gain of activity and no measurable difference.",
+            "evidence_ids": [
+              "GT005-E1",
+              "GT005-E2"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT005-E1 reports a gain of channel activity, and GT005-E2 reports no measurable functional difference, which directly supports the claim."
+          },
+          {
+            "claim_id": "GT-005:GT005-V1:C2",
+            "variant_id": "GT005-V1",
+            "claim": "Unaffected carrier could reflect reduced penetrance or argue against relevance.",
+            "evidence_ids": [
+              "GT005-E3"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT005-E3 directly states that an unaffected carrier could reflect reduced penetrance or argue against relevance, matching the claim."
+          }
+        ]
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-006",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-006",
+        "system": "verified-v2",
+        "prompt_version": "independent_verifier_v1",
+        "model": "gemini-3.5-flash-lite+gemini-3.5-flash",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT006-V1",
+            "rank": 1,
+            "reason": "Independent verification retained: Synthetic transcript record predicts loss of function.; Maternal phase is opposite the second GTT6 candidate.",
+            "confidence": 0.9,
+            "evidence_source_ids": [
+              "GT006-E1",
+              "GT006-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-006:GT006-V1:C1",
+                "claim": "Synthetic transcript record predicts loss of function.",
+                "evidence_ids": [
+                  "GT006-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-006:GT006-V1:C2",
+                "claim": "Maternal phase is opposite the second GTT6 candidate.",
+                "evidence_ids": [
+                  "GT006-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          },
+          {
+            "variant_id": "GT006-V2",
+            "rank": 2,
+            "reason": "Independent verification retained: Synthetic functional assay shows substantial residual-activity loss.; Paternal phase is opposite the first GTT6 candidate.",
+            "confidence": 0.9,
+            "evidence_source_ids": [
+              "GT006-E3",
+              "GT006-E4"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-006:GT006-V2:C1",
+                "claim": "Synthetic functional assay shows substantial residual-activity loss.",
+                "evidence_ids": [
+                  "GT006-E3"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-006:GT006-V2:C2",
+                "claim": "Paternal phase is opposite the first GTT6 candidate.",
+                "evidence_ids": [
+                  "GT006-E4"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Verification-only stage. Removed candidates: ['none']. Verifier notes: All claims are fully supported by their respective synthetic benchmark evidence records.",
+        "runtime_seconds": 5.540559099999882,
+        "usage": {
+          "input_tokens": 5750,
+          "output_tokens": 1065,
+          "total_tokens": 6815
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [
+          {
+            "claim_id": "GT-006:GT006-V1:C1",
+            "variant_id": "GT006-V1",
+            "claim": "Synthetic transcript record predicts loss of function.",
+            "evidence_ids": [
+              "GT006-E1"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT006-E1 explicitly states that the synthetic transcript record predicts loss of function."
+          },
+          {
+            "claim_id": "GT-006:GT006-V1:C2",
+            "variant_id": "GT006-V1",
+            "claim": "Maternal phase is opposite the second GTT6 candidate.",
+            "evidence_ids": [
+              "GT006-E2"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT006-E2 explicitly states that the maternal phase is opposite the second GTT6 candidate."
+          },
+          {
+            "claim_id": "GT-006:GT006-V2:C1",
+            "variant_id": "GT006-V2",
+            "claim": "Synthetic functional assay shows substantial residual-activity loss.",
+            "evidence_ids": [
+              "GT006-E3"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT006-E3 explicitly states that the synthetic functional assay shows substantial residual-activity loss."
+          },
+          {
+            "claim_id": "GT-006:GT006-V2:C2",
+            "variant_id": "GT006-V2",
+            "claim": "Paternal phase is opposite the first GTT6 candidate.",
+            "evidence_ids": [
+              "GT006-E4"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT006-E4 explicitly states that the paternal phase is opposite the first GTT6 candidate."
+          }
+        ]
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-007",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-007",
+        "system": "verified-v2",
+        "prompt_version": "independent_verifier_v1",
+        "model": "gemini-3.5-flash-lite+gemini-3.5-flash",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT007-V1",
+            "rank": 1,
+            "reason": "Independent verification retained: Gene-to-phenotype map matches renal salt wasting.; Transport assay reports partial loss of function and recessive segregation.",
+            "confidence": 0.9,
+            "evidence_source_ids": [
+              "GT007-E1",
+              "GT007-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-007:GT007-V1:C1",
+                "claim": "Gene-to-phenotype map matches renal salt wasting.",
+                "evidence_ids": [
+                  "GT007-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-007:GT007-V1:C2",
+                "claim": "Transport assay reports partial loss of function and recessive segregation.",
+                "evidence_ids": [
+                  "GT007-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          },
+          {
+            "variant_id": "GT007-V2",
+            "rank": 2,
+            "reason": "Independent verification retained: Expected to truncate the synthetic protein.",
+            "confidence": 0.4,
+            "evidence_source_ids": [
+              "GT007-E3"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-007:GT007-V2:C1",
+                "claim": "Expected to truncate the synthetic protein.",
+                "evidence_ids": [
+                  "GT007-E3"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-007:GT007-V2:C2",
+                "claim": "Invented GTY7 phenotype is isolated skin fragility, absent from this context.",
+                "evidence_ids": [
+                  "GT007-E4"
+                ],
+                "interpretation": "argues_against_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Verification-only stage. Removed candidates: ['none']. Verifier notes: All claims are fully supported by their respective cited synthetic evidence records.",
+        "runtime_seconds": 6.310731699999451,
+        "usage": {
+          "input_tokens": 5214,
+          "output_tokens": 1116,
+          "total_tokens": 6330
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [
+          {
+            "claim_id": "GT-007:GT007-V1:C1",
+            "variant_id": "GT007-V1",
+            "claim": "Gene-to-phenotype map matches renal salt wasting.",
+            "evidence_ids": [
+              "GT007-E1"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT007-E1 explicitly states that the invented gene-to-phenotype map exactly matches renal salt wasting."
+          },
+          {
+            "claim_id": "GT-007:GT007-V1:C2",
+            "variant_id": "GT007-V1",
+            "claim": "Transport assay reports partial loss of function and recessive segregation.",
+            "evidence_ids": [
+              "GT007-E2"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT007-E2 explicitly states that the synthetic transport assay reports partial loss of function and recessive segregation."
+          },
+          {
+            "claim_id": "GT-007:GT007-V2:C1",
+            "variant_id": "GT007-V2",
+            "claim": "Expected to truncate the synthetic protein.",
+            "evidence_ids": [
+              "GT007-E3"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT007-E3 explicitly states that the variant is expected to truncate the synthetic protein."
+          },
+          {
+            "claim_id": "GT-007:GT007-V2:C2",
+            "variant_id": "GT007-V2",
+            "claim": "Invented GTY7 phenotype is isolated skin fragility, absent from this context.",
+            "evidence_ids": [
+              "GT007-E4"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT007-E4 explicitly states that the invented GTY7 phenotype is isolated skin fragility, absent from this context."
+          }
+        ]
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-008",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-008",
+        "system": "verified-v2",
+        "prompt_version": "independent_verifier_v1",
+        "model": "gemini-3.5-flash-lite+gemini-3.5-flash",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT008-V1",
+            "rank": 1,
+            "reason": "Independent verification retained: Variant is present at low fraction in affected synthetic tissue and absent from blood.; Synthetic pathway assay reports increased signaling for the exact allele.; Low read count makes an artifact possible; orthogonal confirmation is pending.",
+            "confidence": 0.8,
+            "evidence_source_ids": [
+              "GT008-E1",
+              "GT008-E2",
+              "GT008-E3"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-008:GT008-V1:C1",
+                "claim": "Variant is present at low fraction in affected synthetic tissue and absent from blood.",
+                "evidence_ids": [
+                  "GT008-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-008:GT008-V1:C2",
+                "claim": "Synthetic pathway assay reports increased signaling for the exact allele.",
+                "evidence_ids": [
+                  "GT008-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-008:GT008-V1:C3",
+                "claim": "Low read count makes an artifact possible; orthogonal confirmation is pending.",
+                "evidence_ids": [
+                  "GT008-E3"
+                ],
+                "interpretation": "uncertainty_or_conflict",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": true,
+        "notes": "Verification-only stage. Removed candidates: ['none']. Verifier notes: none",
+        "runtime_seconds": 6.2258206000005885,
+        "usage": {
+          "input_tokens": 4721,
+          "output_tokens": 1162,
+          "total_tokens": 5883
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [
+          {
+            "claim_id": "GT-008:GT008-V1:C1",
+            "variant_id": "GT008-V1",
+            "claim": "Variant is present at low fraction in affected synthetic tissue and absent from blood.",
+            "evidence_ids": [
+              "GT008-E1"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence statement matches the claim exactly."
+          },
+          {
+            "claim_id": "GT-008:GT008-V1:C2",
+            "variant_id": "GT008-V1",
+            "claim": "Synthetic pathway assay reports increased signaling for the exact allele.",
+            "evidence_ids": [
+              "GT008-E2"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence statement matches the claim exactly."
+          },
+          {
+            "claim_id": "GT-008:GT008-V1:C3",
+            "variant_id": "GT008-V1",
+            "claim": "Low read count makes an artifact possible; orthogonal confirmation is pending.",
+            "evidence_ids": [
+              "GT008-E3"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence statement matches the claim exactly."
+          }
+        ]
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-009",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-009",
+        "system": "verified-v2",
+        "prompt_version": "independent_verifier_v1",
+        "model": "gemini-3.5-flash-lite+gemini-3.5-flash",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT009-V1",
+            "rank": 1,
+            "reason": "Independent verification retained: Synthetic reporter assay shows sharply reduced promoter activity for the exact allele.; Allele tracks with the phenotype in two synthetic affected relatives and is absent in one older unaffected relative.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "GT009-E1",
+              "GT009-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-009:GT009-V1:C1",
+                "claim": "Synthetic reporter assay shows sharply reduced promoter activity for the exact allele.",
+                "evidence_ids": [
+                  "GT009-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-009:GT009-V1:C2",
+                "claim": "Allele tracks with the phenotype in two synthetic affected relatives and is absent in one older unaffected relative.",
+                "evidence_ids": [
+                  "GT009-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Verification-only stage. Removed candidates: ['none']. Verifier notes: none",
+        "runtime_seconds": 4.799431200000981,
+        "usage": {
+          "input_tokens": 4223,
+          "output_tokens": 631,
+          "total_tokens": 4854
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [
+          {
+            "claim_id": "GT-009:GT009-V1:C1",
+            "variant_id": "GT009-V1",
+            "claim": "Synthetic reporter assay shows sharply reduced promoter activity for the exact allele.",
+            "evidence_ids": [
+              "GT009-E1"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT009-E1 explicitly states that the synthetic reporter assay shows sharply reduced promoter activity for the exact allele, which directly supports the claim."
+          },
+          {
+            "claim_id": "GT-009:GT009-V1:C2",
+            "variant_id": "GT009-V1",
+            "claim": "Allele tracks with the phenotype in two synthetic affected relatives and is absent in one older unaffected relative.",
+            "evidence_ids": [
+              "GT009-E2"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT009-E2 explicitly states that the allele tracks with the phenotype in two synthetic affected relatives and is absent in one older unaffected relative, which directly supports the claim."
+          }
+        ]
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-010",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-010",
+        "system": "verified-v2",
+        "prompt_version": "independent_verifier_v1",
+        "model": "gemini-3.5-flash-lite+gemini-3.5-flash",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [],
+        "escalated_uncertainty": true,
+        "notes": "Verification-only stage. Removed candidates: ['none']. Verifier notes: No V1 material claims required verification.",
+        "runtime_seconds": 1.6996478000000934,
+        "usage": {
+          "input_tokens": 2494,
+          "output_tokens": 50,
+          "total_tokens": 2544
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-011",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-011",
+        "system": "verified-v2",
+        "prompt_version": "independent_verifier_v1",
+        "model": "gemini-3.5-flash-lite+gemini-3.5-flash",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT011-V1",
+            "rank": 1,
+            "reason": "Independent verification retained: Synthetic RNA assay shows complete loss of the expected splice junction.; Synthetic pedigree pattern and invented phenotype map fit an X-linked model.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "GT011-E1",
+              "GT011-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-011:GT011-V1:C1",
+                "claim": "Synthetic RNA assay shows complete loss of the expected splice junction.",
+                "evidence_ids": [
+                  "GT011-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-011:GT011-V1:C2",
+                "claim": "Synthetic pedigree pattern and invented phenotype map fit an X-linked model.",
+                "evidence_ids": [
+                  "GT011-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Verification-only stage. Removed candidates: ['none']. Verifier notes: none",
+        "runtime_seconds": 4.383451100000457,
+        "usage": {
+          "input_tokens": 4189,
+          "output_tokens": 604,
+          "total_tokens": 4793
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [
+          {
+            "claim_id": "GT-011:GT011-V1:C1",
+            "variant_id": "GT011-V1",
+            "claim": "Synthetic RNA assay shows complete loss of the expected splice junction.",
+            "evidence_ids": [
+              "GT011-E1"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT011-E1 explicitly states that the synthetic RNA assay shows complete loss of the expected splice junction, which directly supports the claim."
+          },
+          {
+            "claim_id": "GT-011:GT011-V1:C2",
+            "variant_id": "GT011-V1",
+            "claim": "Synthetic pedigree pattern and invented phenotype map fit an X-linked model.",
+            "evidence_ids": [
+              "GT011-E2"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT011-E2 explicitly states that the synthetic pedigree pattern and invented phenotype map fit an X-linked model, which directly supports the claim."
+          }
+        ]
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GT-012",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GT-012",
+        "system": "verified-v2",
+        "prompt_version": "independent_verifier_v1",
+        "model": "gemini-3.5-flash-lite+gemini-3.5-flash",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GT012-V1",
+            "rank": 1,
+            "reason": "Independent verification retained: Synthetic RNA record shows partial abnormal splicing under stimulated conditions only.; Maternal allele is in trans with GT012-V2.",
+            "confidence": 0.7,
+            "evidence_source_ids": [
+              "GT012-E1",
+              "GT012-E2"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-012:GT012-V1:C1",
+                "claim": "Synthetic RNA record shows partial abnormal splicing under stimulated conditions only.",
+                "evidence_ids": [
+                  "GT012-E1"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-012:GT012-V1:C2",
+                "claim": "Maternal allele is in trans with GT012-V2.",
+                "evidence_ids": [
+                  "GT012-E2"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          },
+          {
+            "variant_id": "GT012-V2",
+            "rank": 2,
+            "reason": "Independent verification retained: Synthetic stimulated-cell assay reports moderate function loss.; Paternal allele is in trans with GT012-V1.; An older unaffected synthetic relative carries both alleles, suggesting incomplete penetrance or non-causality.",
+            "confidence": 0.6,
+            "evidence_source_ids": [
+              "GT012-E3",
+              "GT012-E4",
+              "GT012-E5"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-012:GT012-V2:C1",
+                "claim": "Synthetic stimulated-cell assay reports moderate function loss.",
+                "evidence_ids": [
+                  "GT012-E3"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-012:GT012-V2:C2",
+                "claim": "Paternal allele is in trans with GT012-V1.",
+                "evidence_ids": [
+                  "GT012-E4"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-012:GT012-V2:C3",
+                "claim": "An older unaffected synthetic relative carries both alleles, suggesting incomplete penetrance or non-causality.",
+                "evidence_ids": [
+                  "GT012-E5"
+                ],
+                "interpretation": "uncertainty_or_conflict",
+                "status": "supported"
+              }
+            ]
+          },
+          {
+            "variant_id": "GT012-V3",
+            "rank": 3,
+            "reason": "Independent verification retained: Expected severe truncation with confirmed synthetic de novo status.",
+            "confidence": 0.5,
+            "evidence_source_ids": [
+              "GT012-E6"
+            ],
+            "claims": [
+              {
+                "claim_id": "GT-012:GT012-V3:C1",
+                "claim": "Expected severe truncation with confirmed synthetic de novo status.",
+                "evidence_ids": [
+                  "GT012-E6"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GT-012:GT012-V3:C2",
+                "claim": "Invented GAR2 phenotype concerns congenital bone formation and has no overlap here.",
+                "evidence_ids": [
+                  "GT012-E7"
+                ],
+                "interpretation": "argues_against_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": true,
+        "notes": "Verification-only stage. Removed candidates: ['none']. Verifier notes: All claims were successfully verified against their respective frozen evidence records and found to be supported.",
+        "runtime_seconds": 7.822399399999995,
+        "usage": {
+          "input_tokens": 8617,
+          "output_tokens": 1858,
+          "total_tokens": 10475
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [
+          {
+            "claim_id": "GT-012:GT012-V1:C1",
+            "variant_id": "GT012-V1",
+            "claim": "Synthetic RNA record shows partial abnormal splicing under stimulated conditions only.",
+            "evidence_ids": [
+              "GT012-E1"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT012-E1 contains a statement that exactly matches the claim."
+          },
+          {
+            "claim_id": "GT-012:GT012-V1:C2",
+            "variant_id": "GT012-V1",
+            "claim": "Maternal allele is in trans with GT012-V2.",
+            "evidence_ids": [
+              "GT012-E2"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT012-E2 contains a statement that exactly matches the claim."
+          },
+          {
+            "claim_id": "GT-012:GT012-V2:C1",
+            "variant_id": "GT012-V2",
+            "claim": "Synthetic stimulated-cell assay reports moderate function loss.",
+            "evidence_ids": [
+              "GT012-E3"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT012-E3 contains a statement that exactly matches the claim."
+          },
+          {
+            "claim_id": "GT-012:GT012-V2:C2",
+            "variant_id": "GT012-V2",
+            "claim": "Paternal allele is in trans with GT012-V1.",
+            "evidence_ids": [
+              "GT012-E4"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT012-E4 contains a statement that exactly matches the claim."
+          },
+          {
+            "claim_id": "GT-012:GT012-V2:C3",
+            "variant_id": "GT012-V2",
+            "claim": "An older unaffected synthetic relative carries both alleles, suggesting incomplete penetrance or non-causality.",
+            "evidence_ids": [
+              "GT012-E5"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT012-E5 contains a statement that exactly matches the claim."
+          },
+          {
+            "claim_id": "GT-012:GT012-V3:C1",
+            "variant_id": "GT012-V3",
+            "claim": "Expected severe truncation with confirmed synthetic de novo status.",
+            "evidence_ids": [
+              "GT012-E6"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT012-E6 contains a statement that exactly matches the claim."
+          },
+          {
+            "claim_id": "GT-012:GT012-V3:C2",
+            "variant_id": "GT012-V3",
+            "claim": "Invented GAR2 phenotype concerns congenital bone formation and has no overlap here.",
+            "evidence_ids": [
+              "GT012-E7"
+            ],
+            "status": "supported",
+            "reason": "The cited evidence GT012-E7 contains a statement that exactly matches the claim."
+          }
+        ]
+      },
+      "error_type": null,
+      "error_message": null
+    }
+  ]
+}

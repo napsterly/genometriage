@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "genometriage"
-version = "0.1.0"
+version = "0.2.0"
 description = "Benchmark-first genomic variant prioritization research prototype"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -25,6 +25,10 @@ dev = [
 genometriage-baseline = "genometriage.baseline.run:main"
 genometriage-eval = "genometriage.evaluation.run:main"
 genometriage-validate = "genometriage.benchmark.validate:main"
+genometriage-build-evidence = "genometriage.evidence.build:main"
+genometriage-phase2 = "genometriage.phase2.run:main"
+genometriage-compare = "genometriage.reporting.comparison:main"
+genometriage-v0-top3-control = "genometriage.controls.v0_top3:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

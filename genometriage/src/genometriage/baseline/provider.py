@@ -159,6 +159,13 @@ class GeminiGenerateContentProvider:
             )
         ).rstrip("/")
         self.timeout_seconds = timeout_seconds
+        self._include_temperature = not any(
+            version in self.model.removeprefix("models/")
+            for version in ("gemini-3.6-", "gemini-3.7-")
+        )
+        self.execution_config = dict(type(self).execution_config)
+        if not self._include_temperature:
+            self.execution_config.pop("temperature", None)
         if not self.api_key:
             raise ProviderError(
                 "GEMINI_API_KEY is required for a live baseline run; "
@@ -168,6 +175,14 @@ class GeminiGenerateContentProvider:
     def complete(
         self, prompt: str, response_schema: Dict[str, object]
     ) -> ProviderResponse:
+        generation_config = {
+            "maxOutputTokens": 8192,
+            "thinkingConfig": {"thinkingLevel": "low"},
+            "responseMimeType": "application/json",
+            "responseJsonSchema": response_schema,
+        }
+        if self._include_temperature:
+            generation_config["temperature"] = 0
         payload = {
             "contents": [
                 {
@@ -175,13 +190,7 @@ class GeminiGenerateContentProvider:
                     "parts": [{"text": prompt}],
                 }
             ],
-            "generationConfig": {
-                "temperature": 0,
-                "maxOutputTokens": 8192,
-                "thinkingConfig": {"thinkingLevel": "low"},
-                "responseMimeType": "application/json",
-                "responseJsonSchema": response_schema,
-            },
+            "generationConfig": generation_config,
         }
         model_name = self.model.removeprefix("models/")
         encoded_model = urllib.parse.quote(model_name, safe="")

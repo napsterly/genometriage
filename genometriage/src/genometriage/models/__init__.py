@@ -11,6 +11,13 @@ from .schema import (
     RankedVariant,
     SystemRun,
 )
+from .phase2 import (
+    CanonicalVariant,
+    EvidenceRecord,
+    EvidenceSnapshotManifest,
+    MaterialClaim,
+    VerifiedClaim,
+)
 
 __all__ = [
     "AggregateMetrics",
@@ -22,5 +29,9 @@ __all__ = [
     "Prediction",
     "RankedVariant",
     "SystemRun",
+    "CanonicalVariant",
+    "EvidenceRecord",
+    "EvidenceSnapshotManifest",
+    "MaterialClaim",
+    "VerifiedClaim",
 ]
-

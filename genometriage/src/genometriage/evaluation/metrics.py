@@ -40,9 +40,26 @@ def reciprocal_rank(
     return 0.0
 
 
+def review_burden_at_full_recall(
+    ranked_variant_ids: Sequence[str], relevant_variant_ids: Iterable[str]
+) -> Optional[int]:
+    """Smallest prefix containing every relevant variant, or null on any miss."""
+
+    relevant = set(relevant_variant_ids)
+    if not relevant:
+        return 0
+    positions = {
+        variant_id: index
+        for index, variant_id in enumerate(ranked_variant_ids, start=1)
+        if variant_id in relevant
+    }
+    if set(positions) != relevant:
+        return None
+    return max(positions.values())
+
+
 def mean(values: Iterable[float]) -> Optional[float]:
     materialized = list(values)
     if not materialized:
         return None
     return sum(materialized) / len(materialized)
-

@@ -24,6 +24,7 @@ from .metrics import (
     precision_at_k,
     reciprocal_rank,
     relevant_variant_recall_at_k,
+    review_burden_at_full_recall,
 )
 
 
@@ -44,9 +45,37 @@ METRIC_DEFINITIONS = {
         "Count of returned variants in the first K ranks that are not evaluator-labeled relevant."
     ),
     "unsupported_claim_rate": (
-        "Automated proxy: fraction of ranked-variant reasons in the primary-K shortlist "
-        "whose evidence_source_ids are empty, unknown, or not attached to that candidate. "
-        "This does not semantically fact-check prose."
+        "Historical name for citation_traceability_error_rate. Preserved unchanged "
+        "for V0 comparability."
+    ),
+    "citation_traceability_error_rate": (
+        "Fraction of ranked-variant reasons in the primary-K shortlist whose evidence "
+        "IDs are empty, unknown, or attached to another candidate. This checks citation "
+        "traceability only and does not semantically fact-check prose."
+    ),
+    "claim_support_precision": (
+        "Of typed material claims labeled supported by the system, the fraction whose "
+        "cited benchmark evidence directions support the claim interpretation. Null when "
+        "the system emits no typed supported claims."
+    ),
+    "review_burden": (
+        "Number of variants in the primary-K shortlist sent for expert review."
+    ),
+    "false_positives_per_case": (
+        "Primary-K false positives divided by all benchmark cases, including the "
+        "negative control."
+    ),
+    "review_burden_at_full_recall": (
+        "Smallest summed per-case shortlist prefixes containing every known relevant "
+        "variant. Null if any relevant variant is absent."
+    ),
+    "recall_constraint_met": (
+        "Whether Recall@3 is at least the frozen V0 Recall@3 threshold."
+    ),
+    "shortlist_precision": (
+        "Micro-averaged precision over the actual shortlist: total evaluator-labeled "
+        "relevant returned variants divided by total returned variants. Unlike "
+        "Precision@K, this has no fixed-K denominator."
     ),
     "sent_for_human_review": (
         "Number of returned variants in the primary-K shortlist."
@@ -64,6 +93,7 @@ def evaluate_run(
     *,
     k_values: Sequence[int] = (1, 3, 5),
     primary_k: int = 5,
+    recall_constraint_at_3: float = 1.0,
 ) -> EvaluationResult:
     if run.run_status != "completed":
         raise ValueError("cannot evaluate an in-progress system run")
@@ -87,7 +117,12 @@ def evaluate_run(
         record = records.get(case_id)
         case_results.append(_evaluate_case(case, truth, record, ks, primary_k))
 
-    aggregate = _aggregate(case_results, ks)
+    aggregate = _aggregate(
+        case_results,
+        ks,
+        primary_k=primary_k,
+        recall_constraint_at_3=recall_constraint_at_3,
+    )
     return EvaluationResult(
         benchmark_version=run.benchmark_version,
         system=run.system,
@@ -142,6 +177,17 @@ def _evaluate_case(
     }
     unsupported_count, claim_count = _unsupported_claims(case, prediction, primary_k)
     unsupported_rate = unsupported_count / claim_count if claim_count else None
+    semantic_supported, system_supported = _claim_support(case, prediction, primary_k)
+    claim_support_precision = (
+        semantic_supported / system_supported if system_supported else None
+    )
+    burden_at_full_recall = review_burden_at_full_recall(
+        ranked_ids, truth.relevant_variant_ids
+    )
+    shortlist_relevant_count = len(
+        set(ranked_ids) & set(truth.relevant_variant_ids)
+    )
+    shortlist_returned_count = len(ranked_ids)
     estimated_cost = prediction.estimated_cost_usd if prediction else None
     if prediction and estimated_cost is None:
         estimated_cost = estimate_cost_usd(
@@ -169,9 +215,28 @@ def _evaluate_case(
         unsupported_claim_count=unsupported_count,
         evaluated_claim_count=claim_count,
         unsupported_claim_rate=unsupported_rate,
+        review_burden=min(primary_k, len(ranked_ids)),
+        false_positive_count=false_positives[str(primary_k)],
+        review_burden_at_full_recall=burden_at_full_recall,
+        citation_traceability_error_count=unsupported_count,
+        citation_traceability_claim_count=claim_count,
+        citation_traceability_error_rate=unsupported_rate,
+        semantically_supported_claim_count=semantic_supported,
+        system_supported_claim_count=system_supported,
+        claim_support_precision=claim_support_precision,
         runtime_seconds=prediction.runtime_seconds if prediction else None,
         estimated_cost_usd=estimated_cost,
         error_message=error_message,
+        input_tokens=prediction.usage.input_tokens if prediction else None,
+        output_tokens=prediction.usage.output_tokens if prediction else None,
+        total_tokens=prediction.usage.total_tokens if prediction else None,
+        shortlist_relevant_count=shortlist_relevant_count,
+        shortlist_returned_count=shortlist_returned_count,
+        shortlist_precision=(
+            shortlist_relevant_count / shortlist_returned_count
+            if shortlist_returned_count
+            else None
+        ),
     )
 
 
@@ -194,8 +259,47 @@ def _unsupported_claims(
     return unsupported, len(ranked)
 
 
+def _claim_support(
+    case: BenchmarkCase, prediction: Optional[Prediction], primary_k: int
+) -> Tuple[int, int]:
+    if prediction is None:
+        return 0, 0
+    evidence_by_variant = {
+        variant.variant_id: {item.source_id: item for item in variant.evidence}
+        for variant in case.candidate_variants
+    }
+    semantically_supported = 0
+    system_supported = 0
+    for ranked in prediction.ranked_variants[:primary_k]:
+        available = evidence_by_variant.get(ranked.variant_id, {})
+        for claim in ranked.claims:
+            if claim.status != "supported":
+                continue
+            system_supported += 1
+            cited = [available.get(evidence_id) for evidence_id in claim.evidence_ids]
+            if not cited or any(item is None for item in cited):
+                continue
+            directions = {item.direction for item in cited if item is not None}
+            if claim.interpretation == "supports_attention":
+                supported = directions == {"supports"}
+            elif claim.interpretation == "argues_against_attention":
+                supported = directions == {"against"}
+            else:
+                supported = "uncertain" in directions or directions == {
+                    "supports",
+                    "against",
+                }
+            if supported:
+                semantically_supported += 1
+    return semantically_supported, system_supported
+
+
 def _aggregate(
-    cases: Sequence[CaseEvaluation], k_values: Sequence[int]
+    cases: Sequence[CaseEvaluation],
+    k_values: Sequence[int],
+    *,
+    primary_k: int,
+    recall_constraint_at_3: float,
 ) -> AggregateMetrics:
     recall_means: Dict[str, Optional[float]] = {}
     precision_means: Dict[str, Optional[float]] = {}
@@ -224,6 +328,31 @@ def _aggregate(
     runtimes = [
         case.runtime_seconds for case in cases if case.runtime_seconds is not None
     ]
+    trace_claim_count = sum(case.citation_traceability_claim_count for case in cases)
+    trace_error_count = sum(case.citation_traceability_error_count for case in cases)
+    system_supported_claims = sum(case.system_supported_claim_count for case in cases)
+    semantically_supported_claims = sum(
+        case.semantically_supported_claim_count for case in cases
+    )
+    full_recall_burdens = [case.review_burden_at_full_recall for case in cases]
+    full_recall_burden = (
+        sum(value for value in full_recall_burdens if value is not None)
+        if all(value is not None for value in full_recall_burdens)
+        else None
+    )
+    recall_at_3 = recall_means.get("3")
+    shortlist_relevant_count = sum(
+        case.shortlist_relevant_count for case in cases
+    )
+    shortlist_returned_count = sum(
+        case.shortlist_returned_count for case in cases
+    )
+
+    def token_total(field: str) -> Optional[int]:
+        values = [getattr(case, field) for case in cases]
+        present = [value for value in values if value is not None]
+        return sum(present) if present else None
+
     return AggregateMetrics(
         evaluated_case_count=sum(case.status == "evaluated" for case in cases),
         failed_case_count=sum(case.status == "run_error" for case in cases),
@@ -242,4 +371,33 @@ def _aggregate(
         mean_runtime_seconds=mean(runtimes),
         total_estimated_cost_usd=(round(sum(costs), 8) if costs else None),
         costed_case_count=len(costs),
+        review_burden=sum(review_counts),
+        false_positives_per_case=(
+            false_positive_totals[str(primary_k)] / len(cases) if cases else None
+        ),
+        review_burden_at_full_recall=full_recall_burden,
+        recall_constraint_at_3=recall_constraint_at_3,
+        recall_constraint_met=(
+            recall_at_3 >= recall_constraint_at_3
+            if recall_at_3 is not None
+            else None
+        ),
+        citation_traceability_error_rate=(
+            trace_error_count / trace_claim_count if trace_claim_count else None
+        ),
+        claim_support_precision=(
+            semantically_supported_claims / system_supported_claims
+            if system_supported_claims
+            else None
+        ),
+        total_input_tokens=token_total("input_tokens"),
+        total_output_tokens=token_total("output_tokens"),
+        total_tokens=token_total("total_tokens"),
+        shortlist_relevant_count=shortlist_relevant_count,
+        shortlist_returned_count=shortlist_returned_count,
+        shortlist_precision=(
+            shortlist_relevant_count / shortlist_returned_count
+            if shortlist_returned_count
+            else None
+        ),
     )

@@ -1,0 +1,68 @@
+{
+  "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+  "required_failure_event_count": 0,
+  "transitions": [
+    {
+      "transition": "V0_to_V0_top3",
+      "removed_true_positives": [],
+      "introduced_new_false_positives": []
+    },
+    {
+      "transition": "V0_top3_to_V1",
+      "removed_true_positives": [],
+      "introduced_new_false_positives": []
+    },
+    {
+      "transition": "V0_to_V1",
+      "removed_true_positives": [],
+      "introduced_new_false_positives": []
+    },
+    {
+      "transition": "V1_to_V2",
+      "removed_true_positives": [],
+      "introduced_new_false_positives": []
+    }
+  ],
+  "verifier_contradictions_of_supported_evidence": [],
+  "missing_evidence_failures": [],
+  "residual_false_positives": [
+    {
+      "case_id": "GT-007",
+      "variant_id": "GT007-V2",
+      "trajectory": {
+        "V0_rank": 2,
+        "V0_top3_rank": 2,
+        "V1_rank": 2,
+        "V2_rank": 2
+      },
+      "evidence_ids": [
+        "GT007-E3",
+        "GT007-E4"
+      ],
+      "evidence_directions": [
+        "against",
+        "supports"
+      ],
+      "cause": "Mixed candidate-level evidence contained a supported molecular consequence and strong phenotype counterevidence. V2 correctly verified both claims, but its verification-only retention policy did not arbitrate the conflict."
+    },
+    {
+      "case_id": "GT-012",
+      "variant_id": "GT012-V3",
+      "trajectory": {
+        "V0_rank": 3,
+        "V0_top3_rank": 3,
+        "V1_rank": 3,
+        "V2_rank": 3
+      },
+      "evidence_ids": [
+        "GT012-E6",
+        "GT012-E7"
+      ],
+      "evidence_directions": [
+        "against",
+        "supports"
+      ],
+      "cause": "Mixed candidate-level evidence contained a supported molecular consequence and strong phenotype counterevidence. V2 correctly verified both claims, but its verification-only retention policy did not arbitrate the conflict."
+    }
+  ]
+}

@@ -1,22 +1,59 @@
 # Architecture
 
-Phase 1 intentionally stops at a benchmark, one-call baseline, and evaluator.
+Phase 2 implements only the evidence-grounding and claim-verification experiment.
+It does not implement broad multi-agent orchestration, memory, autonomous clinical
+decisions, or quantum functionality.
 
 ```text
-model-visible JSONL ──> deterministic Pydantic parsing ──> one LLM call ──> raw SystemRun JSON
-                                                        (Gemini default; OpenAI optional)
-                                                                          │
-sealed ground truth JSONL ─────────────────────────────────────────────────┼──> evaluator ──> result JSON + terminal summary
-                                                                          │
-versioned prompt + hashes ─────────────────────────────────────────────────┘
+model-visible case
+      │
+      ├── V0 ─────────────────────────────> one-call ranking
+      │
+      └── deterministic normalization
+                 │
+        exact local evidence retrieval
+                 │
+                 └── V1 prioritization ───> shortlist + typed claims
+                                                  │
+                                      V2 independent verification
+                                                  │
+                                      deterministic safe finalization
+                                                  │
+                                      expert-review output
+
+sealed ground truth ─────────────────────────────> evaluator only
 ```
 
-Ground truth is not a security boundary against a malicious process with repository access. It is a software boundary: systems receive `BenchmarkCase` objects only; the evaluator loads answers after raw predictions have been produced. Later runners must preserve this boundary.
+## Boundaries
 
-Provider adapters are intentionally thin. Gemini and OpenAI receive the same rendered case, prompt version, and response contract, and each still performs exactly one hosted-model call per case. Runs use `baseline-gemini` or `baseline-openai` as their system identifier to prevent artifacts from silently overwriting or masquerading as one another.
+- Parsing, chromosome/allele normalization, exact retrieval, hash validation,
+  claim-ID assignment, shortlist filtering, metrics, and report assembly are code.
+- V1 receives context, normalized candidate metadata, and only exact evidence records
+  retrieved for each candidate. It never receives ground truth.
+- V2 receives V1 claims and their cited frozen evidence. It verifies every claim
+  exactly once and cannot add or reorder variants.
+- A V2 claim marked contradicted or insufficient is retained only as an explicitly
+  typed non-established claim; deterministic final reasons use supported retaining
+  claims only.
+- Ground truth is a software separation boundary rather than a defense against a
+  malicious process with repository access. Evaluation loads it only after a raw
+  `SystemRun` exists.
 
-Raw runs are atomically checkpointed after each completed case and marked `in_progress` until all cases finish. Resuming is allowed only when the benchmark hash, prompt hash, model, provider execution settings, and pacing match. The evaluator rejects in-progress checkpoints, preventing quota interruptions from becoming misleading metric files.
+Runs checkpoint atomically after each case. Resume validation binds benchmark,
+prompt, exact model, evidence snapshot, execution configuration, and source V1 run
+for V2. Evaluation rejects in-progress checkpoints.
 
-`genometriage.interfaces` reserves narrow protocols for normalization, annotation, retrieval, prioritization, independent verification, conflict handling, and reporting. They are deliberately unimplemented. A future system should write the same `SystemRun` contract so evaluation remains comparable.
+## Deterministic normalization scope
 
-Deterministic parsing, allele/chromosome normalization, ID checks, metric arithmetic, and report assembly remain outside an LLM. Eventual claims should carry evidence IDs through every stage. Verification failures and evidence conflicts should remain visible and trigger human escalation.
+The normalizer supports benchmark-required VCF 4.x records with at least the first
+eight tab-separated columns, literal A/C/G/T/N alleles, and multiallelic splitting.
+It removes `chr`, uppercases alleles, and trims shared prefix/suffix sequence while
+preserving an anchor. Symbolic alleles, breakends, and missing alleles are rejected.
+Reference-backed repeat left-alignment is deliberately out of scope and is never
+approximated by an LLM.
+
+## Stop condition
+
+The repository stops at V2. Interfaces for later annotation, public-resource
+adapters, conflict handling, and reports remain narrow extension points; they are
+not speculative implementations.

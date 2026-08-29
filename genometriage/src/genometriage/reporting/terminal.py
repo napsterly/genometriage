@@ -29,8 +29,21 @@ def render_terminal_summary(result: EvaluationResult, output_path: str) -> str:
         ),
         (
             f"False positives@{primary}={metrics.false_positive_count_at_k[primary]} | "
-            f"unsupported-claim proxy={_format_metric(metrics.unsupported_claim_rate)} | "
-            f"sent for review={metrics.total_variants_sent_for_human_review}"
+            f"FP/case={_format_metric(metrics.false_positives_per_case)} | "
+            f"review burden={metrics.review_burden}"
+        ),
+        (
+            "Review burden at full recall="
+            f"{metrics.review_burden_at_full_recall if metrics.review_burden_at_full_recall is not None else 'n/a'} | "
+            f"Recall@3 constraint={metrics.recall_constraint_met} | "
+            "citation traceability error="
+            f"{_format_metric(metrics.citation_traceability_error_rate)} | "
+            f"claim support precision={_format_metric(metrics.claim_support_precision)}"
+        ),
+        (
+            f"Shortlist precision={_format_metric(metrics.shortlist_precision)} | "
+            f"relevant returned={metrics.shortlist_relevant_count}/"
+            f"{metrics.shortlist_returned_count}"
         ),
         (
             f"Mean runtime={_format_metric(metrics.mean_runtime_seconds)}s | "

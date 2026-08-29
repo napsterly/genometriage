@@ -1,21 +1,59 @@
 # GenomeTriage
 
-GenomeTriage Phase 1 is a benchmark-first research prototype for reducing synthetic genomic candidate sets to small, evidence-backed shortlists for qualified human review.
+GenomeTriage is a benchmark-first research prototype for reducing synthetic genomic
+candidate sets to small, evidence-backed shortlists for qualified human review.
 
-**For research/expert review. Not a medical diagnosis.** This repository does not provide autonomous diagnosis, treatment recommendations, or clinical decisions. All bundled data are synthetic and must not be interpreted as real biological or patient records.
+**For research/expert review. Not a medical diagnosis.** The project makes no
+autonomous diagnosis, treatment recommendation, or clinical decision. All bundled
+case data, loci, genes, evidence, and labels are synthetic.
 
-## What Phase 1 contains
+## Phase 2 result
 
-- 12 sealed, fully synthetic benchmark cases and evaluator-only labels;
-- a deliberately simple `case → one general-purpose LLM call → ranked list` baseline;
-- a deterministic evaluation harness with Recall@K, Precision@K, MRR, false positives, an evidence-ID support proxy, shortlist size, runtime, and optional cost;
-- validated JSON artifacts, concise terminal reporting, and future-stage protocol boundaries.
+Phase 1's Gemini V0 artifacts are frozen and hash-guarded. Phase 2 tested whether
+local evidence retrieval and independent claim verification could preserve V0
+Recall@3 while reducing expert-review burden.
 
-No retrieval, multi-agent orchestration, memory, verification loop, or clinical workflow is implemented.
+| Metric | V0 | V0-top3 | V1 evidence grounded | V2 verified |
+|---|---:|---:|---:|---:|
+| Recall@3 | 1.000 | 1.000 | 1.000 | 1.000 |
+| False positives | 9 | 9 | 2 | 2 |
+| Review burden | 23 | 23 | 16 | 16 |
+| Review burden at full recall | 14 | 14 | 14 | 14 |
+| Shortlist precision | 0.608696 | 0.608696 | 0.875000 | 0.875000 |
+| Mean runtime (seconds/case) | 2.321 | 2.321 | 2.522 | 5.601 |
+| Total tokens | 23,275 | 23,275 | 42,826 | 69,517 |
+
+V0 already returned at most three candidates per case, so the deterministic top-3
+control is prediction-identical to V0: truncation explains none of the seven
+false-positive reductions. V1 retains a measurable advantage after that control,
+but it is attributed to the complete V1 pipeline comparison rather than retrieval
+alone because model, prompt, and selection behavior also changed. V2 preserved
+recall and semantic claim support, but did not improve the shortlist beyond V1. See
+[`results/phase2-comparison.md`](results/phase2-comparison.md) and the machine-readable
+failure analysis in `results/phase2-failure-analysis.json`.
+
+Precision@5 remains 0.233 for all systems because the historical metric uses a fixed
+denominator of five even when a system returns fewer than five variants. Review
+burden and false-positive count directly capture the reduction.
+
+## Systems
+
+- **V0, frozen:** one general-purpose Gemini call receives the model-visible case.
+- **V1:** deterministic allele normalization, exact retrieval from the frozen local
+  evidence snapshot, then one evidence-constrained prioritization call. It returns
+  at most three candidates.
+- **V2:** reuses V1 output and makes one independent verification call for each case
+  with claims. It cannot introduce or reorder candidates. Deterministic report
+  assembly prevents contradicted or insufficient claims from appearing as
+  established facts.
+
+Ground truth is loaded only by evaluation after raw predictions exist. V1/V2 never
+receive the evaluator-only files.
 
 ## Clean installation
 
-Python 3.10 or newer is required. Important build, runtime, and test dependencies are exactly pinned in `pyproject.toml`.
+Python 3.10 or newer is required. Runtime, build, and test dependencies are pinned
+in `pyproject.toml`.
 
 Windows PowerShell:
 
@@ -41,106 +79,121 @@ Windows PowerShell:
 
 ```powershell
 .\.venv\Scripts\python.exe -m genometriage.benchmark.validate
-.\.venv\Scripts\python.exe -m pytest
+.\.venv\Scripts\python.exe -m genometriage.evidence.build
+.\.venv\Scripts\python.exe -m pytest -q
 ```
 
 macOS/Linux:
 
 ```bash
 ./.venv/bin/python -m genometriage.benchmark.validate
-./.venv/bin/python -m pytest
+./.venv/bin/python -m genometriage.evidence.build
+./.venv/bin/python -m pytest -q
 ```
 
-## Run the baseline
+The evidence build must report 53 records. Its hash is pinned in
+`data/evidence/evidence_v1_manifest.json`.
 
-Gemini is the default provider. The baseline uses one [Gemini `generateContent` request](https://ai.google.dev/api/generate-content) per case, no tools, and structured JSON output. The benchmark-pinned `gemini-3.1-flash-lite` model has free input and output on Google's free tier at the time of writing; availability and rate limits remain controlled by Google. OpenAI remains available as an optional comparison provider.
+## Configure Gemini for a new live run
 
-Copy `.env.example` to the ignored `.env` file, then add the Gemini key obtained from [Google AI Studio](https://ai.google.dev/aistudio). CLI commands load that file automatically without overriding variables already set in the process environment. Never commit or paste a real key into source, logs, chat, or a result artifact.
+Copy `.env.example` to the ignored `.env` and add a Gemini API key. Never place a
+key in source, shell history, predictions, results, or chat.
 
 Windows PowerShell:
 
 ```powershell
 if (-not (Test-Path .env)) { Copy-Item .env.example .env }
-# Edit .env and set GEMINI_API_KEY. Do not paste the key into this command history.
-.\.venv\Scripts\python.exe -m genometriage.baseline.run --provider gemini
+# Edit .env and set GEMINI_API_KEY; do not paste it into this command history.
 ```
 
 macOS/Linux:
 
 ```bash
 test -f .env || cp .env.example .env
-# Edit .env and set GEMINI_API_KEY. Do not paste the key into shell history.
-./.venv/bin/python -m genometriage.baseline.run --provider gemini
+# Edit .env and set GEMINI_API_KEY; do not paste it into shell history.
 ```
 
-This writes `predictions/baseline-gemini.json`. Temperature is set to zero, Gemini thinking is pinned to `low`, and case ordering, serialization, schema, and prompt are fixed. Gemini requests start at least 13 seconds apart by default so the 12-case run respects the observed five-request-per-minute free-tier limit; use `--min-request-interval-seconds` only if the active project's published limit differs. Hosted model behavior can still vary. Raw predictions, provider-specific system name, exact model name, prompt/case hashes, timing, and token usage are saved for replay.
+The retained runs used the standard Gemini free tier and explicit zero rates. Set
+both cost variables to `0` only when AI Studio confirms that the key's project is
+on that tier. Otherwise supply the applicable current prices or leave them blank,
+which produces `null` rather than an invented cost.
 
-To compare the same baseline through OpenAI, set `OPENAI_API_KEY` and run:
+## Run V1 and V2 live
+
+Windows PowerShell:
 
 ```powershell
-.\.venv\Scripts\python.exe -m genometriage.baseline.run --provider openai
+.\.venv\Scripts\python.exe -m genometriage.phase2.run --system v1 --provider gemini --model gemini-3.5-flash-lite --fail-fast --resume
+.\.venv\Scripts\python.exe -m eval.run --system v1 --predictions predictions/evidence-grounded-v1.json --output results/evidence-grounded-v1.json
+
+.\.venv\Scripts\python.exe -m genometriage.phase2.run --system v2 --provider gemini --model gemini-3.5-flash --v1-predictions predictions/evidence-grounded-v1.json --fail-fast --resume
+.\.venv\Scripts\python.exe -m eval.run --system v2 --predictions predictions/verified-v2.json --output results/verified-v2.json
+
+.\.venv\Scripts\python.exe -m genometriage.reporting.comparison
 ```
 
-## Run evaluation
+macOS/Linux:
 
-Run the baseline and evaluate it in one command:
+```bash
+./.venv/bin/python -m genometriage.phase2.run --system v1 --provider gemini --model gemini-3.5-flash-lite --fail-fast --resume
+./.venv/bin/python -m eval.run --system v1 --predictions predictions/evidence-grounded-v1.json --output results/evidence-grounded-v1.json
+
+./.venv/bin/python -m genometriage.phase2.run --system v2 --provider gemini --model gemini-3.5-flash --v1-predictions predictions/evidence-grounded-v1.json --fail-fast --resume
+./.venv/bin/python -m eval.run --system v2 --predictions predictions/verified-v2.json --output results/verified-v2.json
+
+./.venv/bin/python -m genometriage.reporting.comparison
+```
+
+Each live run is atomically checkpointed after every completed case. `--resume`
+accepts a checkpoint only when benchmark, prompt, model, evidence, and execution
+settings match exactly. V2 reads retained V1 predictions and does not rerun V1.
+
+## Reproduce retained results without API calls
+
+Windows PowerShell:
 
 ```powershell
-.\.venv\Scripts\python.exe -m eval.run --system baseline
+.\.venv\Scripts\python.exe -m pytest -q
+.\.venv\Scripts\python.exe -m eval.run --system baseline --predictions predictions/baseline-gemini.json --output results/baseline-gemini-phase2-replay.json
+.\.venv\Scripts\python.exe -m genometriage.controls.v0_top3
+.\.venv\Scripts\python.exe -m eval.run --system v0-top3-control --predictions predictions/v0-top3-control.json --output results/v0-top3-control.json
+.\.venv\Scripts\python.exe -m eval.run --system v1 --predictions predictions/evidence-grounded-v1.json --output results/evidence-grounded-v1.json
+.\.venv\Scripts\python.exe -m eval.run --system v2 --predictions predictions/verified-v2.json --output results/verified-v2.json
+.\.venv\Scripts\python.exe -m genometriage.reporting.comparison
 ```
 
-This defaults to Gemini, checkpoints each completed case in `predictions/baseline-gemini.json`, writes `results/baseline-gemini.json` only after the run is complete, and prints a concise summary. It exits rather than inventing rankings if credentials are absent. If a quota or network interruption occurs, repeat the command with `--resume`; compatible completed cases are not called again. Add `--provider openai` for the OpenAI comparison path.
+The test suite verifies every Phase 1 frozen-artifact hash from
+`docs/PHASE1_FREEZE.json`. Evaluation replay is deterministic except for result
+generation timestamps.
+
+## Phase 1 baseline command
+
+The original one-call baseline remains available but should not overwrite the
+frozen retained files during comparison work:
 
 ```powershell
-.\.venv\Scripts\python.exe -m eval.run --system baseline --provider gemini --fail-fast --resume
+.\.venv\Scripts\python.exe -m genometriage.baseline.run --provider gemini --output predictions/baseline-new-run.json
+.\.venv\Scripts\python.exe -m eval.run --system baseline --predictions predictions/baseline-new-run.json --output results/baseline-new-run.json
 ```
-
-Replay an existing raw run without API calls:
-
-```powershell
-.\.venv\Scripts\python.exe -m eval.run --system baseline --predictions predictions/baseline-gemini.json
-```
-
-Use explicit pricing only when it matches the selected model and service tier:
-
-```powershell
-$env:GENOMETRIAGE_INPUT_COST_PER_MILLION = "<current input price>"
-$env:GENOMETRIAGE_OUTPUT_COST_PER_MILLION = "<current output price>"
-.\.venv\Scripts\python.exe -m eval.run --system baseline
-```
-
-If prices are omitted, cost fields are `null`; no price or metric is fabricated.
-
-If Google AI Studio confirms that the key's project is on the free tier, set both cost rates to `0` to record an estimated API cost of zero rather than `null`. Google's pricing page states that free-tier content may be used to improve its products. This repository contains synthetic data only; do not send private or identifying genomic data through this workflow.
-
-The retained Phase 1 artifact was produced with `gemini-3.1-flash-lite`, 13-second request pacing, low thinking, and zero free-tier cost rates. Its aggregate metrics are evidence from this synthetic benchmark only, not claims of clinical performance.
-
-## Reproduce a result
-
-Given a checked-in commit and a retained raw prediction artifact:
-
-```powershell
-git rev-parse HEAD
-.\.venv\Scripts\python.exe -m genometriage.benchmark.validate
-.\.venv\Scripts\python.exe -m pytest
-.\.venv\Scripts\python.exe -m eval.run --system baseline --predictions predictions/baseline-gemini.json --output results/baseline-gemini.json
-```
-
-Confirm the benchmark and prompt SHA-256 values in the result and raw run. Evaluation replay is deterministic except for the result generation timestamp. Do not compare a newly sampled model run to an old result without retaining its raw predictions.
 
 ## Layout
 
 ```text
-data/cases/                 model-visible JSONL
-data/ground_truth/          evaluator-only labels and rationales
-prompts/                    versioned baseline prompt
-src/genometriage/baseline/  one-call runner and provider boundary
-src/genometriage/benchmark/ fixture loading and integrity checks
-src/genometriage/evaluation metrics and result assembly
-src/genometriage/interfaces future-stage protocols only
-src/genometriage/models/    strict shared schemas
-src/genometriage/reporting/ terminal rendering
-tests/                      unit and end-to-end harness tests
+data/cases/                    model-visible synthetic cases
+data/ground_truth/             evaluator-only labels
+data/evidence/                 frozen provenance-rich evidence snapshot
+data/vcf/                      small supported-subset fixture
+prompts/                       versioned V0, V1, and V2 prompts
+src/genometriage/normalization/ deterministic VCF-subset normalization
+src/genometriage/evidence/     snapshot build, validation, exact retrieval
+src/genometriage/phase2/       V1 prioritizer and V2 verifier
+src/genometriage/controls/     deterministic no-model benchmark controls
+src/genometriage/evaluation/   metrics and sealed-label evaluation
+src/genometriage/reporting/    terminal, comparison, failure analysis
+tests/                         schema, separation, metrics, and pipeline tests
 ```
 
-See [benchmark design](docs/BENCHMARK.md), [metric definitions](docs/METRICS.md), [architecture](docs/ARCHITECTURE.md), and the [improvement changelog](docs/IMPROVEMENT_CHANGELOG.md).
+Design details are in [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md),
+[`docs/EVIDENCE_STORE.md`](docs/EVIDENCE_STORE.md),
+[`docs/METRICS.md`](docs/METRICS.md), and
+[`docs/IMPROVEMENT_CHANGELOG.md`](docs/IMPROVEMENT_CHANGELOG.md).

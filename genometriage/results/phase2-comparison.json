@@ -1,0 +1,165 @@
+{
+  "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+  "recall_constraint": "Recall@3 >= frozen V0 Recall@3 (1.0)",
+  "systems": {
+    "V0": {
+      "system": "baseline-gemini",
+      "model": "gemini-3.1-flash-lite",
+      "recall_constraint_met": true
+    },
+    "V0-top3": {
+      "system": "v0-top3-control",
+      "model": "gemini-3.1-flash-lite",
+      "recall_constraint_met": true
+    },
+    "V1": {
+      "system": "evidence-grounded-v1",
+      "model": "gemini-3.5-flash-lite",
+      "recall_constraint_met": true
+    },
+    "V2": {
+      "system": "verified-v2",
+      "model": "gemini-3.5-flash-lite+gemini-3.5-flash",
+      "recall_constraint_met": true
+    }
+  },
+  "metrics": [
+    {
+      "metric": "Recall@1",
+      "V0": 0.8636363636363636,
+      "V0-top3": 0.8636363636363636,
+      "V1": 0.8636363636363636,
+      "V2": 0.8636363636363636
+    },
+    {
+      "metric": "Recall@3",
+      "V0": 1.0,
+      "V0-top3": 1.0,
+      "V1": 1.0,
+      "V2": 1.0
+    },
+    {
+      "metric": "Recall@5",
+      "V0": 1.0,
+      "V0-top3": 1.0,
+      "V1": 1.0,
+      "V2": 1.0
+    },
+    {
+      "metric": "Precision@5",
+      "V0": 0.23333333333333336,
+      "V0-top3": 0.23333333333333336,
+      "V1": 0.23333333333333336,
+      "V2": 0.23333333333333336
+    },
+    {
+      "metric": "Shortlist precision",
+      "V0": 0.6086956521739131,
+      "V0-top3": 0.6086956521739131,
+      "V1": 0.875,
+      "V2": 0.875
+    },
+    {
+      "metric": "MRR",
+      "V0": 1.0,
+      "V0-top3": 1.0,
+      "V1": 1.0,
+      "V2": 1.0
+    },
+    {
+      "metric": "False positives",
+      "V0": 9,
+      "V0-top3": 9,
+      "V1": 2,
+      "V2": 2
+    },
+    {
+      "metric": "False positives per case",
+      "V0": 0.75,
+      "V0-top3": 0.75,
+      "V1": 0.16666666666666666,
+      "V2": 0.16666666666666666
+    },
+    {
+      "metric": "Review burden",
+      "V0": 23,
+      "V0-top3": 23,
+      "V1": 16,
+      "V2": 16
+    },
+    {
+      "metric": "Review burden at full recall",
+      "V0": 14,
+      "V0-top3": 14,
+      "V1": 14,
+      "V2": 14
+    },
+    {
+      "metric": "Citation traceability error",
+      "V0": 0.0,
+      "V0-top3": 0.0,
+      "V1": 0.0,
+      "V2": 0.0
+    },
+    {
+      "metric": "Claim support precision",
+      "V0": null,
+      "V0-top3": null,
+      "V1": 1.0,
+      "V2": 1.0
+    },
+    {
+      "metric": "Recall@3 constraint met",
+      "V0": true,
+      "V0-top3": true,
+      "V1": true,
+      "V2": true
+    },
+    {
+      "metric": "Runtime (mean seconds/case)",
+      "V0": 2.321433533333296,
+      "V0-top3": 2.321433533333296,
+      "V1": 2.5223891583335294,
+      "V2": 5.601467500000126
+    },
+    {
+      "metric": "Tokens (total)",
+      "V0": 23275,
+      "V0-top3": 23275,
+      "V1": 42826,
+      "V2": 69517
+    },
+    {
+      "metric": "Cost (total USD)",
+      "V0": 0.0,
+      "V0-top3": 0.0,
+      "V1": 0.0,
+      "V2": 0.0
+    }
+  ],
+  "attribution_analysis": {
+    "v0_false_positives": 9,
+    "v0_top3_false_positives": 9,
+    "v1_false_positives": 2,
+    "total_v0_to_v1_reduction": 7,
+    "reduction_from_top3_truncation_alone": 0,
+    "additional_reduction_in_v1_after_top3_control": 7,
+    "truncation_share_of_total_reduction": 0.0,
+    "additional_v1_share_of_total_reduction": 1.0,
+    "v0_was_already_at_most_three_per_case": true,
+    "v1_retains_measurable_advantage_after_top3_control": true,
+    "v1_advantage_after_control": {
+      "recall_at_3_change": 0.0,
+      "false_positive_change": -7,
+      "review_burden_change": -7,
+      "shortlist_precision_change": 0.2663043478260869
+    },
+    "causal_scope_note": "The top-3 control rules out simple rank-list truncation as the source of the observed reduction. The remaining difference is attributable to the complete V1 pipeline comparison, not uniquely to retrieval: V1 also changes the model, prompt, and selection behavior."
+  },
+  "complexity_verdict": {
+    "V1_evidence_grounding_earned_complexity": true,
+    "V2_independent_verification_earned_complexity": false,
+    "V1_reason": "Preserved Recall@3 while reducing false positives and review burden relative to the V0 top-3 control.",
+    "V2_reason": "Matched V1 shortlist quality while adding runtime and tokens; no measured incremental benefit."
+  }
+}

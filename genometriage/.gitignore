@@ -22,3 +22,12 @@ results/*.tmp
 # Retain the validated Phase 1 baseline evidence.
 !predictions/baseline-gemini.json
 !results/baseline-gemini.json
+!predictions/evidence-grounded-v1.json
+!predictions/verified-v2.json
+!predictions/v0-top3-control.json
+!results/baseline-gemini-phase2-replay.json
+!results/evidence-grounded-v1.json
+!results/verified-v2.json
+!results/v0-top3-control.json
+!results/phase2-comparison.json
+!results/phase2-failure-analysis.json

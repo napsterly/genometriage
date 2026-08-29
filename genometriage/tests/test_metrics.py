@@ -3,9 +3,11 @@ from genometriage.evaluation.metrics import (
     precision_at_k,
     reciprocal_rank,
     relevant_variant_recall_at_k,
+    review_burden_at_full_recall,
 )
 from genometriage.baseline.runner import estimate_cost_usd
 from genometriage.evaluation.evaluator import evaluate_run
+from genometriage.models.phase2 import MaterialClaim
 from genometriage.models.schema import CaseRunRecord, RankedVariant
 
 from conftest import make_prediction
@@ -29,6 +31,12 @@ def test_negative_control_recall_and_mrr_are_undefined() -> None:
     assert relevant_variant_recall_at_k([], set(), 5) is None
     assert reciprocal_rank([], set()) is None
     assert precision_at_k([], set(), 5) == 0.0
+
+
+def test_review_burden_at_full_recall_uses_smallest_complete_prefix() -> None:
+    assert review_burden_at_full_recall(["A", "X", "B"], {"A", "B"}) == 3
+    assert review_burden_at_full_recall(["A", "X"], {"A", "B"}) is None
+    assert review_burden_at_full_recall(["X"], set()) == 0
 
 
 def test_unsupported_claim_proxy_is_candidate_specific(
@@ -63,6 +71,52 @@ def test_unsupported_claim_proxy_is_candidate_specific(
     assert evaluated.evaluated_claim_count == 2
     assert evaluated.unsupported_claim_rate == 0.5
     assert evaluated.sent_for_human_review == 2
+    assert evaluated.shortlist_relevant_count == 1
+    assert evaluated.shortlist_returned_count == 2
+    assert evaluated.shortlist_precision == 0.5
+    assert result.aggregate.shortlist_precision == 0.5
+
+
+def test_claim_support_precision_semantically_checks_cited_direction(
+    benchmark_bundle, complete_empty_run
+) -> None:
+    run = complete_empty_run.copy(deep=True)
+    prediction = make_prediction(
+        "GT-001",
+        [
+            RankedVariant(
+                variant_id="GT001-V1",
+                rank=1,
+                reason="Two typed claims cite the same valid source.",
+                confidence=0.8,
+                evidence_source_ids=["GT001-E1"],
+                claims=[
+                    MaterialClaim(
+                        claim_id="C1",
+                        claim="The evidence supports attention.",
+                        evidence_ids=["GT001-E1"],
+                        interpretation="supports_attention",
+                        status="supported",
+                    ),
+                    MaterialClaim(
+                        claim_id="C2",
+                        claim="The evidence argues against attention.",
+                        evidence_ids=["GT001-E1"],
+                        interpretation="argues_against_attention",
+                        status="supported",
+                    ),
+                ],
+            )
+        ],
+    )
+    run.records[0] = CaseRunRecord(
+        case_id="GT-001", status="completed", prediction=prediction
+    )
+    result = evaluate_run(benchmark_bundle, run)
+    evaluated = result.cases[0]
+    assert evaluated.citation_traceability_error_rate == 0.0
+    assert evaluated.claim_support_precision == 0.5
+    assert result.aggregate.claim_support_precision == 0.5
 
 
 def test_cost_is_only_computed_from_explicit_prices(monkeypatch) -> None:
