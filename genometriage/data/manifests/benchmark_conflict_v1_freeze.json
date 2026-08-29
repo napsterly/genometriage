@@ -1,0 +1,20 @@
+{
+  "artifacts": {
+    "data/cases/benchmark_conflict_v1.jsonl": "2dce889f428c2662ba5a26dbae227212f87be7023eec87bfb0f2c4efa4809aae",
+    "data/ground_truth/benchmark_conflict_v1_ground_truth.jsonl": "616b43ee5560f21c686049f0add3323aea3866746e03888198d0f4f7ea8cf2c2",
+    "scripts/build_conflict_benchmark.py": "33a2c8fb4e83976610990a0fb246f1141834f9a830c117e844c5a04bb1b6618b"
+  },
+  "case_count": 13,
+  "created_before_arbitration_spec": true,
+  "freeze_id": "benchmark_conflict_v1",
+  "frozen_at_utc": "2026-08-29T00:00:00+00:00",
+  "hash_algorithm": "sha256",
+  "negative_control_count": 2,
+  "notes": [
+    "All cases, loci, genes, contexts, evidence, and labels are fully synthetic.",
+    "Ground truth is stored separately and is not loaded by system runners.",
+    "The benchmark was frozen before conflict-arbitration rules were specified or implemented."
+  ],
+  "positive_case_count": 11,
+  "safety_disclaimer": "For research/expert review. Not a medical diagnosis."
+}
