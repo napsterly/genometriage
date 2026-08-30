@@ -158,10 +158,17 @@ The first command validates the app and exits. The second starts Judge Mode.
 Python 3.10 or newer is required. Runtime, build, and test dependencies are pinned
 in `pyproject.toml`.
 
+The GitHub repository contains the Python project in the nested `genometriage/`
+directory. Enter that directory before creating the virtual environment:
+
+```text
+git clone https://github.com/napsterly/genometriage.git GenomeTriage-checkout
+cd GenomeTriage-checkout/genometriage
+```
+
 Windows PowerShell:
 
 ```powershell
-cd C:\path\to\genometriage
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --upgrade pip==26.1.1
 .\.venv\Scripts\python.exe -m pip install -e ".[dev]"
@@ -170,7 +177,6 @@ python -m venv .venv
 macOS/Linux:
 
 ```bash
-cd /path/to/genometriage
 python3 -m venv .venv
 ./.venv/bin/python -m pip install --upgrade pip==26.1.1
 ./.venv/bin/python -m pip install -e '.[dev]'

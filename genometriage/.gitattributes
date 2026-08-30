@@ -5,3 +5,12 @@
 *.toml text eol=lf
 *.txt text eol=lf
 *.vcf text eol=lf
+
+# Retained prediction/evaluator outputs are byte-frozen research artifacts.
+# Preserve their exact bytes instead of applying text/EOL conversion.
+predictions/*.json -text -eol -diff
+predictions/**/*.json -text -eol -diff
+results/*.json -text -eol -diff
+results/**/*.json -text -eol -diff
+results/*.jsonl -text -eol -diff
+results/**/*.jsonl -text -eol -diff
