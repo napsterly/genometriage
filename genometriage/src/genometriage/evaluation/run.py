@@ -38,7 +38,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--system",
-        choices=["baseline", "v0-top3-control", "v1", "v2"],
+        choices=["baseline", "v0-top3-control", "v1", "v2", "v3"],
         required=True,
     )
     parser.add_argument("--provider", choices=["gemini", "openai"], default="gemini")
@@ -126,6 +126,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         "v0-top3-control": {"v0-top3-control"},
         "v1": {"evidence-grounded-v1"},
         "v2": {"verified-v2"},
+        "v3": {"conflict-arbitrated-v3"},
     }
     if run.system not in allowed_systems[args.system]:
         raise SystemExit(

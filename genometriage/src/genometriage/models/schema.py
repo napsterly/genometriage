@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field, root_validator, validator
 
 from genometriage import SAFETY_DISCLAIMER
 from genometriage.models.phase2 import MaterialClaim, VerifiedClaim
+from genometriage.models.phase3 import ArbitrationRecord
 
 
 SCHEMA_VERSION = "1.0"
@@ -22,15 +23,25 @@ class StrictModel(BaseModel):
 
 class EvidenceItem(StrictModel):
     source_id: str = Field(..., min_length=1)
-    source_type: Literal["synthetic_benchmark_record"]
+    source_type: Literal["synthetic_benchmark_record", "clinvar_public_record"]
     direction: Literal["supports", "against", "uncertain"]
     statement: str = Field(..., min_length=1)
     strength: Literal["weak", "moderate", "strong"]
+    dimension: Literal[
+        "molecular",
+        "functional",
+        "regulatory",
+        "phenotype_context",
+        "inheritance",
+        "population",
+        "provenance",
+        "other",
+    ] = "other"
 
 
 class CandidateVariant(StrictModel):
     variant_id: str = Field(..., min_length=1)
-    genome_build: Literal["GRCh38-synthetic"]
+    genome_build: Literal["GRCh38-synthetic", "GRCh38"]
     chromosome: str = Field(..., min_length=1)
     position: int = Field(..., gt=0)
     reference: str = Field(..., min_length=1)
@@ -83,8 +94,8 @@ class CaseContext(StrictModel):
 
 class BenchmarkCase(StrictModel):
     schema_version: Literal["1.0"]
-    case_id: str = Field(..., regex=r"^GT-[0-9]{3}$")
-    data_origin: Literal["fully_synthetic"]
+    case_id: str = Field(..., regex=r"^(GT|GC|GP)-[0-9]{3}$")
+    data_origin: Literal["fully_synthetic", "appropriately_public"]
     safety_disclaimer: Literal[SAFETY_DISCLAIMER]
     context: CaseContext
     candidate_variants: List[CandidateVariant] = Field(..., min_items=1)
@@ -116,7 +127,7 @@ class GroundTruthRationale(StrictModel):
 
 class BenchmarkGroundTruth(StrictModel):
     schema_version: Literal["1.0"]
-    case_id: str = Field(..., regex=r"^GT-[0-9]{3}$")
+    case_id: str = Field(..., regex=r"^(GT|GC|GP)-[0-9]{3}$")
     relevant_variant_ids: List[str]
     rationale: List[GroundTruthRationale]
     difficulty: Literal["straightforward", "moderate", "ambiguous", "conflicting", "challenging"]
@@ -164,6 +175,11 @@ class Prediction(StrictModel):
     usage: TokenUsage = Field(default_factory=TokenUsage)
     estimated_cost_usd: Optional[float] = Field(None, ge=0.0)
     verified_claims: List[VerifiedClaim] = Field(default_factory=list)
+    arbitration_records: List[ArbitrationRecord] = Field(default_factory=list)
+    deterministic_runtime_seconds: Optional[float] = Field(None, ge=0.0)
+    external_model_runtime_seconds: Optional[float] = Field(None, ge=0.0)
+    model_call_count: Optional[int] = Field(None, ge=0)
+    provider_retry_errors: List[str] = Field(default_factory=list)
 
     @root_validator
     def ranking_is_well_formed(cls, values: Dict[str, object]) -> Dict[str, object]:
@@ -241,6 +257,12 @@ class CaseEvaluation(StrictModel):
     shortlist_relevant_count: int = Field(0, ge=0)
     shortlist_returned_count: int = Field(0, ge=0)
     shortlist_precision: Optional[float] = Field(None, ge=0.0, le=1.0)
+    abstention_count: int = Field(0, ge=0)
+    insufficient_evidence_count: int = Field(0, ge=0)
+    conflicting_evidence_count: int = Field(0, ge=0)
+    model_call_count: Optional[int] = Field(None, ge=0)
+    deterministic_runtime_seconds: Optional[float] = Field(None, ge=0.0)
+    external_model_runtime_seconds: Optional[float] = Field(None, ge=0.0)
 
 
 class AggregateMetrics(StrictModel):
@@ -270,6 +292,13 @@ class AggregateMetrics(StrictModel):
     shortlist_relevant_count: int = Field(0, ge=0)
     shortlist_returned_count: int = Field(0, ge=0)
     shortlist_precision: Optional[float] = Field(None, ge=0.0, le=1.0)
+    abstention_count: int = Field(0, ge=0)
+    insufficient_evidence_count: int = Field(0, ge=0)
+    conflicting_evidence_count: int = Field(0, ge=0)
+    total_model_calls: Optional[int] = Field(None, ge=0)
+    mean_model_calls_per_case: Optional[float] = Field(None, ge=0.0)
+    mean_deterministic_runtime_seconds: Optional[float] = Field(None, ge=0.0)
+    mean_external_model_runtime_seconds: Optional[float] = Field(None, ge=0.0)
 
 
 class EvaluationResult(StrictModel):

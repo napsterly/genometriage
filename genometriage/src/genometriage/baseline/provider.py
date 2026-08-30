@@ -4,11 +4,12 @@ from __future__ import annotations
 
 import json
 import os
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
 from dataclasses import dataclass
-from typing import Dict, Optional, Protocol
+from typing import Dict, Optional, Protocol, Tuple
 
 
 class ProviderError(RuntimeError):
@@ -21,6 +22,8 @@ class ProviderResponse:
     input_tokens: Optional[int] = None
     output_tokens: Optional[int] = None
     total_tokens: Optional[int] = None
+    request_attempt_count: int = 1
+    retry_errors: Tuple[str, ...] = ()
 
 
 class LLMProvider(Protocol):
@@ -148,6 +151,8 @@ class GeminiGenerateContentProvider:
         model: Optional[str] = None,
         base_url: Optional[str] = None,
         timeout_seconds: float = 120.0,
+        max_attempts: int = 4,
+        backoff_base_seconds: float = 2.0,
     ) -> None:
         self.api_key = api_key or os.getenv("GEMINI_API_KEY")
         self.model = model or os.getenv("GEMINI_MODEL", "gemini-3.1-flash-lite")
@@ -159,6 +164,12 @@ class GeminiGenerateContentProvider:
             )
         ).rstrip("/")
         self.timeout_seconds = timeout_seconds
+        if max_attempts < 1:
+            raise ValueError("max_attempts must be at least one")
+        if backoff_base_seconds < 0:
+            raise ValueError("backoff_base_seconds cannot be negative")
+        self.max_attempts = max_attempts
+        self.backoff_base_seconds = backoff_base_seconds
         self._include_temperature = not any(
             version in self.model.removeprefix("models/")
             for version in ("gemini-3.6-", "gemini-3.7-")
@@ -166,6 +177,13 @@ class GeminiGenerateContentProvider:
         self.execution_config = dict(type(self).execution_config)
         if not self._include_temperature:
             self.execution_config.pop("temperature", None)
+        self.execution_config.update(
+            {
+                "retry_policy": "bounded_exponential_backoff_v1",
+                "max_attempts": self.max_attempts,
+                "retryable_http_statuses": [429, 500, 502, 503, 504],
+            }
+        )
         if not self.api_key:
             raise ProviderError(
                 "GEMINI_API_KEY is required for a live baseline run; "
@@ -203,18 +221,38 @@ class GeminiGenerateContentProvider:
             },
             method="POST",
         )
-        try:
-            with urllib.request.urlopen(
-                request, timeout=self.timeout_seconds
-            ) as response:
-                body = json.loads(response.read().decode("utf-8"))
-        except urllib.error.HTTPError as exc:
-            detail = exc.read().decode("utf-8", errors="replace")[:1000]
-            raise ProviderError(f"Gemini API returned HTTP {exc.code}: {detail}") from exc
-        except urllib.error.URLError as exc:
-            raise ProviderError(f"Gemini API request failed: {exc.reason}") from exc
-        except (json.JSONDecodeError, UnicodeDecodeError) as exc:
-            raise ProviderError("Gemini API returned an unreadable response") from exc
+        retry_errors = []
+        body = None
+        for attempt in range(1, self.max_attempts + 1):
+            try:
+                with urllib.request.urlopen(
+                    request, timeout=self.timeout_seconds
+                ) as response:
+                    body = json.loads(response.read().decode("utf-8"))
+                break
+            except urllib.error.HTTPError as exc:
+                detail = exc.read().decode("utf-8", errors="replace")[:1000]
+                message = f"HTTP {exc.code}: {detail}"
+                retry_errors.append(message)
+                if exc.code not in {429, 500, 502, 503, 504} or attempt == self.max_attempts:
+                    raise ProviderError(f"Gemini API returned {message}") from exc
+                retry_after = exc.headers.get("Retry-After") if exc.headers else None
+                delay = (
+                    float(retry_after)
+                    if retry_after
+                    else min(self.backoff_base_seconds * (2 ** (attempt - 1)), 30.0)
+                )
+                time.sleep(delay)
+            except urllib.error.URLError as exc:
+                message = f"network error: {exc.reason}"
+                retry_errors.append(message)
+                if attempt == self.max_attempts:
+                    raise ProviderError(f"Gemini API request failed: {exc.reason}") from exc
+                time.sleep(min(self.backoff_base_seconds * (2 ** (attempt - 1)), 30.0))
+            except (json.JSONDecodeError, UnicodeDecodeError) as exc:
+                raise ProviderError("Gemini API returned an unreadable response") from exc
+        if body is None:
+            raise ProviderError("Gemini API exhausted retries without a response")
 
         output_text = self._extract_output_text(body)
         usage = body.get("usageMetadata") or {}
@@ -227,6 +265,8 @@ class GeminiGenerateContentProvider:
             input_tokens=_optional_int(usage.get("promptTokenCount")),
             output_tokens=output_tokens,
             total_tokens=_optional_int(usage.get("totalTokenCount")),
+            request_attempt_count=attempt,
+            retry_errors=tuple(retry_errors),
         )
 
     @staticmethod

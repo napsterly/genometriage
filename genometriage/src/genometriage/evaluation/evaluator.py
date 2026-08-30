@@ -84,6 +84,27 @@ METRIC_DEFINITIONS = {
         "Computed only when provider token usage and both user-supplied per-million-token "
         "prices were available; otherwise null."
     ),
+    "abstention_count": (
+        "Number of evaluated cases with an empty shortlist and explicit uncertainty "
+        "escalation. This is case-level and distinct from candidate-level insufficiency."
+    ),
+    "insufficient_evidence_count": (
+        "Number of audited candidates assigned the explicit insufficient_evidence state."
+    ),
+    "conflicting_evidence_count": (
+        "Number of audited candidates retained with the explicit conflicting_evidence state."
+    ),
+    "model_call_count": (
+        "External model calls represented by the prediction artifact. V3 inherits V1 calls "
+        "and makes zero additional calls."
+    ),
+    "deterministic_runtime_seconds": (
+        "Measured local deterministic processing time where separately instrumented."
+    ),
+    "external_model_runtime_seconds": (
+        "Measured external provider wall-clock time where separately instrumented; provider "
+        "latency is not interpreted as algorithmic processing time."
+    ),
 }
 
 
@@ -188,6 +209,19 @@ def _evaluate_case(
         set(ranked_ids) & set(truth.relevant_variant_ids)
     )
     shortlist_returned_count = len(ranked_ids)
+    arbitration = prediction.arbitration_records if prediction else []
+    insufficient_evidence_count = sum(
+        item.state == "insufficient_evidence" for item in arbitration
+    )
+    conflicting_evidence_count = sum(
+        item.state == "conflicting_evidence" for item in arbitration
+    )
+    abstention_count = int(
+        prediction is not None
+        and not ranked_ids
+        and prediction.escalated_uncertainty
+    )
+    model_call_count = _model_call_count(prediction)
     estimated_cost = prediction.estimated_cost_usd if prediction else None
     if prediction and estimated_cost is None:
         estimated_cost = estimate_cost_usd(
@@ -237,7 +271,37 @@ def _evaluate_case(
             if shortlist_returned_count
             else None
         ),
+        abstention_count=abstention_count,
+        insufficient_evidence_count=insufficient_evidence_count,
+        conflicting_evidence_count=conflicting_evidence_count,
+        model_call_count=model_call_count,
+        deterministic_runtime_seconds=(
+            prediction.deterministic_runtime_seconds if prediction else None
+        ),
+        external_model_runtime_seconds=(
+            prediction.external_model_runtime_seconds
+            if prediction and prediction.external_model_runtime_seconds is not None
+            else prediction.runtime_seconds if prediction else None
+        ),
     )
+
+
+def _model_call_count(prediction: Optional[Prediction]) -> Optional[int]:
+    if prediction is None:
+        return None
+    if prediction.model_call_count is not None:
+        return prediction.model_call_count
+    if prediction.system == "verified-v2":
+        return 2 if prediction.verified_claims else 1
+    if prediction.system in {
+        "baseline",
+        "baseline-gemini",
+        "baseline-openai",
+        "v0-top3-control",
+        "evidence-grounded-v1",
+    }:
+        return 1
+    return None
 
 
 def _unsupported_claims(
@@ -347,6 +411,17 @@ def _aggregate(
     shortlist_returned_count = sum(
         case.shortlist_returned_count for case in cases
     )
+    model_calls = [case.model_call_count for case in cases if case.model_call_count is not None]
+    deterministic_runtimes = [
+        case.deterministic_runtime_seconds
+        for case in cases
+        if case.deterministic_runtime_seconds is not None
+    ]
+    external_runtimes = [
+        case.external_model_runtime_seconds
+        for case in cases
+        if case.external_model_runtime_seconds is not None
+    ]
 
     def token_total(field: str) -> Optional[int]:
         values = [getattr(case, field) for case in cases]
@@ -400,4 +475,15 @@ def _aggregate(
             if shortlist_returned_count
             else None
         ),
+        abstention_count=sum(case.abstention_count for case in cases),
+        insufficient_evidence_count=sum(
+            case.insufficient_evidence_count for case in cases
+        ),
+        conflicting_evidence_count=sum(
+            case.conflicting_evidence_count for case in cases
+        ),
+        total_model_calls=sum(model_calls) if model_calls else None,
+        mean_model_calls_per_case=mean(model_calls),
+        mean_deterministic_runtime_seconds=mean(deterministic_runtimes),
+        mean_external_model_runtime_seconds=mean(external_runtimes),
     )

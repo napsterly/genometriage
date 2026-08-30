@@ -31,3 +31,15 @@ results/*.tmp
 !results/v0-top3-control.json
 !results/phase2-comparison.json
 !results/phase2-failure-analysis.json
+
+# Retain the sealed Phase 3 V1/V3 predictions and evaluator outputs.
+!predictions/conflict-arbitrated-v3.json
+!predictions/benchmark_conflict_v1-evidence-grounded-v1.json
+!predictions/benchmark_conflict_v1-conflict-arbitrated-v3.json
+!predictions/benchmark_public_v1-evidence-grounded-v1.json
+!predictions/benchmark_public_v1-conflict-arbitrated-v3.json
+!results/conflict-arbitrated-v3.json
+!results/benchmark_conflict_v1-evidence-grounded-v1.json
+!results/benchmark_conflict_v1-conflict-arbitrated-v3.json
+!results/benchmark_public_v1-evidence-grounded-v1.json
+!results/benchmark_public_v1-conflict-arbitrated-v3.json

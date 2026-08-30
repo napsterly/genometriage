@@ -46,7 +46,16 @@ def render_terminal_summary(result: EvaluationResult, output_path: str) -> str:
             f"{metrics.shortlist_returned_count}"
         ),
         (
-            f"Mean runtime={_format_metric(metrics.mean_runtime_seconds)}s | "
+            f"Abstention cases={metrics.abstention_count} | "
+            f"insufficient candidates={metrics.insufficient_evidence_count} | "
+            f"conflicting candidates={metrics.conflicting_evidence_count}"
+        ),
+        (
+            f"Mean runtime={_format_metric(metrics.mean_runtime_seconds)}s "
+            f"(local={_format_metric(metrics.mean_deterministic_runtime_seconds)}s, "
+            f"external={_format_metric(metrics.mean_external_model_runtime_seconds)}s) | "
+            f"model calls/case={_format_metric(metrics.mean_model_calls_per_case)} | "
+            f"tokens={metrics.total_tokens} | "
             f"estimated cost={_format_cost(metrics.total_estimated_cost_usd)}"
         ),
         f"Machine-readable result: {output_path}",

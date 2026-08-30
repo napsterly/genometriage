@@ -104,11 +104,13 @@ class EvidenceGroundedSystem(_RateLimitedSystem):
         *,
         prompt_path: Path = V1_PROMPT_PATH,
         min_request_interval_seconds: float = 0.0,
+        benchmark_version: str = BENCHMARK_VERSION,
     ) -> None:
         super().__init__(min_request_interval_seconds)
         self.provider = provider
         self.store = store
         self.template = load_prompt(prompt_path)
+        self.benchmark_version = benchmark_version
 
     @property
     def model(self) -> str:
@@ -157,6 +159,9 @@ class EvidenceGroundedSystem(_RateLimitedSystem):
             estimated_cost_usd=estimate_cost_usd(
                 response.input_tokens, response.output_tokens
             ),
+            external_model_runtime_seconds=runtime,
+            model_call_count=response.request_attempt_count,
+            provider_retry_errors=list(response.retry_errors),
         )
 
     @staticmethod
@@ -228,6 +233,7 @@ class EvidenceGroundedSystem(_RateLimitedSystem):
             model=self.model,
             prompt_hash=self.prompt_hash,
             execution_config=self.execution_config,
+            benchmark_version=self.benchmark_version,
             cases_path=cases_path,
             fail_fast=fail_fast,
             initial_records=initial_records,
@@ -258,6 +264,7 @@ class VerificationSystem(_RateLimitedSystem):
         self.provider = provider
         self.store = store
         self.v1_run = v1_run
+        self.benchmark_version = v1_run.benchmark_version
         self.template = load_prompt(prompt_path)
         self.v1_template = load_prompt(v1_prompt_path)
         expected_v1 = {
@@ -380,6 +387,17 @@ class VerificationSystem(_RateLimitedSystem):
                 v1_prediction.estimated_cost_usd, verifier_cost
             ),
             verified_claims=verified_claims,
+            deterministic_runtime_seconds=v1_prediction.deterministic_runtime_seconds,
+            external_model_runtime_seconds=(
+                (v1_prediction.external_model_runtime_seconds or v1_prediction.runtime_seconds)
+                + verifier_runtime
+            ),
+            model_call_count=(v1_prediction.model_call_count or 1)
+            + (response.request_attempt_count if expected else 0),
+            provider_retry_errors=(
+                v1_prediction.provider_retry_errors
+                + (list(response.retry_errors) if expected else [])
+            ),
         )
 
     @staticmethod
@@ -421,6 +439,7 @@ class VerificationSystem(_RateLimitedSystem):
             model=self.model,
             prompt_hash=self.prompt_hash,
             execution_config=self.execution_config,
+            benchmark_version=self.benchmark_version,
             cases_path=cases_path,
             fail_fast=fail_fast,
             initial_records=initial_records,
@@ -507,6 +526,7 @@ def _execute_cases(
     model: str,
     prompt_hash: str,
     execution_config: Dict[str, object],
+    benchmark_version: str,
     cases_path: Path,
     fail_fast: bool,
     initial_records: Sequence[CaseRunRecord],
@@ -529,7 +549,7 @@ def _execute_cases(
         return SystemRun(
             run_status=status,
             system=system,
-            benchmark_version=BENCHMARK_VERSION,
+            benchmark_version=benchmark_version,
             prompt_version=prompt_version,
             model=model,
             created_at_utc=started_at,
@@ -581,10 +601,11 @@ def validate_resume_run(
     prompt_hash: str,
     execution_config: Dict[str, object],
     cases_path: Path,
+    benchmark_version: str = BENCHMARK_VERSION,
 ) -> None:
     expected = {
         "system": system,
-        "benchmark_version": BENCHMARK_VERSION,
+        "benchmark_version": benchmark_version,
         "prompt_version": prompt_version,
         "model": model,
         "benchmark_sha256": file_sha256(Path(cases_path)),

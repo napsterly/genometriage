@@ -11,7 +11,7 @@ from genometriage.baseline.provider import ProviderError, create_provider
 from genometriage.baseline.runner import load_system_run, write_system_run
 from genometriage.benchmark.loader import DEFAULT_CASES_PATH, load_cases
 from genometriage.config import load_project_environment
-from genometriage.evidence import EvidenceStore
+from genometriage.evidence import DEFAULT_EVIDENCE_PATH, DEFAULT_MANIFEST_PATH, EvidenceStore
 
 from .runner import EvidenceGroundedSystem, VerificationSystem, validate_resume_run
 
@@ -26,6 +26,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--provider", choices=["gemini", "openai"], default="gemini")
     parser.add_argument("--model", help="Override the version-specific verifier/prioritizer model")
     parser.add_argument("--cases", type=Path, default=DEFAULT_CASES_PATH)
+    parser.add_argument("--benchmark-version", default="benchmark_v1")
+    parser.add_argument("--evidence", type=Path, default=DEFAULT_EVIDENCE_PATH)
+    parser.add_argument("--evidence-manifest", type=Path, default=DEFAULT_MANIFEST_PATH)
     parser.add_argument("--output", type=Path)
     parser.add_argument(
         "--v1-predictions",
@@ -64,14 +67,23 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         if args.min_request_interval_seconds is None
         else args.min_request_interval_seconds
     )
-    store = EvidenceStore.load()
+    store = EvidenceStore.load(
+        evidence_path=args.evidence,
+        manifest_path=args.evidence_manifest,
+        cases_path=args.cases,
+    )
     if args.system == "v1":
         system = EvidenceGroundedSystem(
             provider,
             store,
             min_request_interval_seconds=interval,
+            benchmark_version=args.benchmark_version,
         )
-        output = args.output or Path("predictions/evidence-grounded-v1.json")
+        output = args.output or Path(
+            "predictions/evidence-grounded-v1.json"
+            if args.benchmark_version == "benchmark_v1"
+            else f"predictions/{args.benchmark_version}-evidence-grounded-v1.json"
+        )
     else:
         if not args.v1_predictions.is_file():
             raise SystemExit(f"V1 predictions not found: {args.v1_predictions}")
@@ -96,6 +108,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 prompt_hash=system.prompt_hash,
                 execution_config=system.execution_config,
                 cases_path=args.cases,
+                benchmark_version=system.benchmark_version,
             )
         except ValueError as exc:
             raise SystemExit(str(exc)) from exc

@@ -18,6 +18,7 @@ from .phase2 import (
     MaterialClaim,
     VerifiedClaim,
 )
+from .phase3 import ArbitrationRecord
 
 __all__ = [
     "AggregateMetrics",
@@ -34,4 +35,5 @@ __all__ = [
     "EvidenceSnapshotManifest",
     "MaterialClaim",
     "VerifiedClaim",
+    "ArbitrationRecord",
 ]

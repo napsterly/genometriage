@@ -1,0 +1,870 @@
+{
+  "schema_version": "1.0",
+  "run_status": "completed",
+  "system": "conflict-arbitrated-v3",
+  "benchmark_version": "benchmark_public_v1",
+  "prompt_version": "evidence_grounded_v1+conflict_arbitration_v1",
+  "model": "gemini-3.5-flash-lite",
+  "created_at_utc": "2026-08-30T07:53:29.317357+00:00",
+  "benchmark_sha256": "fb5cdeaa164919948a301a409ed4ffcfc88052bfa7d1edd0b6a63d1a3223c74b",
+  "prompt_sha256": "38882851fd64fa36e977e88570883863dcadd6e2a45f19b4cfdb1a415dc514da",
+  "execution_config": {
+    "source_system": "evidence-grounded-v1",
+    "source_prompt_version": "evidence_grounded_v1",
+    "source_prompt_sha256": "6bd8d75a23bbd04aff7abdc2f0b2ae300259c727a4671fb679321bd33d537302",
+    "source_v1_run_sha256": "fede073b4403d15957a68c3ddd8762eb1d5993dd53682e357035c4b1d9b5a7d8",
+    "evidence_snapshot_version": "evidence_public_v1",
+    "evidence_snapshot_sha256": "9e08a12746f9d60425217f6b0b9822129ca3cbdfe3d9f377f37b654fdbcd5f73",
+    "arbitration_policy_version": "conflict_arbitration_v1",
+    "arbitration_spec_sha256": "73e1479cbfaac7bc671dbe147e396695397669b49259ca68e1a14158d3080a98",
+    "additional_model_calls_per_case": 0,
+    "candidate_promotion_allowed": false,
+    "relative_reranking_allowed": false
+  },
+  "records": [
+    {
+      "case_id": "GP-001",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GP-001",
+        "system": "conflict-arbitrated-v3",
+        "prompt_version": "evidence_grounded_v1+conflict_arbitration_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GP001-V1",
+            "rank": 1,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=7, counter=0, uncertainty=0; state=retain. V1 rationale: ClinVar aggregate germline classification is Pathogenic/Likely pathogenic with criteria provided, multiple submitters, and no conflicts, matching the target traits.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "CLINVAR:VCV004575262.2:germline-classification",
+              "CLINVAR:VCV004575262.2:review-status",
+              "CLINVAR:VCV004575262.2:trait-context"
+            ],
+            "claims": [
+              {
+                "claim_id": "GP-001:GP001-V1:C1",
+                "claim": "Variant is classified as Pathogenic/Likely pathogenic in ClinVar.",
+                "evidence_ids": [
+                  "CLINVAR:VCV004575262.2:germline-classification"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GP-001:GP001-V1:C2",
+                "claim": "Review status indicates criteria provided with multiple submitters and no conflicts.",
+                "evidence_ids": [
+                  "CLINVAR:VCV004575262.2:review-status"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GP-001:GP001-V1:C3",
+                "claim": "Record includes the case target traits.",
+                "evidence_ids": [
+                  "CLINVAR:VCV004575262.2:trait-context"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic arbitration states: GP001-V1=retain. Removed from final shortlist: ['none'].",
+        "runtime_seconds": 3.209265699973912,
+        "usage": {
+          "input_tokens": 6688,
+          "output_tokens": 483,
+          "total_tokens": 7171
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [],
+        "arbitration_records": [
+          {
+            "variant_id": "GP001-V1",
+            "source_rank": 1,
+            "state": "retain",
+            "support_score": 7,
+            "counter_score": 0,
+            "uncertainty_score": 0,
+            "supporting_evidence_ids": [
+              "CLINVAR:VCV004575262.2:germline-classification",
+              "CLINVAR:VCV004575262.2:review-status",
+              "CLINVAR:VCV004575262.2:trait-context"
+            ],
+            "counterevidence_ids": [],
+            "uncertainty_evidence_ids": [],
+            "contextual_strong_counter_ids": [],
+            "fired_rule": "7_unopposed_support",
+            "retained_for_review": true,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=7, counter=0, uncertainty=0; state=retain."
+          }
+        ],
+        "deterministic_runtime_seconds": 0.0007225999870570377,
+        "external_model_runtime_seconds": 3.208543099986855,
+        "model_call_count": 1,
+        "provider_retry_errors": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GP-002",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GP-002",
+        "system": "conflict-arbitrated-v3",
+        "prompt_version": "evidence_grounded_v1+conflict_arbitration_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GP002-V1",
+            "rank": 1,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=6, counter=0, uncertainty=0; state=retain. V1 rationale: ClinVar aggregate germline classification is Pathogenic, supporting the target trait Hereditary breast ovarian cancer syndrome.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "CLINVAR:VCV004713082.1:germline-classification",
+              "CLINVAR:VCV004713082.1:review-status",
+              "CLINVAR:VCV004713082.1:trait-context"
+            ],
+            "claims": [
+              {
+                "claim_id": "GP-002:GP002-V1:C1",
+                "claim": "Variant is classified as Pathogenic for the target trait.",
+                "evidence_ids": [
+                  "CLINVAR:VCV004713082.1:germline-classification",
+                  "CLINVAR:VCV004713082.1:trait-context"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic arbitration states: GP002-V1=retain. Removed from final shortlist: ['none'].",
+        "runtime_seconds": 2.2405323999992106,
+        "usage": {
+          "input_tokens": 6627,
+          "output_tokens": 322,
+          "total_tokens": 6949
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [],
+        "arbitration_records": [
+          {
+            "variant_id": "GP002-V1",
+            "source_rank": 1,
+            "state": "retain",
+            "support_score": 6,
+            "counter_score": 0,
+            "uncertainty_score": 0,
+            "supporting_evidence_ids": [
+              "CLINVAR:VCV004713082.1:germline-classification",
+              "CLINVAR:VCV004713082.1:review-status",
+              "CLINVAR:VCV004713082.1:trait-context"
+            ],
+            "counterevidence_ids": [],
+            "uncertainty_evidence_ids": [],
+            "contextual_strong_counter_ids": [],
+            "fired_rule": "7_unopposed_support",
+            "retained_for_review": true,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=6, counter=0, uncertainty=0; state=retain."
+          }
+        ],
+        "deterministic_runtime_seconds": 0.0005766999965999275,
+        "external_model_runtime_seconds": 2.2399557000026107,
+        "model_call_count": 1,
+        "provider_retry_errors": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GP-003",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GP-003",
+        "system": "conflict-arbitrated-v3",
+        "prompt_version": "evidence_grounded_v1+conflict_arbitration_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GP003-V1",
+            "rank": 1,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=6, counter=0, uncertainty=0; state=retain. V1 rationale: ClinVar aggregate germline classification is Pathogenic, and the phenotype context matches the target trait of inherited breast and ovarian cancer.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "CLINVAR:VCV004857010.1:germline-classification",
+              "CLINVAR:VCV004857010.1:review-status",
+              "CLINVAR:VCV004857010.1:trait-context"
+            ],
+            "claims": [
+              {
+                "claim_id": "GP-003:GP003-V1:C1",
+                "claim": "Variant is classified as Pathogenic in ClinVar with criteria provided.",
+                "evidence_ids": [
+                  "CLINVAR:VCV004857010.1:germline-classification",
+                  "CLINVAR:VCV004857010.1:review-status"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GP-003:GP003-V1:C2",
+                "claim": "ClinVar record matches the target phenotype of inherited breast and ovarian cancer.",
+                "evidence_ids": [
+                  "CLINVAR:VCV004857010.1:trait-context"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": true,
+        "notes": "Deterministic arbitration states: GP003-V1=retain, GP003-V3=insufficient_evidence. Removed from final shortlist: ['GP003-V3'].",
+        "runtime_seconds": 3.104161799987196,
+        "usage": {
+          "input_tokens": 6630,
+          "output_tokens": 787,
+          "total_tokens": 7417
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [],
+        "arbitration_records": [
+          {
+            "variant_id": "GP003-V1",
+            "source_rank": 1,
+            "state": "retain",
+            "support_score": 6,
+            "counter_score": 0,
+            "uncertainty_score": 0,
+            "supporting_evidence_ids": [
+              "CLINVAR:VCV004857010.1:germline-classification",
+              "CLINVAR:VCV004857010.1:review-status",
+              "CLINVAR:VCV004857010.1:trait-context"
+            ],
+            "counterevidence_ids": [],
+            "uncertainty_evidence_ids": [],
+            "contextual_strong_counter_ids": [],
+            "fired_rule": "7_unopposed_support",
+            "retained_for_review": true,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=6, counter=0, uncertainty=0; state=retain."
+          },
+          {
+            "variant_id": "GP003-V3",
+            "source_rank": 2,
+            "state": "insufficient_evidence",
+            "support_score": 2,
+            "counter_score": 0,
+            "uncertainty_score": 4,
+            "supporting_evidence_ids": [
+              "CLINVAR:VCV004876239.1:trait-context"
+            ],
+            "counterevidence_ids": [],
+            "uncertainty_evidence_ids": [
+              "CLINVAR:VCV004876239.1:germline-classification",
+              "CLINVAR:VCV004876239.1:review-status"
+            ],
+            "contextual_strong_counter_ids": [],
+            "fired_rule": "5_below_support_threshold",
+            "retained_for_review": false,
+            "reason": "conflict_arbitration_v1 fired 5_below_support_threshold: support=2, counter=0, uncertainty=4; state=insufficient_evidence."
+          }
+        ],
+        "deterministic_runtime_seconds": 0.0017918999947141856,
+        "external_model_runtime_seconds": 3.102369899992482,
+        "model_call_count": 1,
+        "provider_retry_errors": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GP-004",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GP-004",
+        "system": "conflict-arbitrated-v3",
+        "prompt_version": "evidence_grounded_v1+conflict_arbitration_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GP004-V1",
+            "rank": 1,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=7, counter=0, uncertainty=0; state=retain. V1 rationale: ClinVar aggregate germline classification is Pathogenic/Likely pathogenic with strong review status.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "CLINVAR:VCV004535906.2:germline-classification",
+              "CLINVAR:VCV004535906.2:review-status",
+              "CLINVAR:VCV004535906.2:trait-context"
+            ],
+            "claims": [
+              {
+                "claim_id": "GP-004:GP004-V1:C1",
+                "claim": "Variant is classified as Pathogenic/Likely pathogenic in ClinVar.",
+                "evidence_ids": [
+                  "CLINVAR:VCV004535906.2:germline-classification"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic arbitration states: GP004-V1=retain. Removed from final shortlist: ['none'].",
+        "runtime_seconds": 3.6296295000065584,
+        "usage": {
+          "input_tokens": 6635,
+          "output_tokens": 297,
+          "total_tokens": 6932
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [],
+        "arbitration_records": [
+          {
+            "variant_id": "GP004-V1",
+            "source_rank": 1,
+            "state": "retain",
+            "support_score": 7,
+            "counter_score": 0,
+            "uncertainty_score": 0,
+            "supporting_evidence_ids": [
+              "CLINVAR:VCV004535906.2:germline-classification",
+              "CLINVAR:VCV004535906.2:review-status",
+              "CLINVAR:VCV004535906.2:trait-context"
+            ],
+            "counterevidence_ids": [],
+            "uncertainty_evidence_ids": [],
+            "contextual_strong_counter_ids": [],
+            "fired_rule": "7_unopposed_support",
+            "retained_for_review": true,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=7, counter=0, uncertainty=0; state=retain."
+          }
+        ],
+        "deterministic_runtime_seconds": 0.0003414000093471259,
+        "external_model_runtime_seconds": 3.6292880999972112,
+        "model_call_count": 1,
+        "provider_retry_errors": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GP-005",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GP-005",
+        "system": "conflict-arbitrated-v3",
+        "prompt_version": "evidence_grounded_v1+conflict_arbitration_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GP005-V1",
+            "rank": 1,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=6, counter=0, uncertainty=0; state=retain. V1 rationale: ClinVar aggregate germline classification is Pathogenic with moderate strength, matching the target trait.",
+            "confidence": 0.9,
+            "evidence_source_ids": [
+              "CLINVAR:VCV004695160.1:germline-classification",
+              "CLINVAR:VCV004695160.1:review-status",
+              "CLINVAR:VCV004695160.1:trait-context"
+            ],
+            "claims": [
+              {
+                "claim_id": "GP-005:GP005-V1:C1",
+                "claim": "ClinVar aggregate germline classification: Pathogenic.",
+                "evidence_ids": [
+                  "CLINVAR:VCV004695160.1:germline-classification"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GP-005:GP005-V1:C2",
+                "claim": "ClinVar aggregate record includes the target trait Familial hypercholesterolemia.",
+                "evidence_ids": [
+                  "CLINVAR:VCV004695160.1:trait-context"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic arbitration states: GP005-V1=retain. Removed from final shortlist: ['none'].",
+        "runtime_seconds": 2.814689399994677,
+        "usage": {
+          "input_tokens": 6628,
+          "output_tokens": 385,
+          "total_tokens": 7013
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [],
+        "arbitration_records": [
+          {
+            "variant_id": "GP005-V1",
+            "source_rank": 1,
+            "state": "retain",
+            "support_score": 6,
+            "counter_score": 0,
+            "uncertainty_score": 0,
+            "supporting_evidence_ids": [
+              "CLINVAR:VCV004695160.1:germline-classification",
+              "CLINVAR:VCV004695160.1:review-status",
+              "CLINVAR:VCV004695160.1:trait-context"
+            ],
+            "counterevidence_ids": [],
+            "uncertainty_evidence_ids": [],
+            "contextual_strong_counter_ids": [],
+            "fired_rule": "7_unopposed_support",
+            "retained_for_review": true,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=6, counter=0, uncertainty=0; state=retain."
+          }
+        ],
+        "deterministic_runtime_seconds": 0.0004571000026771799,
+        "external_model_runtime_seconds": 2.8142322999919998,
+        "model_call_count": 1,
+        "provider_retry_errors": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GP-006",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GP-006",
+        "system": "conflict-arbitrated-v3",
+        "prompt_version": "evidence_grounded_v1+conflict_arbitration_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GP006-V1",
+            "rank": 1,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=6, counter=0, uncertainty=0; state=retain. V1 rationale: ClinVar aggregate germline classification is Pathogenic, supporting expert attention for the target trait.",
+            "confidence": 0.85,
+            "evidence_source_ids": [
+              "CLINVAR:VCV004819111.1:germline-classification",
+              "CLINVAR:VCV004819111.1:review-status",
+              "CLINVAR:VCV004819111.1:trait-context"
+            ],
+            "claims": [
+              {
+                "claim_id": "GP-006:GP006-V1:C1",
+                "claim": "ClinVar aggregate germline classification is Pathogenic.",
+                "evidence_ids": [
+                  "CLINVAR:VCV004819111.1:germline-classification"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GP-006:GP006-V1:C2",
+                "claim": "The record includes the target trait Colorectal cancer, hereditary nonpolyposis, type 2.",
+                "evidence_ids": [
+                  "CLINVAR:VCV004819111.1:trait-context"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic arbitration states: GP006-V1=retain. Removed from final shortlist: ['none'].",
+        "runtime_seconds": 2.204833299998427,
+        "usage": {
+          "input_tokens": 6660,
+          "output_tokens": 391,
+          "total_tokens": 7051
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [],
+        "arbitration_records": [
+          {
+            "variant_id": "GP006-V1",
+            "source_rank": 1,
+            "state": "retain",
+            "support_score": 6,
+            "counter_score": 0,
+            "uncertainty_score": 0,
+            "supporting_evidence_ids": [
+              "CLINVAR:VCV004819111.1:germline-classification",
+              "CLINVAR:VCV004819111.1:review-status",
+              "CLINVAR:VCV004819111.1:trait-context"
+            ],
+            "counterevidence_ids": [],
+            "uncertainty_evidence_ids": [],
+            "contextual_strong_counter_ids": [],
+            "fired_rule": "7_unopposed_support",
+            "retained_for_review": true,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=6, counter=0, uncertainty=0; state=retain."
+          }
+        ],
+        "deterministic_runtime_seconds": 0.0005038999952375889,
+        "external_model_runtime_seconds": 2.204329400003189,
+        "model_call_count": 1,
+        "provider_retry_errors": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GP-007",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GP-007",
+        "system": "conflict-arbitrated-v3",
+        "prompt_version": "evidence_grounded_v1+conflict_arbitration_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GP007-V1",
+            "rank": 1,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=6, counter=0, uncertainty=0; state=retain. V1 rationale: ClinVar aggregate germline classification is Pathogenic, warranting expert review for hereditary nonpolyposis colorectal neoplasms.",
+            "confidence": 0.9,
+            "evidence_source_ids": [
+              "CLINVAR:VCV004714674.1:germline-classification",
+              "CLINVAR:VCV004714674.1:review-status",
+              "CLINVAR:VCV004714674.1:trait-context"
+            ],
+            "claims": [
+              {
+                "claim_id": "GP-007:GP007-V1:C1",
+                "claim": "ClinVar aggregate germline classification is Pathogenic.",
+                "evidence_ids": [
+                  "CLINVAR:VCV004714674.1:germline-classification"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GP-007:GP007-V1:C2",
+                "claim": "ClinVar aggregate record includes the target trait Hereditary nonpolyposis colorectal neoplasms.",
+                "evidence_ids": [
+                  "CLINVAR:VCV004714674.1:trait-context"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic arbitration states: GP007-V1=retain. Removed from final shortlist: ['none'].",
+        "runtime_seconds": 2.4151950999948895,
+        "usage": {
+          "input_tokens": 6641,
+          "output_tokens": 391,
+          "total_tokens": 7032
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [],
+        "arbitration_records": [
+          {
+            "variant_id": "GP007-V1",
+            "source_rank": 1,
+            "state": "retain",
+            "support_score": 6,
+            "counter_score": 0,
+            "uncertainty_score": 0,
+            "supporting_evidence_ids": [
+              "CLINVAR:VCV004714674.1:germline-classification",
+              "CLINVAR:VCV004714674.1:review-status",
+              "CLINVAR:VCV004714674.1:trait-context"
+            ],
+            "counterevidence_ids": [],
+            "uncertainty_evidence_ids": [],
+            "contextual_strong_counter_ids": [],
+            "fired_rule": "7_unopposed_support",
+            "retained_for_review": true,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=6, counter=0, uncertainty=0; state=retain."
+          }
+        ],
+        "deterministic_runtime_seconds": 0.001905500001157634,
+        "external_model_runtime_seconds": 2.413289599993732,
+        "model_call_count": 1,
+        "provider_retry_errors": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GP-008",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GP-008",
+        "system": "conflict-arbitrated-v3",
+        "prompt_version": "evidence_grounded_v1+conflict_arbitration_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GP008-V1",
+            "rank": 1,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=7, counter=0, uncertainty=0; state=retain. V1 rationale: ClinVar aggregate germline classification is Pathogenic/Likely pathogenic with multiple submitters and no conflicts, matching the case target traits.",
+            "confidence": 0.9,
+            "evidence_source_ids": [
+              "CLINVAR:VCV000181335.18:germline-classification",
+              "CLINVAR:VCV000181335.18:review-status",
+              "CLINVAR:VCV000181335.18:trait-context"
+            ],
+            "claims": [
+              {
+                "claim_id": "GP-008:GP008-V1:C1",
+                "claim": "Variant is classified as Pathogenic/Likely pathogenic in ClinVar.",
+                "evidence_ids": [
+                  "CLINVAR:VCV000181335.18:germline-classification"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GP-008:GP008-V1:C2",
+                "claim": "Review status indicates criteria provided with multiple submitters and no conflicts.",
+                "evidence_ids": [
+                  "CLINVAR:VCV000181335.18:review-status"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GP-008:GP008-V1:C3",
+                "claim": "Record includes target traits such as Hypertrophic cardiomyopathy.",
+                "evidence_ids": [
+                  "CLINVAR:VCV000181335.18:trait-context"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic arbitration states: GP008-V1=retain. Removed from final shortlist: ['none'].",
+        "runtime_seconds": 2.417889099990134,
+        "usage": {
+          "input_tokens": 6651,
+          "output_tokens": 490,
+          "total_tokens": 7141
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [],
+        "arbitration_records": [
+          {
+            "variant_id": "GP008-V1",
+            "source_rank": 1,
+            "state": "retain",
+            "support_score": 7,
+            "counter_score": 0,
+            "uncertainty_score": 0,
+            "supporting_evidence_ids": [
+              "CLINVAR:VCV000181335.18:germline-classification",
+              "CLINVAR:VCV000181335.18:review-status",
+              "CLINVAR:VCV000181335.18:trait-context"
+            ],
+            "counterevidence_ids": [],
+            "uncertainty_evidence_ids": [],
+            "contextual_strong_counter_ids": [],
+            "fired_rule": "7_unopposed_support",
+            "retained_for_review": true,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=7, counter=0, uncertainty=0; state=retain."
+          }
+        ],
+        "deterministic_runtime_seconds": 0.0005987000040477142,
+        "external_model_runtime_seconds": 2.4172903999860864,
+        "model_call_count": 1,
+        "provider_retry_errors": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GP-009",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GP-009",
+        "system": "conflict-arbitrated-v3",
+        "prompt_version": "evidence_grounded_v1+conflict_arbitration_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GP009-V1",
+            "rank": 1,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=7, counter=0, uncertainty=0; state=retain. V1 rationale: ClinVar aggregate germline classification is Pathogenic, supporting attention for Phenylketonuria. For research/expert review. Not a medical diagnosis.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "CLINVAR:VCV002677430.1:germline-classification",
+              "CLINVAR:VCV002677430.1:review-status",
+              "CLINVAR:VCV002677430.1:trait-context"
+            ],
+            "claims": [
+              {
+                "claim_id": "GP-009:GP009-V1:C1",
+                "claim": "ClinVar classifies GP009-V1 as Pathogenic with expert panel review, linked to Phenylketonuria.",
+                "evidence_ids": [
+                  "CLINVAR:VCV002677430.1:germline-classification",
+                  "CLINVAR:VCV002677430.1:review-status",
+                  "CLINVAR:VCV002677430.1:trait-context"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic arbitration states: GP009-V1=retain. Removed from final shortlist: ['none'].",
+        "runtime_seconds": 2.4211778000026243,
+        "usage": {
+          "input_tokens": 6611,
+          "output_tokens": 371,
+          "total_tokens": 6982
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [],
+        "arbitration_records": [
+          {
+            "variant_id": "GP009-V1",
+            "source_rank": 1,
+            "state": "retain",
+            "support_score": 7,
+            "counter_score": 0,
+            "uncertainty_score": 0,
+            "supporting_evidence_ids": [
+              "CLINVAR:VCV002677430.1:germline-classification",
+              "CLINVAR:VCV002677430.1:review-status",
+              "CLINVAR:VCV002677430.1:trait-context"
+            ],
+            "counterevidence_ids": [],
+            "uncertainty_evidence_ids": [],
+            "contextual_strong_counter_ids": [],
+            "fired_rule": "7_unopposed_support",
+            "retained_for_review": true,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=7, counter=0, uncertainty=0; state=retain."
+          }
+        ],
+        "deterministic_runtime_seconds": 0.00035760000173468143,
+        "external_model_runtime_seconds": 2.4208202000008896,
+        "model_call_count": 1,
+        "provider_retry_errors": []
+      },
+      "error_type": null,
+      "error_message": null
+    },
+    {
+      "case_id": "GP-010",
+      "status": "completed",
+      "prediction": {
+        "schema_version": "1.0",
+        "case_id": "GP-010",
+        "system": "conflict-arbitrated-v3",
+        "prompt_version": "evidence_grounded_v1+conflict_arbitration_v1",
+        "model": "gemini-3.5-flash-lite",
+        "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+        "ranked_variants": [
+          {
+            "variant_id": "GP010-V1",
+            "rank": 1,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=7, counter=0, uncertainty=0; state=retain. V1 rationale: ClinVar aggregate germline classification is Pathogenic/Likely pathogenic with strong review status.",
+            "confidence": 0.95,
+            "evidence_source_ids": [
+              "CLINVAR:VCV004685939.2:germline-classification",
+              "CLINVAR:VCV004685939.2:review-status",
+              "CLINVAR:VCV004685939.2:trait-context"
+            ],
+            "claims": [
+              {
+                "claim_id": "GP-010:GP010-V1:C1",
+                "claim": "Variant is classified as Pathogenic/Likely pathogenic in ClinVar.",
+                "evidence_ids": [
+                  "CLINVAR:VCV004685939.2:germline-classification"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GP-010:GP010-V1:C2",
+                "claim": "Review status shows criteria provided with multiple submitters and no conflicts.",
+                "evidence_ids": [
+                  "CLINVAR:VCV004685939.2:review-status"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              },
+              {
+                "claim_id": "GP-010:GP010-V1:C3",
+                "claim": "Associated with Li-Fraumeni syndrome trait context.",
+                "evidence_ids": [
+                  "CLINVAR:VCV004685939.2:trait-context"
+                ],
+                "interpretation": "supports_attention",
+                "status": "supported"
+              }
+            ]
+          }
+        ],
+        "escalated_uncertainty": false,
+        "notes": "Deterministic arbitration states: GP010-V1=retain. Removed from final shortlist: ['none'].",
+        "runtime_seconds": 2.373329800015199,
+        "usage": {
+          "input_tokens": 6646,
+          "output_tokens": 475,
+          "total_tokens": 7121
+        },
+        "estimated_cost_usd": 0.0,
+        "verified_claims": [],
+        "arbitration_records": [
+          {
+            "variant_id": "GP010-V1",
+            "source_rank": 1,
+            "state": "retain",
+            "support_score": 7,
+            "counter_score": 0,
+            "uncertainty_score": 0,
+            "supporting_evidence_ids": [
+              "CLINVAR:VCV004685939.2:germline-classification",
+              "CLINVAR:VCV004685939.2:review-status",
+              "CLINVAR:VCV004685939.2:trait-context"
+            ],
+            "counterevidence_ids": [],
+            "uncertainty_evidence_ids": [],
+            "contextual_strong_counter_ids": [],
+            "fired_rule": "7_unopposed_support",
+            "retained_for_review": true,
+            "reason": "conflict_arbitration_v1 fired 7_unopposed_support: support=7, counter=0, uncertainty=0; state=retain."
+          }
+        ],
+        "deterministic_runtime_seconds": 0.0003449000068940222,
+        "external_model_runtime_seconds": 2.372984900008305,
+        "model_call_count": 1,
+        "provider_retry_errors": []
+      },
+      "error_type": null,
+      "error_message": null
+    }
+  ]
+}

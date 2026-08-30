@@ -18,7 +18,8 @@ primary shortlist accounting uses K=5.
 - **False positives@K:** returned candidates in the first K ranks that are not
   evaluator-labeled relevant.
 - **Review burden:** total candidates returned in the primary-K expert shortlist.
-- **False positives per case:** primary-K false positives divided by all 12 cases.
+- **False positives per case:** primary-K false positives divided by all cases in
+  the evaluated benchmark (12 legacy, 13 conflict, or 10 public cases).
 - **Review burden at full recall:** the sum of each case's smallest ranked prefix
   containing all relevant variants. It is null if any relevant variant is missing;
   a negative control contributes zero.
@@ -33,11 +34,22 @@ primary shortlist accounting uses K=5.
   it is separate from identifier validity and null when no supported typed claims
   exist.
 - **Runtime:** mean per-case wall time. V2 includes its inherited V1 runtime plus
-  verifier runtime so system-level cost is comparable.
+  verifier runtime so system-level cost is comparable. V3 reports inherited V1
+  external-model time separately from its local deterministic arbitration time;
+  provider latency is not presented as algorithmic processing time.
+- **Abstention count:** cases whose final prediction explicitly abstains or has no
+  ranked candidates after safe filtering.
+- **Insufficient-evidence count:** candidate arbitration records assigned
+  `insufficient_evidence`.
+- **Conflicting-evidence count:** candidate arbitration records assigned
+  `conflicting_evidence`; these candidates remain visible for expert review.
+- **Model calls per case:** total retained provider calls divided by evaluated and
+  failed cases. V3 inherits V1 calls and adds zero calls.
 - **Tokens:** retained provider input/output/total usage. V2 includes V1 plus V2.
 - **Estimated cost:** calculated only from retained token usage and explicitly
   supplied rates. Missing rates produce null; confirmed free-tier zero rates produce
   zero.
 
-Macro recall and MRR cover the 11 positive cases. Precision and false-positive
-aggregates include all 12 cases. Every per-case value is retained in result JSON.
+Macro recall and MRR exclude negative-control cases. Precision, shortlist
+precision, burden, and false-positive aggregates include every case. Every
+per-case value is retained in result JSON.

@@ -26,27 +26,42 @@ class CanonicalVariant(Phase2StrictModel):
 
 
 class EvidenceContent(Phase2StrictModel):
-    source_type: Literal["synthetic_benchmark_record"]
+    source_type: Literal["synthetic_benchmark_record", "clinvar_public_record"]
     direction: Literal["supports", "against", "uncertain"]
     statement: str = Field(..., min_length=1)
     strength: Literal["weak", "moderate", "strong"]
+    dimension: Literal[
+        "molecular",
+        "functional",
+        "regulatory",
+        "phenotype_context",
+        "inheritance",
+        "population",
+        "provenance",
+        "other",
+    ] = "other"
 
 
 class EvidenceProvenance(Phase2StrictModel):
-    data_origin: Literal["fully_synthetic"]
+    data_origin: Literal["fully_synthetic", "appropriately_public"]
     source_fixture: str
     source_fixture_sha256: str = Field(..., regex=r"^[0-9a-f]{64}$")
     source_case_id: str
     source_variant_id: str
-    extraction_method: Literal["deterministic_fixture_extraction_v1"]
+    extraction_method: str = Field(..., min_length=1)
     public_resource_compatibility_note: str
+    source_url: Optional[str] = None
+    source_release: Optional[str] = None
+    license_or_terms_url: Optional[str] = None
+    retrieved_at_utc: Optional[str] = None
+    source_record_sha256: Optional[str] = Field(None, regex=r"^[0-9a-f]{64}$")
 
 
 class EvidenceRecord(Phase2StrictModel):
     evidence_id: str = Field(..., min_length=1)
-    source: Literal["GenomeTriage synthetic benchmark evidence"]
+    source: str = Field(..., min_length=1)
     original_source_record_id: str = Field(..., min_length=1)
-    snapshot_version: Literal["evidence_v1"]
+    snapshot_version: str = Field(..., min_length=1)
     snapshot_date: str = Field(..., regex=r"^[0-9]{4}-[0-9]{2}-[0-9]{2}$")
     canonical_variant_id: str = Field(..., min_length=1)
     content: EvidenceContent
@@ -87,7 +102,7 @@ class VerifiedClaim(Phase2StrictModel):
 
 
 class EvidenceSnapshotManifest(Phase2StrictModel):
-    snapshot_version: Literal["evidence_v1"]
+    snapshot_version: str = Field(..., min_length=1)
     snapshot_date: str
     record_count: int = Field(..., ge=0)
     evidence_file: str
@@ -97,3 +112,4 @@ class EvidenceSnapshotManifest(Phase2StrictModel):
     provenance_model: str
     external_live_dependency: Literal[False]
     notes: List[str] = Field(default_factory=list)
+    source_metadata: Dict[str, object] = Field(default_factory=dict)

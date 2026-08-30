@@ -1,0 +1,17 @@
+{
+  "evidence_file": "data/evidence/evidence_conflict_v1.jsonl",
+  "evidence_file_sha256": "ba2554f5b52b84a0683f7fc467c0c13263ff5fc9b8b754fa6045d7e2867dd887",
+  "external_live_dependency": false,
+  "notes": [
+    "All records are synthetic and contain no identifiable genomic data.",
+    "Ground-truth files are not read during evidence extraction.",
+    "Benchmark retrieval is exact, local, frozen, and independent of live services."
+  ],
+  "provenance_model": "deterministic_conflict_fixture_extraction_v1",
+  "record_count": 82,
+  "snapshot_date": "2026-08-29",
+  "snapshot_version": "evidence_conflict_v1",
+  "source_fixture": "data/cases/benchmark_conflict_v1.jsonl",
+  "source_fixture_sha256": "2dce889f428c2662ba5a26dbae227212f87be7023eec87bfb0f2c4efa4809aae",
+  "source_metadata": {}
+}

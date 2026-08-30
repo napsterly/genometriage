@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import io
 import json
+import urllib.error
+from email.message import Message
 
 import pytest
 
@@ -164,6 +167,44 @@ def test_gemini_output_text_extraction_reports_block_reason() -> None:
         GeminiGenerateContentProvider._extract_output_text(
             {"promptFeedback": {"blockReason": "SAFETY"}, "candidates": []}
         )
+
+
+def test_gemini_retries_transient_error_with_bounded_accounting(monkeypatch) -> None:
+    calls = []
+    headers = Message()
+    headers["Retry-After"] = "0"
+
+    def fake_urlopen(request, timeout):
+        calls.append(request)
+        if len(calls) == 1:
+            raise urllib.error.HTTPError(
+                request.full_url,
+                503,
+                "temporary",
+                headers,
+                io.BytesIO(b'{"error":"temporary"}'),
+            )
+        return FakeHTTPResponse(
+            {
+                "candidates": [
+                    {"content": {"parts": [{"text": "{}"}]}, "finishReason": "STOP"}
+                ]
+            }
+        )
+
+    monkeypatch.setattr("urllib.request.urlopen", fake_urlopen)
+    monkeypatch.setattr("time.sleep", lambda _: None)
+    provider = GeminiGenerateContentProvider(
+        api_key="test-only-gemini-key",
+        model="fake-gemini-model",
+        base_url="https://example.invalid/v1beta",
+        max_attempts=2,
+    )
+    response = provider.complete("synthetic case", {"type": "object"})
+    assert len(calls) == 2
+    assert response.request_attempt_count == 2
+    assert len(response.retry_errors) == 1
+    assert "HTTP 503" in response.retry_errors[0]
 
 
 def test_gemini_37_omits_deprecated_temperature(monkeypatch) -> None:
