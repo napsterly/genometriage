@@ -1,0 +1,913 @@
+{
+  "artifact_policy": {
+    "chain_of_thought_invented": false,
+    "content_scope": "Recorded instructions/configuration, deterministic preprocessing, retrieved evidence, structured model output, and evaluator feedback only.",
+    "execution_label": "Recorded benchmark execution / deterministic replay",
+    "hidden_reasoning_included": false,
+    "recorded_execution": true
+  },
+  "baseline_comparison": {
+    "added_by_v1": [],
+    "baseline_model": "gemini-3.1-flash-lite",
+    "baseline_ranked_variants": [
+      {
+        "claims": [],
+        "confidence": 0.85,
+        "evidence_source_ids": [
+          "GT004-E1",
+          "GT004-E2"
+        ],
+        "rank": 1,
+        "reason": "This variant is very rare and has moderate evidence supporting phenotype overlap, though the assay is unavailable and there is weak uncertainty regarding a nearby residue.",
+        "variant_id": "GT004-V1"
+      },
+      {
+        "claims": [],
+        "confidence": 0.75,
+        "evidence_source_ids": [
+          "GT004-E3",
+          "GT004-E4"
+        ],
+        "rank": 2,
+        "reason": "This variant shows moderate support for altered ion transport and phenotype overlap, but the gene-disease relationship is provisional, introducing uncertainty.",
+        "variant_id": "GT004-V2"
+      }
+    ],
+    "baseline_review_burden": 2,
+    "baseline_system": "baseline-gemini",
+    "removed_by_v1": [],
+    "review_burden_reduction": 0,
+    "v1_ranked_variants": [
+      {
+        "claims": [
+          {
+            "claim": "Synthetic phenotype overlap is strong, but the assay is unavailable.",
+            "claim_id": "GT-004:GT004-V1:C1",
+            "evidence_ids": [
+              "GT004-E1"
+            ],
+            "interpretation": "supports_attention",
+            "status": "supported"
+          },
+          {
+            "claim": "Only one unrelated synthetic observation exists for a nearby residue.",
+            "claim_id": "GT-004:GT004-V1:C2",
+            "evidence_ids": [
+              "GT004-E2"
+            ],
+            "interpretation": "uncertainty_or_conflict",
+            "status": "supported"
+          }
+        ],
+        "confidence": 0.6,
+        "evidence_source_ids": [
+          "GT004-E1",
+          "GT004-E2"
+        ],
+        "rank": 1,
+        "reason": "For research/expert review. Not a medical diagnosis. Variant shows moderate synthetic phenotype overlap despite unavailable assay and weak nearby observation.",
+        "variant_id": "GT004-V1"
+      },
+      {
+        "claims": [
+          {
+            "claim": "Synthetic cellular record reports altered ion transport and partial phenotype overlap.",
+            "claim_id": "GT-004:GT004-V2:C1",
+            "evidence_ids": [
+              "GT004-E3"
+            ],
+            "interpretation": "supports_attention",
+            "status": "supported"
+          },
+          {
+            "claim": "The invented gene-disease relationship is provisional.",
+            "claim_id": "GT-004:GT004-V2:C2",
+            "evidence_ids": [
+              "GT004-E4"
+            ],
+            "interpretation": "uncertainty_or_conflict",
+            "status": "supported"
+          }
+        ],
+        "confidence": 0.55,
+        "evidence_source_ids": [
+          "GT004-E3",
+          "GT004-E4"
+        ],
+        "rank": 2,
+        "reason": "For research/expert review. Not a medical diagnosis. Variant displays altered ion transport and partial overlap, though the gene-disease relationship is provisional.",
+        "variant_id": "GT004-V2"
+      }
+    ],
+    "v1_review_burden": 2
+  },
+  "case_input": {
+    "candidate_count": 5,
+    "candidates": [
+      {
+        "consequence": "missense",
+        "gene": "GTM4",
+        "input_representation": "GRCh38-synthetic:16:1604001:A:T",
+        "normalized": {
+          "alternate": "T",
+          "canonical_id": "GRCh38-synthetic:16:1604001:A:T",
+          "chromosome": "16",
+          "consequence": "missense",
+          "gene": "GTM4",
+          "genome_build": "GRCh38-synthetic",
+          "position": 1604001,
+          "reference": "A",
+          "variant_id": "GT004-V1"
+        },
+        "retrieved_evidence_count": 2,
+        "variant_id": "GT004-V1"
+      },
+      {
+        "consequence": "inframe_deletion_proxy",
+        "gene": "GTN4",
+        "input_representation": "GRCh38-synthetic:17:1704002:G:C",
+        "normalized": {
+          "alternate": "C",
+          "canonical_id": "GRCh38-synthetic:17:1704002:G:C",
+          "chromosome": "17",
+          "consequence": "inframe_deletion_proxy",
+          "gene": "GTN4",
+          "genome_build": "GRCh38-synthetic",
+          "position": 1704002,
+          "reference": "G",
+          "variant_id": "GT004-V2"
+        },
+        "retrieved_evidence_count": 2,
+        "variant_id": "GT004-V2"
+      },
+      {
+        "consequence": "synonymous",
+        "gene": "GTO4",
+        "input_representation": "GRCh38-synthetic:18:1804003:C:T",
+        "normalized": {
+          "alternate": "T",
+          "canonical_id": "GRCh38-synthetic:18:1804003:C:T",
+          "chromosome": "18",
+          "consequence": "synonymous",
+          "gene": "GTO4",
+          "genome_build": "GRCh38-synthetic",
+          "position": 1804003,
+          "reference": "C",
+          "variant_id": "GT004-V3"
+        },
+        "retrieved_evidence_count": 0,
+        "variant_id": "GT004-V3"
+      },
+      {
+        "consequence": "missense",
+        "gene": "GTP4",
+        "input_representation": "GRCh38-synthetic:19:1904004:T:C",
+        "normalized": {
+          "alternate": "C",
+          "canonical_id": "GRCh38-synthetic:19:1904004:T:C",
+          "chromosome": "19",
+          "consequence": "missense",
+          "gene": "GTP4",
+          "genome_build": "GRCh38-synthetic",
+          "position": 1904004,
+          "reference": "T",
+          "variant_id": "GT004-V4"
+        },
+        "retrieved_evidence_count": 1,
+        "variant_id": "GT004-V4"
+      },
+      {
+        "consequence": "intergenic",
+        "gene": null,
+        "input_representation": "GRCh38-synthetic:20:2004005:A:G",
+        "normalized": {
+          "alternate": "G",
+          "canonical_id": "GRCh38-synthetic:20:2004005:A:G",
+          "chromosome": "20",
+          "consequence": "intergenic",
+          "gene": null,
+          "genome_build": "GRCh38-synthetic",
+          "position": 2004005,
+          "reference": "A",
+          "variant_id": "GT004-V5"
+        },
+        "retrieved_evidence_count": 0,
+        "variant_id": "GT004-V5"
+      }
+    ],
+    "case_id": "GT-004",
+    "context": {
+      "family_observations": [
+        "family samples unavailable"
+      ],
+      "inheritance_hypothesis": "uncertain",
+      "phenotype_terms": [
+        "synthetic developmental delay",
+        "synthetic episodic ataxia"
+      ],
+      "summary": "Synthetic neurodevelopmental case where two rare candidates have incomplete but credible evidence."
+    },
+    "data_origin": "fully_synthetic"
+  },
+  "category": "experimental_regression_failure",
+  "deterministic_preprocessing": {
+    "evidence_snapshot_sha256": "c0b632fd3a001678d947fc387ad7feeb94945acad7c805859e3f3a9d6ed33934",
+    "evidence_snapshot_version": "evidence_v1",
+    "normalization": [
+      {
+        "alternate": "T",
+        "canonical_id": "GRCh38-synthetic:16:1604001:A:T",
+        "chromosome": "16",
+        "consequence": "missense",
+        "gene": "GTM4",
+        "genome_build": "GRCh38-synthetic",
+        "position": 1604001,
+        "reference": "A",
+        "variant_id": "GT004-V1"
+      },
+      {
+        "alternate": "C",
+        "canonical_id": "GRCh38-synthetic:17:1704002:G:C",
+        "chromosome": "17",
+        "consequence": "inframe_deletion_proxy",
+        "gene": "GTN4",
+        "genome_build": "GRCh38-synthetic",
+        "position": 1704002,
+        "reference": "G",
+        "variant_id": "GT004-V2"
+      },
+      {
+        "alternate": "T",
+        "canonical_id": "GRCh38-synthetic:18:1804003:C:T",
+        "chromosome": "18",
+        "consequence": "synonymous",
+        "gene": "GTO4",
+        "genome_build": "GRCh38-synthetic",
+        "position": 1804003,
+        "reference": "C",
+        "variant_id": "GT004-V3"
+      },
+      {
+        "alternate": "C",
+        "canonical_id": "GRCh38-synthetic:19:1904004:T:C",
+        "chromosome": "19",
+        "consequence": "missense",
+        "gene": "GTP4",
+        "genome_build": "GRCh38-synthetic",
+        "position": 1904004,
+        "reference": "T",
+        "variant_id": "GT004-V4"
+      },
+      {
+        "alternate": "G",
+        "canonical_id": "GRCh38-synthetic:20:2004005:A:G",
+        "chromosome": "20",
+        "consequence": "intergenic",
+        "gene": null,
+        "genome_build": "GRCh38-synthetic",
+        "position": 2004005,
+        "reference": "A",
+        "variant_id": "GT004-V5"
+      }
+    ],
+    "retrieval_method": "exact normalized-allele match in a frozen local evidence store"
+  },
+  "evaluator_outcome": {
+    "ground_truth_variant_ids_exposed": false,
+    "metrics": {
+      "abstention_count": 0,
+      "case_id": "GT-004",
+      "citation_traceability_claim_count": 2,
+      "citation_traceability_error_count": 0,
+      "citation_traceability_error_rate": 0.0,
+      "claim_support_precision": 1.0,
+      "conflicting_evidence_count": 0,
+      "deterministic_runtime_seconds": null,
+      "difficulty": "ambiguous",
+      "error_message": null,
+      "estimated_cost_usd": 0.0,
+      "evaluated_claim_count": 2,
+      "external_model_runtime_seconds": null,
+      "false_positive_count": 0,
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0
+      },
+      "input_tokens": 3290,
+      "insufficient_evidence_count": 0,
+      "model_call_count": null,
+      "output_tokens": 560,
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.6666666666666666,
+        "5": 0.4
+      },
+      "recall_at_k": {
+        "1": 0.5,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "relevant_count": 2,
+      "returned_count": 2,
+      "review_burden": 2,
+      "review_burden_at_full_recall": 2,
+      "runtime_seconds": 3.110862100000304,
+      "semantically_supported_claim_count": 4,
+      "sent_for_human_review": 2,
+      "shortlist_precision": 1.0,
+      "shortlist_relevant_count": 2,
+      "shortlist_returned_count": 2,
+      "status": "evaluated",
+      "system_supported_claim_count": 4,
+      "total_tokens": 3850,
+      "unsupported_claim_count": 0,
+      "unsupported_claim_rate": 0.0
+    },
+    "mode": "explicit_evaluation_feedback"
+  },
+  "evidence_retrieved": {
+    "GT004-V1": [
+      {
+        "category": "other",
+        "cited_by_shortlist": true,
+        "direction": "supports",
+        "evidence_id": "GT004-E1",
+        "original_source_record_id": "GT004-E1",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GT-004",
+          "source_fixture": "data/cases/benchmark_v1.jsonl",
+          "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GT004-V1"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_v1",
+        "source": "GenomeTriage synthetic benchmark evidence",
+        "statement": "Synthetic phenotype overlap is strong, but the assay is unavailable.",
+        "strength": "moderate"
+      },
+      {
+        "category": "other",
+        "cited_by_shortlist": true,
+        "direction": "uncertain",
+        "evidence_id": "GT004-E2",
+        "original_source_record_id": "GT004-E2",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GT-004",
+          "source_fixture": "data/cases/benchmark_v1.jsonl",
+          "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GT004-V1"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_v1",
+        "source": "GenomeTriage synthetic benchmark evidence",
+        "statement": "Only one unrelated synthetic observation exists for a nearby residue.",
+        "strength": "weak"
+      }
+    ],
+    "GT004-V2": [
+      {
+        "category": "other",
+        "cited_by_shortlist": true,
+        "direction": "supports",
+        "evidence_id": "GT004-E3",
+        "original_source_record_id": "GT004-E3",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GT-004",
+          "source_fixture": "data/cases/benchmark_v1.jsonl",
+          "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GT004-V2"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_v1",
+        "source": "GenomeTriage synthetic benchmark evidence",
+        "statement": "Synthetic cellular record reports altered ion transport and partial phenotype overlap.",
+        "strength": "moderate"
+      },
+      {
+        "category": "other",
+        "cited_by_shortlist": true,
+        "direction": "uncertain",
+        "evidence_id": "GT004-E4",
+        "original_source_record_id": "GT004-E4",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GT-004",
+          "source_fixture": "data/cases/benchmark_v1.jsonl",
+          "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GT004-V2"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_v1",
+        "source": "GenomeTriage synthetic benchmark evidence",
+        "statement": "The invented gene-disease relationship is provisional.",
+        "strength": "moderate"
+      }
+    ],
+    "GT004-V3": [],
+    "GT004-V4": [
+      {
+        "category": "other",
+        "cited_by_shortlist": false,
+        "direction": "against",
+        "evidence_id": "GT004-E5",
+        "original_source_record_id": "GT004-E5",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GT-004",
+          "source_fixture": "data/cases/benchmark_v1.jsonl",
+          "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GT004-V4"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_v1",
+        "source": "GenomeTriage synthetic benchmark evidence",
+        "statement": "Frequency is inconsistent with the proposed severe rare condition.",
+        "strength": "strong"
+      }
+    ],
+    "GT004-V5": []
+  },
+  "experimental_follow_up": {
+    "decision": "V3 is promising on dimensioned evidence but is not retained globally because benchmark_v1 Recall@3 regressed.",
+    "evaluator_outcome": {
+      "abstention_count": 1,
+      "case_id": "GT-004",
+      "citation_traceability_claim_count": 0,
+      "citation_traceability_error_count": 0,
+      "citation_traceability_error_rate": null,
+      "claim_support_precision": null,
+      "conflicting_evidence_count": 0,
+      "deterministic_runtime_seconds": 0.0002703000027395319,
+      "difficulty": "ambiguous",
+      "error_message": null,
+      "estimated_cost_usd": 0.0,
+      "evaluated_claim_count": 0,
+      "external_model_runtime_seconds": 3.110862100000304,
+      "false_positive_count": 0,
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0
+      },
+      "input_tokens": 3290,
+      "insufficient_evidence_count": 2,
+      "model_call_count": 1,
+      "output_tokens": 560,
+      "precision_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "recall_at_k": {
+        "1": 0.0,
+        "3": 0.0,
+        "5": 0.0
+      },
+      "reciprocal_rank": 0.0,
+      "relevant_count": 2,
+      "returned_count": 0,
+      "review_burden": 0,
+      "review_burden_at_full_recall": null,
+      "runtime_seconds": 3.1111324000030436,
+      "semantically_supported_claim_count": 0,
+      "sent_for_human_review": 0,
+      "shortlist_precision": null,
+      "shortlist_relevant_count": 0,
+      "shortlist_returned_count": 0,
+      "status": "evaluated",
+      "system_supported_claim_count": 0,
+      "total_tokens": 3850,
+      "unsupported_claim_count": 0,
+      "unsupported_claim_rate": null
+    },
+    "purpose": "Experimental deterministic conflict arbitration; not the product default.",
+    "structured_response": {
+      "arbitration_records": [
+        {
+          "contextual_strong_counter_ids": [],
+          "counter_score": 0,
+          "counterevidence_ids": [],
+          "fired_rule": "5_below_support_threshold",
+          "reason": "conflict_arbitration_v1 fired 5_below_support_threshold: support=2, counter=0, uncertainty=1; state=insufficient_evidence.",
+          "retained_for_review": false,
+          "source_rank": 1,
+          "state": "insufficient_evidence",
+          "support_score": 2,
+          "supporting_evidence_ids": [
+            "GT004-E1"
+          ],
+          "uncertainty_evidence_ids": [
+            "GT004-E2"
+          ],
+          "uncertainty_score": 1,
+          "variant_id": "GT004-V1"
+        },
+        {
+          "contextual_strong_counter_ids": [],
+          "counter_score": 0,
+          "counterevidence_ids": [],
+          "fired_rule": "5_below_support_threshold",
+          "reason": "conflict_arbitration_v1 fired 5_below_support_threshold: support=2, counter=0, uncertainty=2; state=insufficient_evidence.",
+          "retained_for_review": false,
+          "source_rank": 2,
+          "state": "insufficient_evidence",
+          "support_score": 2,
+          "supporting_evidence_ids": [
+            "GT004-E3"
+          ],
+          "uncertainty_evidence_ids": [
+            "GT004-E4"
+          ],
+          "uncertainty_score": 2,
+          "variant_id": "GT004-V2"
+        }
+      ],
+      "case_id": "GT-004",
+      "deterministic_runtime_seconds": 0.0002703000027395319,
+      "escalated_uncertainty": true,
+      "estimated_cost_usd": 0.0,
+      "external_model_runtime_seconds": 3.110862100000304,
+      "model": "gemini-3.5-flash-lite",
+      "model_call_count": 1,
+      "notes": "Deterministic arbitration states: GT004-V1=insufficient_evidence, GT004-V2=insufficient_evidence. Removed from final shortlist: ['GT004-V1', 'GT004-V2'].",
+      "prompt_version": "evidence_grounded_v1+conflict_arbitration_v1",
+      "provider_retry_errors": [],
+      "ranked_variants": [],
+      "runtime_seconds": 3.1111324000030436,
+      "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+      "schema_version": "1.0",
+      "system": "conflict-arbitrated-v3",
+      "usage": {
+        "input_tokens": 3290,
+        "output_tokens": 560,
+        "total_tokens": 3850
+      },
+      "verified_claims": []
+    },
+    "system": "conflict-arbitrated-v3"
+  },
+  "human_review_checkpoint": "A qualified reviewer must inspect the shortlist, evidence provenance, counterevidence, and uncertainty before any consequential interpretation.",
+  "model_input_summary": {
+    "candidate_variant_ids": [
+      "GT004-V1",
+      "GT004-V2",
+      "GT004-V3",
+      "GT004-V4",
+      "GT004-V5"
+    ],
+    "case_id": "GT-004",
+    "input_boundary": "V1 received model-visible context, normalized candidates, and only the exact frozen evidence retrieved for those candidates.",
+    "prompt_sha256": "6bd8d75a23bbd04aff7abdc2f0b2ae300259c727a4671fb679321bd33d537302",
+    "prompt_version": "evidence_grounded_v1",
+    "retrieved_evidence_ids": [
+      "GT004-E1",
+      "GT004-E2",
+      "GT004-E3",
+      "GT004-E4",
+      "GT004-E5"
+    ]
+  },
+  "model_structured_response": {
+    "arbitration_records": [],
+    "case_id": "GT-004",
+    "deterministic_runtime_seconds": null,
+    "escalated_uncertainty": true,
+    "estimated_cost_usd": 0.0,
+    "external_model_runtime_seconds": null,
+    "model": "gemini-3.5-flash-lite",
+    "model_call_count": null,
+    "notes": "For research/expert review. Not a medical diagnosis. Only two candidates warrant review due to incomplete evidence and high allele frequency or lack of evidence for others.",
+    "prompt_version": "evidence_grounded_v1",
+    "provider_retry_errors": [],
+    "ranked_variants": [
+      {
+        "claims": [
+          {
+            "claim": "Synthetic phenotype overlap is strong, but the assay is unavailable.",
+            "claim_id": "GT-004:GT004-V1:C1",
+            "evidence_ids": [
+              "GT004-E1"
+            ],
+            "interpretation": "supports_attention",
+            "status": "supported"
+          },
+          {
+            "claim": "Only one unrelated synthetic observation exists for a nearby residue.",
+            "claim_id": "GT-004:GT004-V1:C2",
+            "evidence_ids": [
+              "GT004-E2"
+            ],
+            "interpretation": "uncertainty_or_conflict",
+            "status": "supported"
+          }
+        ],
+        "confidence": 0.6,
+        "evidence_source_ids": [
+          "GT004-E1",
+          "GT004-E2"
+        ],
+        "rank": 1,
+        "reason": "For research/expert review. Not a medical diagnosis. Variant shows moderate synthetic phenotype overlap despite unavailable assay and weak nearby observation.",
+        "variant_id": "GT004-V1"
+      },
+      {
+        "claims": [
+          {
+            "claim": "Synthetic cellular record reports altered ion transport and partial phenotype overlap.",
+            "claim_id": "GT-004:GT004-V2:C1",
+            "evidence_ids": [
+              "GT004-E3"
+            ],
+            "interpretation": "supports_attention",
+            "status": "supported"
+          },
+          {
+            "claim": "The invented gene-disease relationship is provisional.",
+            "claim_id": "GT-004:GT004-V2:C2",
+            "evidence_ids": [
+              "GT004-E4"
+            ],
+            "interpretation": "uncertainty_or_conflict",
+            "status": "supported"
+          }
+        ],
+        "confidence": 0.55,
+        "evidence_source_ids": [
+          "GT004-E3",
+          "GT004-E4"
+        ],
+        "rank": 2,
+        "reason": "For research/expert review. Not a medical diagnosis. Variant displays altered ion transport and partial overlap, though the gene-disease relationship is provisional.",
+        "variant_id": "GT004-V2"
+      }
+    ],
+    "runtime_seconds": 3.110862100000304,
+    "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+    "schema_version": "1.0",
+    "system": "evidence-grounded-v1",
+    "usage": {
+      "input_tokens": 3290,
+      "output_tokens": 560,
+      "total_tokens": 3850
+    },
+    "verified_claims": []
+  },
+  "provider_retries_or_failures": [],
+  "resulting_shortlist": [
+    {
+      "claims": [
+        {
+          "claim": "Synthetic phenotype overlap is strong, but the assay is unavailable.",
+          "claim_id": "GT-004:GT004-V1:C1",
+          "evidence_ids": [
+            "GT004-E1"
+          ],
+          "interpretation": "supports_attention",
+          "status": "supported"
+        },
+        {
+          "claim": "Only one unrelated synthetic observation exists for a nearby residue.",
+          "claim_id": "GT-004:GT004-V1:C2",
+          "evidence_ids": [
+            "GT004-E2"
+          ],
+          "interpretation": "uncertainty_or_conflict",
+          "status": "supported"
+        }
+      ],
+      "confidence": 0.6,
+      "counterevidence": [],
+      "evidence_ids": [
+        "GT004-E1",
+        "GT004-E2"
+      ],
+      "gene": "GTM4",
+      "normalized": {
+        "alternate": "T",
+        "canonical_id": "GRCh38-synthetic:16:1604001:A:T",
+        "chromosome": "16",
+        "consequence": "missense",
+        "gene": "GTM4",
+        "genome_build": "GRCh38-synthetic",
+        "position": 1604001,
+        "reference": "A",
+        "variant_id": "GT004-V1"
+      },
+      "rank": 1,
+      "reason": "For research/expert review. Not a medical diagnosis. Variant shows moderate synthetic phenotype overlap despite unavailable assay and weak nearby observation.",
+      "supporting_evidence": [
+        {
+          "category": "other",
+          "cited_by_shortlist": true,
+          "direction": "supports",
+          "evidence_id": "GT004-E1",
+          "original_source_record_id": "GT004-E1",
+          "provenance": {
+            "data_origin": "fully_synthetic",
+            "extraction_method": "deterministic_fixture_extraction_v1",
+            "license_or_terms_url": null,
+            "retrieved_at_utc": null,
+            "source_case_id": "GT-004",
+            "source_fixture": "data/cases/benchmark_v1.jsonl",
+            "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+            "source_record_sha256": null,
+            "source_release": null,
+            "source_url": null,
+            "source_variant_id": "GT004-V1"
+          },
+          "snapshot_date": "2026-08-29",
+          "snapshot_version": "evidence_v1",
+          "source": "GenomeTriage synthetic benchmark evidence",
+          "statement": "Synthetic phenotype overlap is strong, but the assay is unavailable.",
+          "strength": "moderate"
+        }
+      ],
+      "uncertainty_evidence": [
+        {
+          "category": "other",
+          "cited_by_shortlist": true,
+          "direction": "uncertain",
+          "evidence_id": "GT004-E2",
+          "original_source_record_id": "GT004-E2",
+          "provenance": {
+            "data_origin": "fully_synthetic",
+            "extraction_method": "deterministic_fixture_extraction_v1",
+            "license_or_terms_url": null,
+            "retrieved_at_utc": null,
+            "source_case_id": "GT-004",
+            "source_fixture": "data/cases/benchmark_v1.jsonl",
+            "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+            "source_record_sha256": null,
+            "source_release": null,
+            "source_url": null,
+            "source_variant_id": "GT004-V1"
+          },
+          "snapshot_date": "2026-08-29",
+          "snapshot_version": "evidence_v1",
+          "source": "GenomeTriage synthetic benchmark evidence",
+          "statement": "Only one unrelated synthetic observation exists for a nearby residue.",
+          "strength": "weak"
+        }
+      ],
+      "variant_id": "GT004-V1"
+    },
+    {
+      "claims": [
+        {
+          "claim": "Synthetic cellular record reports altered ion transport and partial phenotype overlap.",
+          "claim_id": "GT-004:GT004-V2:C1",
+          "evidence_ids": [
+            "GT004-E3"
+          ],
+          "interpretation": "supports_attention",
+          "status": "supported"
+        },
+        {
+          "claim": "The invented gene-disease relationship is provisional.",
+          "claim_id": "GT-004:GT004-V2:C2",
+          "evidence_ids": [
+            "GT004-E4"
+          ],
+          "interpretation": "uncertainty_or_conflict",
+          "status": "supported"
+        }
+      ],
+      "confidence": 0.55,
+      "counterevidence": [],
+      "evidence_ids": [
+        "GT004-E3",
+        "GT004-E4"
+      ],
+      "gene": "GTN4",
+      "normalized": {
+        "alternate": "C",
+        "canonical_id": "GRCh38-synthetic:17:1704002:G:C",
+        "chromosome": "17",
+        "consequence": "inframe_deletion_proxy",
+        "gene": "GTN4",
+        "genome_build": "GRCh38-synthetic",
+        "position": 1704002,
+        "reference": "G",
+        "variant_id": "GT004-V2"
+      },
+      "rank": 2,
+      "reason": "For research/expert review. Not a medical diagnosis. Variant displays altered ion transport and partial overlap, though the gene-disease relationship is provisional.",
+      "supporting_evidence": [
+        {
+          "category": "other",
+          "cited_by_shortlist": true,
+          "direction": "supports",
+          "evidence_id": "GT004-E3",
+          "original_source_record_id": "GT004-E3",
+          "provenance": {
+            "data_origin": "fully_synthetic",
+            "extraction_method": "deterministic_fixture_extraction_v1",
+            "license_or_terms_url": null,
+            "retrieved_at_utc": null,
+            "source_case_id": "GT-004",
+            "source_fixture": "data/cases/benchmark_v1.jsonl",
+            "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+            "source_record_sha256": null,
+            "source_release": null,
+            "source_url": null,
+            "source_variant_id": "GT004-V2"
+          },
+          "snapshot_date": "2026-08-29",
+          "snapshot_version": "evidence_v1",
+          "source": "GenomeTriage synthetic benchmark evidence",
+          "statement": "Synthetic cellular record reports altered ion transport and partial phenotype overlap.",
+          "strength": "moderate"
+        }
+      ],
+      "uncertainty_evidence": [
+        {
+          "category": "other",
+          "cited_by_shortlist": true,
+          "direction": "uncertain",
+          "evidence_id": "GT004-E4",
+          "original_source_record_id": "GT004-E4",
+          "provenance": {
+            "data_origin": "fully_synthetic",
+            "extraction_method": "deterministic_fixture_extraction_v1",
+            "license_or_terms_url": null,
+            "retrieved_at_utc": null,
+            "source_case_id": "GT-004",
+            "source_fixture": "data/cases/benchmark_v1.jsonl",
+            "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+            "source_record_sha256": null,
+            "source_release": null,
+            "source_url": null,
+            "source_variant_id": "GT004-V2"
+          },
+          "snapshot_date": "2026-08-29",
+          "snapshot_version": "evidence_v1",
+          "source": "GenomeTriage synthetic benchmark evidence",
+          "statement": "The invented gene-disease relationship is provisional.",
+          "strength": "moderate"
+        }
+      ],
+      "variant_id": "GT004-V2"
+    }
+  ],
+  "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+  "schema_version": "1.0",
+  "system_configuration": {
+    "deterministic_runtime_seconds": null,
+    "estimated_cost_usd": 0.0,
+    "external_model_runtime_seconds": null,
+    "model": "gemini-3.5-flash-lite",
+    "model_call_count": 1,
+    "model_call_count_source": "reconstructed from the frozen V1 one-call-per-completed-case contract",
+    "name": "GenomeTriage V1",
+    "prompt_sha256": "6bd8d75a23bbd04aff7abdc2f0b2ae300259c727a4671fb679321bd33d537302",
+    "prompt_version": "evidence_grounded_v1",
+    "provider": "gemini",
+    "provider_retry_errors": [],
+    "recorded_at_utc": "2026-08-29T08:47:14.235401+00:00",
+    "runtime_seconds": 3.110862100000304,
+    "system_version": "evidence-grounded-v1",
+    "usage": {
+      "input_tokens": 3290,
+      "output_tokens": 560,
+      "total_tokens": 3850
+    }
+  },
+  "title": "Why V3 was not promoted globally",
+  "trajectory_id": "trajectory-v3-regression-gt004",
+  "why_selected": "The frozen V3 support threshold removes both relevant V1 candidates, failing the regression recall constraint."
+}

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -227,7 +228,15 @@ def _generalization_gap(
     return result
 
 
-def build_reports() -> Tuple[Path, Path, Path]:
+def build_reports(
+    *,
+    output_json: Path = OUTPUT_JSON,
+    output_markdown: Path = OUTPUT_MARKDOWN,
+    output_failures: Path = OUTPUT_FAILURES,
+) -> Tuple[Path, Path, Path]:
+    output_json = Path(output_json)
+    output_markdown = Path(output_markdown)
+    output_failures = Path(output_failures)
     track_metrics: Dict[str, Dict[str, Mapping[str, object]]] = {}
     for track, paths in TRACKS.items():
         v1 = _metric_values(_load_result(paths["v1_result"]).aggregate)
@@ -240,6 +249,10 @@ def build_reports() -> Tuple[Path, Path, Path]:
         for failure_type in item["failure_types"]:
             failure_counts[failure_type] = failure_counts.get(failure_type, 0) + 1
 
+    try:
+        failure_artifact = output_failures.relative_to(ROOT).as_posix()
+    except ValueError:
+        failure_artifact = output_failures.as_posix()
     payload = {
         "schema_version": "1.0",
         "generated_at_utc": datetime.now(timezone.utc).isoformat(),
@@ -250,7 +263,7 @@ def build_reports() -> Tuple[Path, Path, Path]:
         "failure_summary": {
             "case_count": len(failures),
             "counts_by_type": failure_counts,
-            "artifact": OUTPUT_FAILURES.relative_to(ROOT).as_posix(),
+            "artifact": failure_artifact,
         },
         "success_assessment": {
             "regression_recall_constraint_met": bool(
@@ -288,13 +301,13 @@ def build_reports() -> Tuple[Path, Path, Path]:
             "classical constrained optimizer before considering a separate quantum experiment."
         ),
     }
-    _atomic_write(OUTPUT_JSON, json.dumps(payload, indent=2, sort_keys=True) + "\n")
+    _atomic_write(output_json, json.dumps(payload, indent=2, sort_keys=True) + "\n")
     _atomic_write(
-        OUTPUT_FAILURES,
+        output_failures,
         "".join(json.dumps(item, sort_keys=True) + "\n" for item in failures),
     )
-    _atomic_write(OUTPUT_MARKDOWN, _render_markdown(payload))
-    return OUTPUT_JSON, OUTPUT_MARKDOWN, OUTPUT_FAILURES
+    _atomic_write(output_markdown, _render_markdown(payload))
+    return output_json, output_markdown, output_failures
 
 
 def _fmt(value: object) -> str:
@@ -394,8 +407,16 @@ def _render_markdown(payload: Mapping[str, object]) -> str:
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
-    del argv
-    outputs = build_reports()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--output-json", type=Path, default=OUTPUT_JSON)
+    parser.add_argument("--output-markdown", type=Path, default=OUTPUT_MARKDOWN)
+    parser.add_argument("--failure-analysis", type=Path, default=OUTPUT_FAILURES)
+    args = parser.parse_args(argv)
+    outputs = build_reports(
+        output_json=args.output_json,
+        output_markdown=args.output_markdown,
+        output_failures=args.failure_analysis,
+    )
     print(SAFETY_DISCLAIMER)
     print("Phase 3 reports: " + ", ".join(str(path) for path in outputs))
     return 0

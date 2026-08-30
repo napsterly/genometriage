@@ -1,9 +1,9 @@
 # Architecture
 
-The repository implements the benchmark-first V0/V1/V2 experiments and the
-preregistered deterministic V3 conflict-arbitration experiment. It does not
-implement broad multi-agent orchestration, memory, autonomous clinical decisions,
-or quantum functionality.
+The repository implements the benchmark-first V0/V1/V2 experiments, the
+preregistered deterministic V3 conflict-arbitration experiment, and a Phase 4
+judge-facing product layer. It does not implement broad multi-agent orchestration,
+memory, autonomous clinical decisions, or quantum functionality.
 
 ```text
 model-visible case
@@ -30,6 +30,19 @@ model-visible case
 sealed ground truth ─────────────────────────────> evaluator only
 ```
 
+The product/default path ends at V1. V2 is a preserved non-retained experiment,
+and V3 remains experimental because it failed the legacy recall constraint. The
+offline web app visualizes retained artifacts; it does not create a new research
+architecture or rerun a model.
+
+```text
+built-in case ──> recorded V1 artifact ──> Judge Mode explanation
+custom JSON/VCF ──> deterministic normalization only
+
+evaluator-only ground truth ──> dashboard aggregation only
+                             (never loaded by normal product case APIs)
+```
+
 ## Boundaries
 
 - Parsing, chromosome/allele normalization, exact retrieval, hash validation,
@@ -51,6 +64,15 @@ sealed ground truth ────────────────────
 - Ground truth is a software separation boundary rather than a defense against a
   malicious process with repository access. Evaluation loads it only after a raw
   `SystemRun` exists.
+- Judge Mode's built-in outputs are labeled `Recorded benchmark execution /
+  deterministic replay`. The product repository loads cases, evidence, prediction,
+  and aggregate result artifacts but never ground-truth files.
+- Custom JSON/VCF input is size- and schema-bounded, deterministically normalized,
+  and explicitly stops before ranking. The offline app never fabricates a model
+  response for unseen input.
+- The standard-library HTTP server binds to `127.0.0.1` by default, serves a fixed
+  static allowlist, applies response security headers, and exposes no credential or
+  live-provider endpoint.
 
 Runs checkpoint atomically after each case. Resume validation binds benchmark,
 prompt, exact model, evidence snapshot, execution configuration, and source V1 run
@@ -79,9 +101,15 @@ preserving an anchor. Symbolic alleles, breakends, and missing alleles are rejec
 Reference-backed repeat left-alignment is deliberately out of scope and is never
 approximated by an LLM.
 
-## Stop condition
+## Phase 4 product boundary and stop condition
 
-The repository stops at V3. V2 remains as a measured but non-retained experimental
-stage because it added cost without shortlist benefit. V3 remains experimental and
-is not the global default because it failed the legacy recall constraint. No
-Phase 4, quantum, or broad agent architecture is implemented.
+Phase 4 packages the retained evidence-grounded V1 workflow into an offline judge
+demo, evaluation dashboard, representative trajectories, and submission
+documentation. It adds no model calls, evidence sources, benchmark tuning, or new
+ranking policy. V2 remains non-retained because it added cost without shortlist
+benefit. V3 remains experimental and is not the global default because it failed
+the legacy recall constraint.
+
+The project stops here. No Phase 5, quantum functionality, broad agent
+orchestration, autonomous diagnosis, treatment recommendation, or clinical
+decision path is implemented.

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "genometriage"
-version = "0.3.0"
+version = "0.4.0"
 description = "Benchmark-first genomic variant prioritization research prototype"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -31,9 +31,13 @@ genometriage-compare = "genometriage.reporting.comparison:main"
 genometriage-v0-top3-control = "genometriage.controls.v0_top3:main"
 genometriage-phase3 = "genometriage.phase3.run:main"
 genometriage-phase3-report = "genometriage.reporting.phase3:main"
+genometriage-demo = "genometriage.app.run:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+"genometriage.app" = ["static/*.html", "static/*.css", "static/*.js"]
 
 [tool.pytest.ini_options]
 addopts = "-ra --strict-markers -p no:cacheprovider"

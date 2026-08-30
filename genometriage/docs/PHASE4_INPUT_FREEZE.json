@@ -1,0 +1,27 @@
+{
+  "freeze_id": "phase4-retained-inputs",
+  "frozen_at_commit": "8f449c95bcab31ba8e79e34a269210f08969a9af",
+  "hash_algorithm": "sha256",
+  "purpose": "Guard all historical model predictions and evaluator outputs consumed by the Phase 4 product. Phase 4 must not rewrite them.",
+  "artifacts": {
+    "predictions/baseline-gemini.json": "2fb210d21adcda3e2377a79ab0f8a238ab29469fa3fc6da5fe991d5e636d116e",
+    "results/baseline-gemini.json": "1864b23be25a76501551b666c7ba2373c3e20d5801bccbd26465aa9c871f446a",
+    "predictions/v0-top3-control.json": "831fb630bf377b0dbf719c6743ed2867ecc395428dfb080938b43911a0008786",
+    "results/v0-top3-control.json": "358814effba95b5f92eeca3bce3e33c45a07794c368f63ff86707aa1efc9dcca",
+    "predictions/evidence-grounded-v1.json": "ca82c0c6ef2baf77d284d1f41c9459b81b8cfbd69328fef349371ec0bc232440",
+    "results/evidence-grounded-v1.json": "3a71e325f5bffd83ed38a32a3790931790ab3bec9d1c1f486e1f4072375f14d4",
+    "predictions/verified-v2.json": "6e5b580656082886a7a19ac73ee1ea56a3f5a7c3800082726a4c794017331a6c",
+    "results/verified-v2.json": "15a7d5103edf58c82cbb8b6e2893f665739074cf38ab8448e22baeb4fce1ba3a",
+    "predictions/conflict-arbitrated-v3.json": "0de05491ebc5579cf9974309e8dc2ec8568785a7b1f08d79b8148c973bcd181d",
+    "results/conflict-arbitrated-v3.json": "bdde3a6c52e81d6e6f775fddcc78a9e63a5d4a7b6bf7cae57d55711649a8febf",
+    "predictions/benchmark_conflict_v1-evidence-grounded-v1.json": "18c2b95b980df0ce4b04ba94cb2764fa705a8aa7b78ff7511a45cef99459220a",
+    "results/benchmark_conflict_v1-evidence-grounded-v1.json": "d15f37e992271bd8b3408df0f921cdfb7b145d759836d50d78715d754cb07665",
+    "predictions/benchmark_conflict_v1-conflict-arbitrated-v3.json": "1568207021c096a6a6eb66782406aa31b41d6cee77507ee61891cab861eb3ff8",
+    "results/benchmark_conflict_v1-conflict-arbitrated-v3.json": "75113ba91ffe2311901092db82f01c1134969a29cdb74bfffeae560e07482217",
+    "predictions/benchmark_public_v1-evidence-grounded-v1.json": "71c452955d87e32d3907486c53f058b238561624c79d16f05cb857ad7c8a4233",
+    "results/benchmark_public_v1-evidence-grounded-v1.json": "0a64337a51fc33dd02ea1e2cb9f24ab229ec15c27400ba056d73d4fe36ebb988",
+    "predictions/benchmark_public_v1-conflict-arbitrated-v3.json": "75f52d976a87c67abd23579e08e3ccfc5a4975af3e276bd1fad63e97fdf901f5",
+    "results/benchmark_public_v1-conflict-arbitrated-v3.json": "4ad754898832ef2c2b9394af5332fbe4bdad85379bb76563a3c32b2e4d2c751e"
+  },
+  "safety_disclaimer": "For research/expert review. Not a medical diagnosis."
+}

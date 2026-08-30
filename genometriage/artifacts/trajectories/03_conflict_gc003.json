@@ -1,0 +1,930 @@
+{
+  "artifact_policy": {
+    "chain_of_thought_invented": false,
+    "content_scope": "Recorded instructions/configuration, deterministic preprocessing, retrieved evidence, structured model output, and evaluator feedback only.",
+    "execution_label": "Recorded benchmark execution / deterministic replay",
+    "hidden_reasoning_included": false,
+    "recorded_execution": true
+  },
+  "baseline_comparison": null,
+  "case_input": {
+    "candidate_count": 4,
+    "candidates": [
+      {
+        "consequence": "missense",
+        "gene": "CFH3",
+        "input_representation": "GRCh38-synthetic:8:3100101:G:T",
+        "normalized": {
+          "alternate": "T",
+          "canonical_id": "GRCh38-synthetic:8:3100101:G:T",
+          "chromosome": "8",
+          "consequence": "missense",
+          "gene": "CFH3",
+          "genome_build": "GRCh38-synthetic",
+          "position": 3100101,
+          "reference": "G",
+          "variant_id": "GC003-V1"
+        },
+        "retrieved_evidence_count": 3,
+        "variant_id": "GC003-V1"
+      },
+      {
+        "consequence": "stop_gained",
+        "gene": "CFI3",
+        "input_representation": "GRCh38-synthetic:9:3200102:C:A",
+        "normalized": {
+          "alternate": "A",
+          "canonical_id": "GRCh38-synthetic:9:3200102:C:A",
+          "chromosome": "9",
+          "consequence": "stop_gained",
+          "gene": "CFI3",
+          "genome_build": "GRCh38-synthetic",
+          "position": 3200102,
+          "reference": "C",
+          "variant_id": "GC003-V2"
+        },
+        "retrieved_evidence_count": 2,
+        "variant_id": "GC003-V2"
+      },
+      {
+        "consequence": "regulatory",
+        "gene": "CFJ3",
+        "input_representation": "GRCh38-synthetic:10:3300103:A:G",
+        "normalized": {
+          "alternate": "G",
+          "canonical_id": "GRCh38-synthetic:10:3300103:A:G",
+          "chromosome": "10",
+          "consequence": "regulatory",
+          "gene": "CFJ3",
+          "genome_build": "GRCh38-synthetic",
+          "position": 3300103,
+          "reference": "A",
+          "variant_id": "GC003-V3"
+        },
+        "retrieved_evidence_count": 1,
+        "variant_id": "GC003-V3"
+      },
+      {
+        "consequence": "missense",
+        "gene": "CFK3",
+        "input_representation": "GRCh38-synthetic:11:3400104:T:C",
+        "normalized": {
+          "alternate": "C",
+          "canonical_id": "GRCh38-synthetic:11:3400104:T:C",
+          "chromosome": "11",
+          "consequence": "missense",
+          "gene": "CFK3",
+          "genome_build": "GRCh38-synthetic",
+          "position": 3400104,
+          "reference": "T",
+          "variant_id": "GC003-V4"
+        },
+        "retrieved_evidence_count": 1,
+        "variant_id": "GC003-V4"
+      }
+    ],
+    "case_id": "GC-003",
+    "context": {
+      "family_observations": [
+        "one mildly affected synthetic relative"
+      ],
+      "inheritance_hypothesis": "dominant with variable expression",
+      "phenotype_terms": [
+        "synthetic episodic ataxia",
+        "synthetic mild cardiomyopathy"
+      ],
+      "summary": "Synthetic multisystem case with partial phenotype overlap and one unresolved candidate."
+    },
+    "data_origin": "fully_synthetic"
+  },
+  "category": "conflicting_evidence",
+  "deterministic_preprocessing": {
+    "evidence_snapshot_sha256": "ba2554f5b52b84a0683f7fc467c0c13263ff5fc9b8b754fa6045d7e2867dd887",
+    "evidence_snapshot_version": "evidence_conflict_v1",
+    "normalization": [
+      {
+        "alternate": "T",
+        "canonical_id": "GRCh38-synthetic:8:3100101:G:T",
+        "chromosome": "8",
+        "consequence": "missense",
+        "gene": "CFH3",
+        "genome_build": "GRCh38-synthetic",
+        "position": 3100101,
+        "reference": "G",
+        "variant_id": "GC003-V1"
+      },
+      {
+        "alternate": "A",
+        "canonical_id": "GRCh38-synthetic:9:3200102:C:A",
+        "chromosome": "9",
+        "consequence": "stop_gained",
+        "gene": "CFI3",
+        "genome_build": "GRCh38-synthetic",
+        "position": 3200102,
+        "reference": "C",
+        "variant_id": "GC003-V2"
+      },
+      {
+        "alternate": "G",
+        "canonical_id": "GRCh38-synthetic:10:3300103:A:G",
+        "chromosome": "10",
+        "consequence": "regulatory",
+        "gene": "CFJ3",
+        "genome_build": "GRCh38-synthetic",
+        "position": 3300103,
+        "reference": "A",
+        "variant_id": "GC003-V3"
+      },
+      {
+        "alternate": "C",
+        "canonical_id": "GRCh38-synthetic:11:3400104:T:C",
+        "chromosome": "11",
+        "consequence": "missense",
+        "gene": "CFK3",
+        "genome_build": "GRCh38-synthetic",
+        "position": 3400104,
+        "reference": "T",
+        "variant_id": "GC003-V4"
+      }
+    ],
+    "retrieval_method": "exact normalized-allele match in a frozen local evidence store"
+  },
+  "evaluator_outcome": {
+    "ground_truth_variant_ids_exposed": false,
+    "metrics": {
+      "abstention_count": 0,
+      "case_id": "GC-003",
+      "citation_traceability_claim_count": 2,
+      "citation_traceability_error_count": 0,
+      "citation_traceability_error_rate": 0.0,
+      "claim_support_precision": 1.0,
+      "conflicting_evidence_count": 0,
+      "deterministic_runtime_seconds": null,
+      "difficulty": "conflicting",
+      "error_message": null,
+      "estimated_cost_usd": 0.0,
+      "evaluated_claim_count": 2,
+      "external_model_runtime_seconds": 2.9781358999898657,
+      "false_positive_count": 1,
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 1,
+        "5": 1
+      },
+      "input_tokens": 4287,
+      "insufficient_evidence_count": 0,
+      "model_call_count": 1,
+      "output_tokens": 640,
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.3333333333333333,
+        "5": 0.2
+      },
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "relevant_count": 1,
+      "returned_count": 2,
+      "review_burden": 2,
+      "review_burden_at_full_recall": 1,
+      "runtime_seconds": 2.9781358999898657,
+      "semantically_supported_claim_count": 3,
+      "sent_for_human_review": 2,
+      "shortlist_precision": 0.5,
+      "shortlist_relevant_count": 1,
+      "shortlist_returned_count": 2,
+      "status": "evaluated",
+      "system_supported_claim_count": 3,
+      "total_tokens": 4927,
+      "unsupported_claim_count": 0,
+      "unsupported_claim_rate": 0.0
+    },
+    "mode": "explicit_evaluation_feedback"
+  },
+  "evidence_retrieved": {
+    "GC003-V1": [
+      {
+        "category": "functional",
+        "cited_by_shortlist": true,
+        "direction": "supports",
+        "evidence_id": "GC003-E1",
+        "original_source_record_id": "GC003-E1",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_conflict_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GC-003",
+          "source_fixture": "data/cases/benchmark_conflict_v1.jsonl",
+          "source_fixture_sha256": "2dce889f428c2662ba5a26dbae227212f87be7023eec87bfb0f2c4efa4809aae",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GC003-V1"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_conflict_v1",
+        "source": "GenomeTriage synthetic conflict benchmark evidence",
+        "statement": "A synthetic protein-stability assay reports a reproducible defect.",
+        "strength": "strong"
+      },
+      {
+        "category": "phenotype_context",
+        "cited_by_shortlist": true,
+        "direction": "supports",
+        "evidence_id": "GC003-E2",
+        "original_source_record_id": "GC003-E2",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_conflict_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GC-003",
+          "source_fixture": "data/cases/benchmark_conflict_v1.jsonl",
+          "source_fixture_sha256": "2dce889f428c2662ba5a26dbae227212f87be7023eec87bfb0f2c4efa4809aae",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GC003-V1"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_conflict_v1",
+        "source": "GenomeTriage synthetic conflict benchmark evidence",
+        "statement": "The invented CFH3 spectrum includes episodic ataxia.",
+        "strength": "moderate"
+      },
+      {
+        "category": "phenotype_context",
+        "cited_by_shortlist": true,
+        "direction": "against",
+        "evidence_id": "GC003-E3",
+        "original_source_record_id": "GC003-E3",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_conflict_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GC-003",
+          "source_fixture": "data/cases/benchmark_conflict_v1.jsonl",
+          "source_fixture_sha256": "2dce889f428c2662ba5a26dbae227212f87be7023eec87bfb0f2c4efa4809aae",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GC003-V1"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_conflict_v1",
+        "source": "GenomeTriage synthetic conflict benchmark evidence",
+        "statement": "Cardiomyopathy has not been described in the synthetic CFH3 record.",
+        "strength": "weak"
+      }
+    ],
+    "GC003-V2": [
+      {
+        "category": "molecular",
+        "cited_by_shortlist": true,
+        "direction": "supports",
+        "evidence_id": "GC003-E4",
+        "original_source_record_id": "GC003-E4",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_conflict_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GC-003",
+          "source_fixture": "data/cases/benchmark_conflict_v1.jsonl",
+          "source_fixture_sha256": "2dce889f428c2662ba5a26dbae227212f87be7023eec87bfb0f2c4efa4809aae",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GC003-V2"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_conflict_v1",
+        "source": "GenomeTriage synthetic conflict benchmark evidence",
+        "statement": "The allele introduces an early stop.",
+        "strength": "strong"
+      },
+      {
+        "category": "phenotype_context",
+        "cited_by_shortlist": true,
+        "direction": "against",
+        "evidence_id": "GC003-E5",
+        "original_source_record_id": "GC003-E5",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_conflict_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GC-003",
+          "source_fixture": "data/cases/benchmark_conflict_v1.jsonl",
+          "source_fixture_sha256": "2dce889f428c2662ba5a26dbae227212f87be7023eec87bfb0f2c4efa4809aae",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GC003-V2"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_conflict_v1",
+        "source": "GenomeTriage synthetic conflict benchmark evidence",
+        "statement": "The invented CFI3 phenotype is an isolated dental trait with no neurological or cardiac overlap.",
+        "strength": "strong"
+      }
+    ],
+    "GC003-V3": [
+      {
+        "category": "regulatory",
+        "cited_by_shortlist": false,
+        "direction": "uncertain",
+        "evidence_id": "GC003-E6",
+        "original_source_record_id": "GC003-E6",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_conflict_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GC-003",
+          "source_fixture": "data/cases/benchmark_conflict_v1.jsonl",
+          "source_fixture_sha256": "2dce889f428c2662ba5a26dbae227212f87be7023eec87bfb0f2c4efa4809aae",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GC003-V3"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_conflict_v1",
+        "source": "GenomeTriage synthetic conflict benchmark evidence",
+        "statement": "The variant overlaps a synthetic open-chromatin region but has no allele-specific assay.",
+        "strength": "moderate"
+      }
+    ],
+    "GC003-V4": [
+      {
+        "category": "population",
+        "cited_by_shortlist": false,
+        "direction": "against",
+        "evidence_id": "GC003-E7",
+        "original_source_record_id": "GC003-E7",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_conflict_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GC-003",
+          "source_fixture": "data/cases/benchmark_conflict_v1.jsonl",
+          "source_fixture_sha256": "2dce889f428c2662ba5a26dbae227212f87be7023eec87bfb0f2c4efa4809aae",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GC003-V4"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_conflict_v1",
+        "source": "GenomeTriage synthetic conflict benchmark evidence",
+        "statement": "Frequency is incompatible with the proposed rare dominant model.",
+        "strength": "strong"
+      }
+    ]
+  },
+  "experimental_follow_up": {
+    "decision": "V3 is promising on dimensioned evidence but is not retained globally because benchmark_v1 Recall@3 regressed.",
+    "evaluator_outcome": {
+      "abstention_count": 0,
+      "case_id": "GC-003",
+      "citation_traceability_claim_count": 1,
+      "citation_traceability_error_count": 0,
+      "citation_traceability_error_rate": 0.0,
+      "claim_support_precision": 1.0,
+      "conflicting_evidence_count": 1,
+      "deterministic_runtime_seconds": 0.0007151000027079135,
+      "difficulty": "conflicting",
+      "error_message": null,
+      "estimated_cost_usd": 0.0,
+      "evaluated_claim_count": 1,
+      "external_model_runtime_seconds": 2.9781358999898657,
+      "false_positive_count": 0,
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0
+      },
+      "input_tokens": 4287,
+      "insufficient_evidence_count": 0,
+      "model_call_count": 1,
+      "output_tokens": 640,
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.3333333333333333,
+        "5": 0.2
+      },
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "relevant_count": 1,
+      "returned_count": 1,
+      "review_burden": 1,
+      "review_burden_at_full_recall": 1,
+      "runtime_seconds": 2.9788509999925736,
+      "semantically_supported_claim_count": 2,
+      "sent_for_human_review": 1,
+      "shortlist_precision": 1.0,
+      "shortlist_relevant_count": 1,
+      "shortlist_returned_count": 1,
+      "status": "evaluated",
+      "system_supported_claim_count": 2,
+      "total_tokens": 4927,
+      "unsupported_claim_count": 0,
+      "unsupported_claim_rate": 0.0
+    },
+    "purpose": "Experimental deterministic conflict arbitration; not the product default.",
+    "structured_response": {
+      "arbitration_records": [
+        {
+          "contextual_strong_counter_ids": [],
+          "counter_score": 1,
+          "counterevidence_ids": [
+            "GC003-E3"
+          ],
+          "fired_rule": "6_material_conflict_or_uncertainty",
+          "reason": "conflict_arbitration_v1 fired 6_material_conflict_or_uncertainty: support=5, counter=1, uncertainty=0; state=conflicting_evidence.",
+          "retained_for_review": true,
+          "source_rank": 1,
+          "state": "conflicting_evidence",
+          "support_score": 5,
+          "supporting_evidence_ids": [
+            "GC003-E1",
+            "GC003-E2"
+          ],
+          "uncertainty_evidence_ids": [],
+          "uncertainty_score": 0,
+          "variant_id": "GC003-V1"
+        },
+        {
+          "contextual_strong_counter_ids": [
+            "GC003-E5"
+          ],
+          "counter_score": 3,
+          "counterevidence_ids": [
+            "GC003-E5"
+          ],
+          "fired_rule": "3_contextual_strong_counter",
+          "reason": "conflict_arbitration_v1 fired 3_contextual_strong_counter: support=3, counter=3, uncertainty=0; state=deprioritize.",
+          "retained_for_review": false,
+          "source_rank": 2,
+          "state": "deprioritize",
+          "support_score": 3,
+          "supporting_evidence_ids": [
+            "GC003-E4"
+          ],
+          "uncertainty_evidence_ids": [],
+          "uncertainty_score": 0,
+          "variant_id": "GC003-V2"
+        }
+      ],
+      "case_id": "GC-003",
+      "deterministic_runtime_seconds": 0.0007151000027079135,
+      "escalated_uncertainty": true,
+      "estimated_cost_usd": 0.0,
+      "external_model_runtime_seconds": 2.9781358999898657,
+      "model": "gemini-3.5-flash-lite",
+      "model_call_count": 1,
+      "notes": "Deterministic arbitration states: GC003-V1=conflicting_evidence, GC003-V2=deprioritize. Removed from final shortlist: ['GC003-V2'].",
+      "prompt_version": "evidence_grounded_v1+conflict_arbitration_v1",
+      "provider_retry_errors": [],
+      "ranked_variants": [
+        {
+          "claims": [
+            {
+              "claim": "Protein-stability assay shows a reproducible defect.",
+              "claim_id": "GC-003:GC003-V1:C1",
+              "evidence_ids": [
+                "GC003-E1"
+              ],
+              "interpretation": "supports_attention",
+              "status": "supported"
+            },
+            {
+              "claim": "Phenotype spectrum includes episodic ataxia.",
+              "claim_id": "GC-003:GC003-V1:C2",
+              "evidence_ids": [
+                "GC003-E2"
+              ],
+              "interpretation": "supports_attention",
+              "status": "supported"
+            },
+            {
+              "claim": "Cardiomyopathy has not been described in the record.",
+              "claim_id": "GC-003:GC003-V1:C3",
+              "evidence_ids": [
+                "GC003-E3"
+              ],
+              "interpretation": "argues_against_attention",
+              "status": "contradicted"
+            }
+          ],
+          "confidence": 0.6,
+          "evidence_source_ids": [
+            "GC003-E1",
+            "GC003-E2",
+            "GC003-E3"
+          ],
+          "rank": 1,
+          "reason": "conflict_arbitration_v1 fired 6_material_conflict_or_uncertainty: support=5, counter=1, uncertainty=0; state=conflicting_evidence. V1 rationale: Shows partial phenotype overlap and functional support, but has conflicting evidence regarding cardiomyopathy.",
+          "variant_id": "GC003-V1"
+        }
+      ],
+      "runtime_seconds": 2.9788509999925736,
+      "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+      "schema_version": "1.0",
+      "system": "conflict-arbitrated-v3",
+      "usage": {
+        "input_tokens": 4287,
+        "output_tokens": 640,
+        "total_tokens": 4927
+      },
+      "verified_claims": []
+    },
+    "system": "conflict-arbitrated-v3"
+  },
+  "human_review_checkpoint": "A qualified reviewer must inspect the shortlist, evidence provenance, counterevidence, and uncertainty before any consequential interpretation.",
+  "model_input_summary": {
+    "candidate_variant_ids": [
+      "GC003-V1",
+      "GC003-V2",
+      "GC003-V3",
+      "GC003-V4"
+    ],
+    "case_id": "GC-003",
+    "input_boundary": "V1 received model-visible context, normalized candidates, and only the exact frozen evidence retrieved for those candidates.",
+    "prompt_sha256": "6bd8d75a23bbd04aff7abdc2f0b2ae300259c727a4671fb679321bd33d537302",
+    "prompt_version": "evidence_grounded_v1",
+    "retrieved_evidence_ids": [
+      "GC003-E1",
+      "GC003-E2",
+      "GC003-E3",
+      "GC003-E4",
+      "GC003-E5",
+      "GC003-E6",
+      "GC003-E7"
+    ]
+  },
+  "model_structured_response": {
+    "arbitration_records": [],
+    "case_id": "GC-003",
+    "deterministic_runtime_seconds": null,
+    "escalated_uncertainty": true,
+    "estimated_cost_usd": 0.0,
+    "external_model_runtime_seconds": 2.9781358999898657,
+    "model": "gemini-3.5-flash-lite",
+    "model_call_count": 1,
+    "notes": "For research/expert review. Not a medical diagnosis.",
+    "prompt_version": "evidence_grounded_v1",
+    "provider_retry_errors": [],
+    "ranked_variants": [
+      {
+        "claims": [
+          {
+            "claim": "Protein-stability assay shows a reproducible defect.",
+            "claim_id": "GC-003:GC003-V1:C1",
+            "evidence_ids": [
+              "GC003-E1"
+            ],
+            "interpretation": "supports_attention",
+            "status": "supported"
+          },
+          {
+            "claim": "Phenotype spectrum includes episodic ataxia.",
+            "claim_id": "GC-003:GC003-V1:C2",
+            "evidence_ids": [
+              "GC003-E2"
+            ],
+            "interpretation": "supports_attention",
+            "status": "supported"
+          },
+          {
+            "claim": "Cardiomyopathy has not been described in the record.",
+            "claim_id": "GC-003:GC003-V1:C3",
+            "evidence_ids": [
+              "GC003-E3"
+            ],
+            "interpretation": "argues_against_attention",
+            "status": "contradicted"
+          }
+        ],
+        "confidence": 0.6,
+        "evidence_source_ids": [
+          "GC003-E1",
+          "GC003-E2",
+          "GC003-E3"
+        ],
+        "rank": 1,
+        "reason": "Shows partial phenotype overlap and functional support, but has conflicting evidence regarding cardiomyopathy.",
+        "variant_id": "GC003-V1"
+      },
+      {
+        "claims": [
+          {
+            "claim": "The allele introduces an early stop.",
+            "claim_id": "GC-003:GC003-V2:C1",
+            "evidence_ids": [
+              "GC003-E4"
+            ],
+            "interpretation": "supports_attention",
+            "status": "supported"
+          },
+          {
+            "claim": "Phenotype is an isolated dental trait with no neurological or cardiac overlap.",
+            "claim_id": "GC-003:GC003-V2:C2",
+            "evidence_ids": [
+              "GC003-E5"
+            ],
+            "interpretation": "argues_against_attention",
+            "status": "contradicted"
+          }
+        ],
+        "confidence": 0.4,
+        "evidence_source_ids": [
+          "GC003-E4",
+          "GC003-E5"
+        ],
+        "rank": 2,
+        "reason": "Introduces an early stop, but the phenotype context contradicts the case's neurological and cardiac features.",
+        "variant_id": "GC003-V2"
+      }
+    ],
+    "runtime_seconds": 2.9781358999898657,
+    "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+    "schema_version": "1.0",
+    "system": "evidence-grounded-v1",
+    "usage": {
+      "input_tokens": 4287,
+      "output_tokens": 640,
+      "total_tokens": 4927
+    },
+    "verified_claims": []
+  },
+  "provider_retries_or_failures": [],
+  "resulting_shortlist": [
+    {
+      "claims": [
+        {
+          "claim": "Protein-stability assay shows a reproducible defect.",
+          "claim_id": "GC-003:GC003-V1:C1",
+          "evidence_ids": [
+            "GC003-E1"
+          ],
+          "interpretation": "supports_attention",
+          "status": "supported"
+        },
+        {
+          "claim": "Phenotype spectrum includes episodic ataxia.",
+          "claim_id": "GC-003:GC003-V1:C2",
+          "evidence_ids": [
+            "GC003-E2"
+          ],
+          "interpretation": "supports_attention",
+          "status": "supported"
+        },
+        {
+          "claim": "Cardiomyopathy has not been described in the record.",
+          "claim_id": "GC-003:GC003-V1:C3",
+          "evidence_ids": [
+            "GC003-E3"
+          ],
+          "interpretation": "argues_against_attention",
+          "status": "contradicted"
+        }
+      ],
+      "confidence": 0.6,
+      "counterevidence": [
+        {
+          "category": "phenotype_context",
+          "cited_by_shortlist": true,
+          "direction": "against",
+          "evidence_id": "GC003-E3",
+          "original_source_record_id": "GC003-E3",
+          "provenance": {
+            "data_origin": "fully_synthetic",
+            "extraction_method": "deterministic_conflict_fixture_extraction_v1",
+            "license_or_terms_url": null,
+            "retrieved_at_utc": null,
+            "source_case_id": "GC-003",
+            "source_fixture": "data/cases/benchmark_conflict_v1.jsonl",
+            "source_fixture_sha256": "2dce889f428c2662ba5a26dbae227212f87be7023eec87bfb0f2c4efa4809aae",
+            "source_record_sha256": null,
+            "source_release": null,
+            "source_url": null,
+            "source_variant_id": "GC003-V1"
+          },
+          "snapshot_date": "2026-08-29",
+          "snapshot_version": "evidence_conflict_v1",
+          "source": "GenomeTriage synthetic conflict benchmark evidence",
+          "statement": "Cardiomyopathy has not been described in the synthetic CFH3 record.",
+          "strength": "weak"
+        }
+      ],
+      "evidence_ids": [
+        "GC003-E1",
+        "GC003-E2",
+        "GC003-E3"
+      ],
+      "gene": "CFH3",
+      "normalized": {
+        "alternate": "T",
+        "canonical_id": "GRCh38-synthetic:8:3100101:G:T",
+        "chromosome": "8",
+        "consequence": "missense",
+        "gene": "CFH3",
+        "genome_build": "GRCh38-synthetic",
+        "position": 3100101,
+        "reference": "G",
+        "variant_id": "GC003-V1"
+      },
+      "rank": 1,
+      "reason": "Shows partial phenotype overlap and functional support, but has conflicting evidence regarding cardiomyopathy.",
+      "supporting_evidence": [
+        {
+          "category": "functional",
+          "cited_by_shortlist": true,
+          "direction": "supports",
+          "evidence_id": "GC003-E1",
+          "original_source_record_id": "GC003-E1",
+          "provenance": {
+            "data_origin": "fully_synthetic",
+            "extraction_method": "deterministic_conflict_fixture_extraction_v1",
+            "license_or_terms_url": null,
+            "retrieved_at_utc": null,
+            "source_case_id": "GC-003",
+            "source_fixture": "data/cases/benchmark_conflict_v1.jsonl",
+            "source_fixture_sha256": "2dce889f428c2662ba5a26dbae227212f87be7023eec87bfb0f2c4efa4809aae",
+            "source_record_sha256": null,
+            "source_release": null,
+            "source_url": null,
+            "source_variant_id": "GC003-V1"
+          },
+          "snapshot_date": "2026-08-29",
+          "snapshot_version": "evidence_conflict_v1",
+          "source": "GenomeTriage synthetic conflict benchmark evidence",
+          "statement": "A synthetic protein-stability assay reports a reproducible defect.",
+          "strength": "strong"
+        },
+        {
+          "category": "phenotype_context",
+          "cited_by_shortlist": true,
+          "direction": "supports",
+          "evidence_id": "GC003-E2",
+          "original_source_record_id": "GC003-E2",
+          "provenance": {
+            "data_origin": "fully_synthetic",
+            "extraction_method": "deterministic_conflict_fixture_extraction_v1",
+            "license_or_terms_url": null,
+            "retrieved_at_utc": null,
+            "source_case_id": "GC-003",
+            "source_fixture": "data/cases/benchmark_conflict_v1.jsonl",
+            "source_fixture_sha256": "2dce889f428c2662ba5a26dbae227212f87be7023eec87bfb0f2c4efa4809aae",
+            "source_record_sha256": null,
+            "source_release": null,
+            "source_url": null,
+            "source_variant_id": "GC003-V1"
+          },
+          "snapshot_date": "2026-08-29",
+          "snapshot_version": "evidence_conflict_v1",
+          "source": "GenomeTriage synthetic conflict benchmark evidence",
+          "statement": "The invented CFH3 spectrum includes episodic ataxia.",
+          "strength": "moderate"
+        }
+      ],
+      "uncertainty_evidence": [],
+      "variant_id": "GC003-V1"
+    },
+    {
+      "claims": [
+        {
+          "claim": "The allele introduces an early stop.",
+          "claim_id": "GC-003:GC003-V2:C1",
+          "evidence_ids": [
+            "GC003-E4"
+          ],
+          "interpretation": "supports_attention",
+          "status": "supported"
+        },
+        {
+          "claim": "Phenotype is an isolated dental trait with no neurological or cardiac overlap.",
+          "claim_id": "GC-003:GC003-V2:C2",
+          "evidence_ids": [
+            "GC003-E5"
+          ],
+          "interpretation": "argues_against_attention",
+          "status": "contradicted"
+        }
+      ],
+      "confidence": 0.4,
+      "counterevidence": [
+        {
+          "category": "phenotype_context",
+          "cited_by_shortlist": true,
+          "direction": "against",
+          "evidence_id": "GC003-E5",
+          "original_source_record_id": "GC003-E5",
+          "provenance": {
+            "data_origin": "fully_synthetic",
+            "extraction_method": "deterministic_conflict_fixture_extraction_v1",
+            "license_or_terms_url": null,
+            "retrieved_at_utc": null,
+            "source_case_id": "GC-003",
+            "source_fixture": "data/cases/benchmark_conflict_v1.jsonl",
+            "source_fixture_sha256": "2dce889f428c2662ba5a26dbae227212f87be7023eec87bfb0f2c4efa4809aae",
+            "source_record_sha256": null,
+            "source_release": null,
+            "source_url": null,
+            "source_variant_id": "GC003-V2"
+          },
+          "snapshot_date": "2026-08-29",
+          "snapshot_version": "evidence_conflict_v1",
+          "source": "GenomeTriage synthetic conflict benchmark evidence",
+          "statement": "The invented CFI3 phenotype is an isolated dental trait with no neurological or cardiac overlap.",
+          "strength": "strong"
+        }
+      ],
+      "evidence_ids": [
+        "GC003-E4",
+        "GC003-E5"
+      ],
+      "gene": "CFI3",
+      "normalized": {
+        "alternate": "A",
+        "canonical_id": "GRCh38-synthetic:9:3200102:C:A",
+        "chromosome": "9",
+        "consequence": "stop_gained",
+        "gene": "CFI3",
+        "genome_build": "GRCh38-synthetic",
+        "position": 3200102,
+        "reference": "C",
+        "variant_id": "GC003-V2"
+      },
+      "rank": 2,
+      "reason": "Introduces an early stop, but the phenotype context contradicts the case's neurological and cardiac features.",
+      "supporting_evidence": [
+        {
+          "category": "molecular",
+          "cited_by_shortlist": true,
+          "direction": "supports",
+          "evidence_id": "GC003-E4",
+          "original_source_record_id": "GC003-E4",
+          "provenance": {
+            "data_origin": "fully_synthetic",
+            "extraction_method": "deterministic_conflict_fixture_extraction_v1",
+            "license_or_terms_url": null,
+            "retrieved_at_utc": null,
+            "source_case_id": "GC-003",
+            "source_fixture": "data/cases/benchmark_conflict_v1.jsonl",
+            "source_fixture_sha256": "2dce889f428c2662ba5a26dbae227212f87be7023eec87bfb0f2c4efa4809aae",
+            "source_record_sha256": null,
+            "source_release": null,
+            "source_url": null,
+            "source_variant_id": "GC003-V2"
+          },
+          "snapshot_date": "2026-08-29",
+          "snapshot_version": "evidence_conflict_v1",
+          "source": "GenomeTriage synthetic conflict benchmark evidence",
+          "statement": "The allele introduces an early stop.",
+          "strength": "strong"
+        }
+      ],
+      "uncertainty_evidence": [],
+      "variant_id": "GC003-V2"
+    }
+  ],
+  "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+  "schema_version": "1.0",
+  "system_configuration": {
+    "deterministic_runtime_seconds": null,
+    "estimated_cost_usd": 0.0,
+    "external_model_runtime_seconds": 2.9781358999898657,
+    "model": "gemini-3.5-flash-lite",
+    "model_call_count": 1,
+    "model_call_count_source": "retained prediction field",
+    "name": "GenomeTriage V1",
+    "prompt_sha256": "6bd8d75a23bbd04aff7abdc2f0b2ae300259c727a4671fb679321bd33d537302",
+    "prompt_version": "evidence_grounded_v1",
+    "provider": "gemini",
+    "provider_retry_errors": [],
+    "recorded_at_utc": "2026-08-30T07:48:03.018288+00:00",
+    "runtime_seconds": 2.9781358999898657,
+    "system_version": "evidence-grounded-v1",
+    "usage": {
+      "input_tokens": 4287,
+      "output_tokens": 640,
+      "total_tokens": 4927
+    }
+  },
+  "title": "Held-out conflict-heavy case",
+  "trajectory_id": "trajectory-conflict-gc003",
+  "why_selected": "The retained V1 output escalates uncertainty on two plausible candidates; V3 remains experimental."
+}

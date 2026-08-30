@@ -5,6 +5,7 @@ from .vcf import (
     normalize_candidate,
     normalize_variant,
     parse_vcf,
+    parse_vcf_text,
 )
 
 __all__ = [
@@ -12,4 +13,5 @@ __all__ = [
     "normalize_candidate",
     "normalize_variant",
     "parse_vcf",
+    "parse_vcf_text",
 ]

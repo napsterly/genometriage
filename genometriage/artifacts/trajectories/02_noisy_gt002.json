@@ -1,0 +1,623 @@
+{
+  "artifact_policy": {
+    "chain_of_thought_invented": false,
+    "content_scope": "Recorded instructions/configuration, deterministic preprocessing, retrieved evidence, structured model output, and evaluator feedback only.",
+    "execution_label": "Recorded benchmark execution / deterministic replay",
+    "hidden_reasoning_included": false,
+    "recorded_execution": true
+  },
+  "baseline_comparison": {
+    "added_by_v1": [],
+    "baseline_model": "gemini-3.1-flash-lite",
+    "baseline_ranked_variants": [
+      {
+        "claims": [],
+        "confidence": 0.95,
+        "evidence_source_ids": [
+          "GT002-E1",
+          "GT002-E2"
+        ],
+        "rank": 1,
+        "reason": "Strong evidence for pathogenicity: homozygous stop-gained variant in a gene linked to the observed metabolic phenotype, with segregation consistent with autosomal recessive inheritance.",
+        "variant_id": "GT002-V1"
+      },
+      {
+        "claims": [],
+        "confidence": 0.3,
+        "evidence_source_ids": [
+          "GT002-E4"
+        ],
+        "rank": 2,
+        "reason": "Weak candidate; evidence suggests the gene is associated with hearing phenotypes rather than the metabolic findings observed in this case.",
+        "variant_id": "GT002-V4"
+      },
+      {
+        "claims": [],
+        "confidence": 0.1,
+        "evidence_source_ids": [
+          "GT002-E3"
+        ],
+        "rank": 3,
+        "reason": "Unlikely candidate; high population frequency and lack of a second rare allele contradict the autosomal recessive hypothesis.",
+        "variant_id": "GT002-V2"
+      }
+    ],
+    "baseline_review_burden": 3,
+    "baseline_system": "baseline-gemini",
+    "removed_by_v1": [
+      "GT002-V4",
+      "GT002-V2"
+    ],
+    "review_burden_reduction": 2,
+    "v1_ranked_variants": [
+      {
+        "claims": [
+          {
+            "claim": "Predicted early truncation in a synthetic gene linked to metabolite M processing.",
+            "claim_id": "GT-002:GT002-V1:C1",
+            "evidence_ids": [
+              "GT002-E1"
+            ],
+            "interpretation": "supports_attention",
+            "status": "supported"
+          },
+          {
+            "claim": "Synthetic affected sibling is homozygous; both unaffected parents are heterozygous.",
+            "claim_id": "GT-002:GT002-V1:C2",
+            "evidence_ids": [
+              "GT002-E2"
+            ],
+            "interpretation": "supports_attention",
+            "status": "supported"
+          }
+        ],
+        "confidence": 0.95,
+        "evidence_source_ids": [
+          "GT002-E1",
+          "GT002-E2"
+        ],
+        "rank": 1,
+        "reason": "Variant GT002-V1 is a homozygous stop-gained change in GTD2 with supportive evidence regarding metabolite M processing and expected recessive segregation in the pedigree. For research/expert review. Not a medical diagnosis.",
+        "variant_id": "GT002-V1"
+      }
+    ],
+    "v1_review_burden": 1
+  },
+  "case_input": {
+    "candidate_count": 5,
+    "candidates": [
+      {
+        "consequence": "stop_gained",
+        "gene": "GTD2",
+        "input_representation": "GRCh38-synthetic:5:502001:C:T",
+        "normalized": {
+          "alternate": "T",
+          "canonical_id": "GRCh38-synthetic:5:502001:C:T",
+          "chromosome": "5",
+          "consequence": "stop_gained",
+          "gene": "GTD2",
+          "genome_build": "GRCh38-synthetic",
+          "position": 502001,
+          "reference": "C",
+          "variant_id": "GT002-V1"
+        },
+        "retrieved_evidence_count": 2,
+        "variant_id": "GT002-V1"
+      },
+      {
+        "consequence": "missense",
+        "gene": "GTD2",
+        "input_representation": "GRCh38-synthetic:5:502080:A:G",
+        "normalized": {
+          "alternate": "G",
+          "canonical_id": "GRCh38-synthetic:5:502080:A:G",
+          "chromosome": "5",
+          "consequence": "missense",
+          "gene": "GTD2",
+          "genome_build": "GRCh38-synthetic",
+          "position": 502080,
+          "reference": "A",
+          "variant_id": "GT002-V2"
+        },
+        "retrieved_evidence_count": 1,
+        "variant_id": "GT002-V2"
+      },
+      {
+        "consequence": "synonymous",
+        "gene": "GTE2",
+        "input_representation": "GRCh38-synthetic:6:602020:G:A",
+        "normalized": {
+          "alternate": "A",
+          "canonical_id": "GRCh38-synthetic:6:602020:G:A",
+          "chromosome": "6",
+          "consequence": "synonymous",
+          "gene": "GTE2",
+          "genome_build": "GRCh38-synthetic",
+          "position": 602020,
+          "reference": "G",
+          "variant_id": "GT002-V3"
+        },
+        "retrieved_evidence_count": 0,
+        "variant_id": "GT002-V3"
+      },
+      {
+        "consequence": "missense",
+        "gene": "GTF2",
+        "input_representation": "GRCh38-synthetic:7:702030:T:C",
+        "normalized": {
+          "alternate": "C",
+          "canonical_id": "GRCh38-synthetic:7:702030:T:C",
+          "chromosome": "7",
+          "consequence": "missense",
+          "gene": "GTF2",
+          "genome_build": "GRCh38-synthetic",
+          "position": 702030,
+          "reference": "T",
+          "variant_id": "GT002-V4"
+        },
+        "retrieved_evidence_count": 1,
+        "variant_id": "GT002-V4"
+      },
+      {
+        "consequence": "intergenic",
+        "gene": null,
+        "input_representation": "GRCh38-synthetic:8:802040:C:A",
+        "normalized": {
+          "alternate": "A",
+          "canonical_id": "GRCh38-synthetic:8:802040:C:A",
+          "chromosome": "8",
+          "consequence": "intergenic",
+          "gene": null,
+          "genome_build": "GRCh38-synthetic",
+          "position": 802040,
+          "reference": "C",
+          "variant_id": "GT002-V5"
+        },
+        "retrieved_evidence_count": 0,
+        "variant_id": "GT002-V5"
+      }
+    ],
+    "case_id": "GT-002",
+    "context": {
+      "family_observations": [
+        "similarly affected synthetic sibling"
+      ],
+      "inheritance_hypothesis": "autosomal recessive",
+      "phenotype_terms": [
+        "synthetic fasting intolerance",
+        "synthetic metabolite M elevation"
+      ],
+      "summary": "Synthetic recessive-pattern case with childhood metabolic decompensation in a consanguineous pedigree."
+    },
+    "data_origin": "fully_synthetic"
+  },
+  "category": "noisy_case",
+  "deterministic_preprocessing": {
+    "evidence_snapshot_sha256": "c0b632fd3a001678d947fc387ad7feeb94945acad7c805859e3f3a9d6ed33934",
+    "evidence_snapshot_version": "evidence_v1",
+    "normalization": [
+      {
+        "alternate": "T",
+        "canonical_id": "GRCh38-synthetic:5:502001:C:T",
+        "chromosome": "5",
+        "consequence": "stop_gained",
+        "gene": "GTD2",
+        "genome_build": "GRCh38-synthetic",
+        "position": 502001,
+        "reference": "C",
+        "variant_id": "GT002-V1"
+      },
+      {
+        "alternate": "G",
+        "canonical_id": "GRCh38-synthetic:5:502080:A:G",
+        "chromosome": "5",
+        "consequence": "missense",
+        "gene": "GTD2",
+        "genome_build": "GRCh38-synthetic",
+        "position": 502080,
+        "reference": "A",
+        "variant_id": "GT002-V2"
+      },
+      {
+        "alternate": "A",
+        "canonical_id": "GRCh38-synthetic:6:602020:G:A",
+        "chromosome": "6",
+        "consequence": "synonymous",
+        "gene": "GTE2",
+        "genome_build": "GRCh38-synthetic",
+        "position": 602020,
+        "reference": "G",
+        "variant_id": "GT002-V3"
+      },
+      {
+        "alternate": "C",
+        "canonical_id": "GRCh38-synthetic:7:702030:T:C",
+        "chromosome": "7",
+        "consequence": "missense",
+        "gene": "GTF2",
+        "genome_build": "GRCh38-synthetic",
+        "position": 702030,
+        "reference": "T",
+        "variant_id": "GT002-V4"
+      },
+      {
+        "alternate": "A",
+        "canonical_id": "GRCh38-synthetic:8:802040:C:A",
+        "chromosome": "8",
+        "consequence": "intergenic",
+        "gene": null,
+        "genome_build": "GRCh38-synthetic",
+        "position": 802040,
+        "reference": "C",
+        "variant_id": "GT002-V5"
+      }
+    ],
+    "retrieval_method": "exact normalized-allele match in a frozen local evidence store"
+  },
+  "evaluator_outcome": {
+    "ground_truth_variant_ids_exposed": false,
+    "metrics": {
+      "abstention_count": 0,
+      "case_id": "GT-002",
+      "citation_traceability_claim_count": 1,
+      "citation_traceability_error_count": 0,
+      "citation_traceability_error_rate": 0.0,
+      "claim_support_precision": 1.0,
+      "conflicting_evidence_count": 0,
+      "deterministic_runtime_seconds": null,
+      "difficulty": "straightforward",
+      "error_message": null,
+      "estimated_cost_usd": 0.0,
+      "evaluated_claim_count": 1,
+      "external_model_runtime_seconds": null,
+      "false_positive_count": 0,
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0
+      },
+      "input_tokens": 2894,
+      "insufficient_evidence_count": 0,
+      "model_call_count": null,
+      "output_tokens": 353,
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.3333333333333333,
+        "5": 0.2
+      },
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "relevant_count": 1,
+      "returned_count": 1,
+      "review_burden": 1,
+      "review_burden_at_full_recall": 1,
+      "runtime_seconds": 2.196502500000861,
+      "semantically_supported_claim_count": 2,
+      "sent_for_human_review": 1,
+      "shortlist_precision": 1.0,
+      "shortlist_relevant_count": 1,
+      "shortlist_returned_count": 1,
+      "status": "evaluated",
+      "system_supported_claim_count": 2,
+      "total_tokens": 3247,
+      "unsupported_claim_count": 0,
+      "unsupported_claim_rate": 0.0
+    },
+    "mode": "explicit_evaluation_feedback"
+  },
+  "evidence_retrieved": {
+    "GT002-V1": [
+      {
+        "category": "other",
+        "cited_by_shortlist": true,
+        "direction": "supports",
+        "evidence_id": "GT002-E1",
+        "original_source_record_id": "GT002-E1",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GT-002",
+          "source_fixture": "data/cases/benchmark_v1.jsonl",
+          "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GT002-V1"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_v1",
+        "source": "GenomeTriage synthetic benchmark evidence",
+        "statement": "Predicted early truncation in a synthetic gene linked to metabolite M processing.",
+        "strength": "strong"
+      },
+      {
+        "category": "other",
+        "cited_by_shortlist": true,
+        "direction": "supports",
+        "evidence_id": "GT002-E2",
+        "original_source_record_id": "GT002-E2",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GT-002",
+          "source_fixture": "data/cases/benchmark_v1.jsonl",
+          "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GT002-V1"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_v1",
+        "source": "GenomeTriage synthetic benchmark evidence",
+        "statement": "Synthetic affected sibling is homozygous; both unaffected parents are heterozygous.",
+        "strength": "strong"
+      }
+    ],
+    "GT002-V2": [
+      {
+        "category": "other",
+        "cited_by_shortlist": false,
+        "direction": "against",
+        "evidence_id": "GT002-E3",
+        "original_source_record_id": "GT002-E3",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GT-002",
+          "source_fixture": "data/cases/benchmark_v1.jsonl",
+          "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GT002-V2"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_v1",
+        "source": "GenomeTriage synthetic benchmark evidence",
+        "statement": "High synthetic population frequency and no second rare allele under the candidate model.",
+        "strength": "strong"
+      }
+    ],
+    "GT002-V3": [],
+    "GT002-V4": [
+      {
+        "category": "other",
+        "cited_by_shortlist": false,
+        "direction": "against",
+        "evidence_id": "GT002-E4",
+        "original_source_record_id": "GT002-E4",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GT-002",
+          "source_fixture": "data/cases/benchmark_v1.jsonl",
+          "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GT002-V4"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_v1",
+        "source": "GenomeTriage synthetic benchmark evidence",
+        "statement": "Synthetic gene phenotype concerns isolated hearing rather than metabolic findings.",
+        "strength": "moderate"
+      }
+    ],
+    "GT002-V5": []
+  },
+  "experimental_follow_up": null,
+  "human_review_checkpoint": "A qualified reviewer must inspect the shortlist, evidence provenance, counterevidence, and uncertainty before any consequential interpretation.",
+  "model_input_summary": {
+    "candidate_variant_ids": [
+      "GT002-V1",
+      "GT002-V2",
+      "GT002-V3",
+      "GT002-V4",
+      "GT002-V5"
+    ],
+    "case_id": "GT-002",
+    "input_boundary": "V1 received model-visible context, normalized candidates, and only the exact frozen evidence retrieved for those candidates.",
+    "prompt_sha256": "6bd8d75a23bbd04aff7abdc2f0b2ae300259c727a4671fb679321bd33d537302",
+    "prompt_version": "evidence_grounded_v1",
+    "retrieved_evidence_ids": [
+      "GT002-E1",
+      "GT002-E2",
+      "GT002-E3",
+      "GT002-E4"
+    ]
+  },
+  "model_structured_response": {
+    "arbitration_records": [],
+    "case_id": "GT-002",
+    "deterministic_runtime_seconds": null,
+    "escalated_uncertainty": false,
+    "estimated_cost_usd": 0.0,
+    "external_model_runtime_seconds": null,
+    "model": "gemini-3.5-flash-lite",
+    "model_call_count": null,
+    "notes": "Variant GT002-V1 is strongly supported by the evidence for autosomal recessive inheritance matching the case phenotype. For research/expert review. Not a medical diagnosis.",
+    "prompt_version": "evidence_grounded_v1",
+    "provider_retry_errors": [],
+    "ranked_variants": [
+      {
+        "claims": [
+          {
+            "claim": "Predicted early truncation in a synthetic gene linked to metabolite M processing.",
+            "claim_id": "GT-002:GT002-V1:C1",
+            "evidence_ids": [
+              "GT002-E1"
+            ],
+            "interpretation": "supports_attention",
+            "status": "supported"
+          },
+          {
+            "claim": "Synthetic affected sibling is homozygous; both unaffected parents are heterozygous.",
+            "claim_id": "GT-002:GT002-V1:C2",
+            "evidence_ids": [
+              "GT002-E2"
+            ],
+            "interpretation": "supports_attention",
+            "status": "supported"
+          }
+        ],
+        "confidence": 0.95,
+        "evidence_source_ids": [
+          "GT002-E1",
+          "GT002-E2"
+        ],
+        "rank": 1,
+        "reason": "Variant GT002-V1 is a homozygous stop-gained change in GTD2 with supportive evidence regarding metabolite M processing and expected recessive segregation in the pedigree. For research/expert review. Not a medical diagnosis.",
+        "variant_id": "GT002-V1"
+      }
+    ],
+    "runtime_seconds": 2.196502500000861,
+    "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+    "schema_version": "1.0",
+    "system": "evidence-grounded-v1",
+    "usage": {
+      "input_tokens": 2894,
+      "output_tokens": 353,
+      "total_tokens": 3247
+    },
+    "verified_claims": []
+  },
+  "provider_retries_or_failures": [],
+  "resulting_shortlist": [
+    {
+      "claims": [
+        {
+          "claim": "Predicted early truncation in a synthetic gene linked to metabolite M processing.",
+          "claim_id": "GT-002:GT002-V1:C1",
+          "evidence_ids": [
+            "GT002-E1"
+          ],
+          "interpretation": "supports_attention",
+          "status": "supported"
+        },
+        {
+          "claim": "Synthetic affected sibling is homozygous; both unaffected parents are heterozygous.",
+          "claim_id": "GT-002:GT002-V1:C2",
+          "evidence_ids": [
+            "GT002-E2"
+          ],
+          "interpretation": "supports_attention",
+          "status": "supported"
+        }
+      ],
+      "confidence": 0.95,
+      "counterevidence": [],
+      "evidence_ids": [
+        "GT002-E1",
+        "GT002-E2"
+      ],
+      "gene": "GTD2",
+      "normalized": {
+        "alternate": "T",
+        "canonical_id": "GRCh38-synthetic:5:502001:C:T",
+        "chromosome": "5",
+        "consequence": "stop_gained",
+        "gene": "GTD2",
+        "genome_build": "GRCh38-synthetic",
+        "position": 502001,
+        "reference": "C",
+        "variant_id": "GT002-V1"
+      },
+      "rank": 1,
+      "reason": "Variant GT002-V1 is a homozygous stop-gained change in GTD2 with supportive evidence regarding metabolite M processing and expected recessive segregation in the pedigree. For research/expert review. Not a medical diagnosis.",
+      "supporting_evidence": [
+        {
+          "category": "other",
+          "cited_by_shortlist": true,
+          "direction": "supports",
+          "evidence_id": "GT002-E1",
+          "original_source_record_id": "GT002-E1",
+          "provenance": {
+            "data_origin": "fully_synthetic",
+            "extraction_method": "deterministic_fixture_extraction_v1",
+            "license_or_terms_url": null,
+            "retrieved_at_utc": null,
+            "source_case_id": "GT-002",
+            "source_fixture": "data/cases/benchmark_v1.jsonl",
+            "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+            "source_record_sha256": null,
+            "source_release": null,
+            "source_url": null,
+            "source_variant_id": "GT002-V1"
+          },
+          "snapshot_date": "2026-08-29",
+          "snapshot_version": "evidence_v1",
+          "source": "GenomeTriage synthetic benchmark evidence",
+          "statement": "Predicted early truncation in a synthetic gene linked to metabolite M processing.",
+          "strength": "strong"
+        },
+        {
+          "category": "other",
+          "cited_by_shortlist": true,
+          "direction": "supports",
+          "evidence_id": "GT002-E2",
+          "original_source_record_id": "GT002-E2",
+          "provenance": {
+            "data_origin": "fully_synthetic",
+            "extraction_method": "deterministic_fixture_extraction_v1",
+            "license_or_terms_url": null,
+            "retrieved_at_utc": null,
+            "source_case_id": "GT-002",
+            "source_fixture": "data/cases/benchmark_v1.jsonl",
+            "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+            "source_record_sha256": null,
+            "source_release": null,
+            "source_url": null,
+            "source_variant_id": "GT002-V1"
+          },
+          "snapshot_date": "2026-08-29",
+          "snapshot_version": "evidence_v1",
+          "source": "GenomeTriage synthetic benchmark evidence",
+          "statement": "Synthetic affected sibling is homozygous; both unaffected parents are heterozygous.",
+          "strength": "strong"
+        }
+      ],
+      "uncertainty_evidence": [],
+      "variant_id": "GT002-V1"
+    }
+  ],
+  "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+  "schema_version": "1.0",
+  "system_configuration": {
+    "deterministic_runtime_seconds": null,
+    "estimated_cost_usd": 0.0,
+    "external_model_runtime_seconds": null,
+    "model": "gemini-3.5-flash-lite",
+    "model_call_count": 1,
+    "model_call_count_source": "reconstructed from the frozen V1 one-call-per-completed-case contract",
+    "name": "GenomeTriage V1",
+    "prompt_sha256": "6bd8d75a23bbd04aff7abdc2f0b2ae300259c727a4671fb679321bd33d537302",
+    "prompt_version": "evidence_grounded_v1",
+    "provider": "gemini",
+    "provider_retry_errors": [],
+    "recorded_at_utc": "2026-08-29T08:47:14.235401+00:00",
+    "runtime_seconds": 2.196502500000861,
+    "system_version": "evidence-grounded-v1",
+    "usage": {
+      "input_tokens": 2894,
+      "output_tokens": 353,
+      "total_tokens": 3247
+    }
+  },
+  "title": "Evidence grounding removes noisy candidates",
+  "trajectory_id": "trajectory-noisy-gt002",
+  "why_selected": "V0 returned three candidates; V1 retained one and removed two review items."
+}

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="GenomeTriage evidence-grounded genomic variant prioritization for expert review.">
+  <title>GenomeTriage · Judge Mode</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="safety-banner" role="status">
+    <span class="safety-dot"></span>
+    For research/expert review. Not a medical diagnosis.
+  </div>
+
+  <header class="site-header">
+    <a class="brand" href="#product" aria-label="GenomeTriage home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span><strong>Genome</strong>Triage</span>
+    </a>
+    <nav class="main-nav" aria-label="Judge mode sections">
+      <button class="nav-button active" data-view="product">Triage</button>
+      <button class="nav-button" data-view="comparison">V0 vs V1</button>
+      <button class="nav-button evaluation-nav" data-view="evaluation">Evaluation</button>
+      <button class="nav-button" data-view="journey">Journey</button>
+      <button class="nav-button" data-view="reproduce">Reproduce</button>
+    </nav>
+    <div class="mode-chip"><span></span> Offline replay</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Evidence-grounded prioritization · Human-reviewed</p>
+        <h1>Fewer variants.<br><em>Stronger evidence.</em></h1>
+        <p class="hero-text">GenomeTriage turns a noisy candidate set into a smaller, traceable shortlist for qualified expert review.</p>
+        <div class="hero-actions">
+          <button class="primary-button" id="hero-run">Explore a noisy case <span>→</span></button>
+          <span class="recorded-label">● Recorded benchmark execution / deterministic replay</span>
+        </div>
+      </div>
+      <div class="hero-results" aria-label="Headline benchmark result">
+        <div class="result-kicker">Frozen benchmark · V0 → V1</div>
+        <div class="hero-metric"><strong id="hero-fp">77.8%</strong><span>fewer false positives</span></div>
+        <div class="metric-rule"></div>
+        <div class="paired-metrics">
+          <div><strong id="hero-burden">30.4%</strong><span>lower review burden</span></div>
+          <div><strong id="hero-recall">100%</strong><span>Recall@3 preserved</span></div>
+        </div>
+        <div class="precision-shift"><span>Shortlist precision</span><strong id="hero-precision">60.9% → 87.5%</strong></div>
+      </div>
+    </section>
+
+    <section class="view active" id="view-product" aria-labelledby="product-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">Product mode</p><h2 id="product-title">Trace a V1 decision</h2></div>
+        <p>Ground truth is sealed. This view shows only model-visible case data, frozen evidence, and the retained V1 response.</p>
+      </div>
+
+      <div class="workflow-steps" aria-label="GenomeTriage V1 workflow">
+        <div class="workflow-step"><b>01</b><span>Input case</span></div><i>→</i>
+        <div class="workflow-step"><b>02</b><span>Normalize</span></div><i>→</i>
+        <div class="workflow-step"><b>03</b><span>Retrieve evidence</span></div><i>→</i>
+        <div class="workflow-step active"><b>04</b><span>Prioritize</span></div><i>→</i>
+        <div class="workflow-step human"><b>05</b><span>Expert review</span></div>
+      </div>
+
+      <div class="app-shell">
+        <aside class="control-panel">
+          <div class="panel-label">Demonstration case</div>
+          <label for="track-select">Benchmark track</label>
+          <select id="track-select"></select>
+          <label for="case-select">Case</label>
+          <select id="case-select"></select>
+          <button class="primary-button full" id="run-case">Run recorded V1 <span>→</span></button>
+          <p class="microcopy">No API call. The exact retained model output is replayed and evidence is retrieved locally.</p>
+          <div class="case-facts" id="case-facts"></div>
+        </aside>
+
+        <div class="result-panel">
+          <div id="product-loading" class="loading-card">Loading retained artifacts…</div>
+          <div id="product-result" class="hidden">
+            <div class="case-header">
+              <div><span class="case-id" id="case-id"></span><h3 id="case-summary"></h3></div>
+              <div class="system-badge"><span>Default workflow</span><strong>GenomeTriage V1</strong></div>
+            </div>
+
+            <div class="trace-grid">
+              <article class="trace-card">
+                <div class="card-heading"><span class="icon-box">N</span><div><p>Deterministic preprocessing</p><h4>Normalized variants</h4></div></div>
+                <div id="normalization-list" class="normalization-list"></div>
+              </article>
+              <article class="trace-card evidence-summary-card">
+                <div class="card-heading"><span class="icon-box">E</span><div><p>Frozen local retrieval</p><h4>Evidence snapshot</h4></div></div>
+                <div id="evidence-summary"></div>
+              </article>
+            </div>
+
+            <div class="shortlist-heading">
+              <div><p class="eyebrow">Ranked output</p><h3>Evidence-backed shortlist</h3></div>
+              <div id="uncertainty-chip" class="uncertainty-chip"></div>
+            </div>
+            <div id="shortlist" class="shortlist"></div>
+
+            <details class="technical-details">
+              <summary>Technical details <span>Prompt, model, tokens, hashes</span></summary>
+              <div id="technical-content" class="technical-grid"></div>
+            </details>
+
+            <div class="review-checkpoint">
+              <span class="review-icon">H</span>
+              <div><strong>Human review checkpoint</strong><p id="review-message"></p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="input-inspector">
+        <summary><span>Inspect your own supported input</span><small>Normalization only · no fabricated ranking</small></summary>
+        <div class="inspector-body">
+          <div>
+            <label for="input-format">Input format</label>
+            <select id="input-format"><option value="vcf">Small VCF subset</option><option value="case_json">Structured case JSON</option></select>
+          </div>
+          <div class="file-control"><label for="input-file">Choose file</label><input id="input-file" type="file" accept=".vcf,.json,.jsonl,text/plain,application/json"></div>
+          <button class="secondary-button" id="inspect-input">Normalize input</button>
+          <div id="inspection-result" class="inspection-result"></div>
+        </div>
+      </details>
+    </section>
+
+    <section class="view" id="view-comparison" aria-labelledby="comparison-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">Same case · retained artifacts</p><h2 id="comparison-title">Baseline vs GenomeTriage</h2></div>
+        <p>See exactly which review candidates V1 removed. Hidden evaluator labels remain unavailable in this product view.</p>
+      </div>
+      <div id="comparison-content" class="comparison-content"></div>
+    </section>
+
+    <section class="view evaluation-view" id="view-evaluation" aria-labelledby="evaluation-title">
+      <div class="evaluation-banner"><span>Evaluator-only aggregate view</span> Metrics are loaded from frozen result JSON—not typed into the interface.</div>
+      <div class="section-heading">
+        <div><p class="eyebrow">Measured, controlled, reproducible</p><h2 id="evaluation-title">Evaluation dashboard</h2></div>
+        <p>V1 is the retained default. V2 and V3 remain visible as measured engineering experiments.</p>
+      </div>
+      <div id="dashboard-content"></div>
+    </section>
+
+    <section class="view" id="view-journey" aria-labelledby="journey-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">Improvement journey</p><h2 id="journey-title">Complexity had to earn its place</h2></div>
+        <p>Negative results are part of the product decision, not hidden from the story.</p>
+      </div>
+      <blockquote id="hot-take"></blockquote>
+      <div id="journey-content" class="journey-content"></div>
+    </section>
+
+    <section class="view" id="view-reproduce" aria-labelledby="reproduce-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">No key required</p><h2 id="reproduce-title">Reproduce it offline</h2></div>
+        <p>The core judge demo and all retained evaluations run without network access or a model API.</p>
+      </div>
+      <div class="reproduce-grid">
+        <article class="command-card"><span>01 · Install</span><pre><code>python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -e ".[dev]"</code></pre></article>
+        <article class="command-card"><span>02 · Validate</span><pre><code>.\.venv\Scripts\python.exe -m pytest -q
+.\.venv\Scripts\python.exe -m pip check
+.\.venv\Scripts\python.exe scripts\validate_phase3_freezes.py
+.\.venv\Scripts\python.exe scripts\validate_phase4.py</code></pre></article>
+        <article class="command-card accent"><span>03 · Judge mode</span><pre><code>.\.venv\Scripts\python.exe -m genometriage.app.run</code></pre><p>Open <strong>http://127.0.0.1:8765</strong></p></article>
+      </div>
+      <div class="replay-notice"><strong>Recorded means recorded.</strong><p>The demo never presents retained output as a new live API response. Optional live Gemini commands are documented separately in README.</p></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="brand footer-brand"><span class="brand-mark"><i></i><i></i><i></i></span><span><strong>Genome</strong>Triage</span></div>
+    <p>Evidence-grounded prioritization · Qualified human review required</p>
+    <p>For research/expert review. Not a medical diagnosis.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="alert"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>

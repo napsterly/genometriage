@@ -113,62 +113,97 @@ def parse_vcf(
 ) -> List[CanonicalVariant]:
     """Parse the Phase 2 VCF subset, preserving record and ALT order."""
 
+    source_path = Path(path)
+    with source_path.open("r", encoding="utf-8") as handle:
+        return _parse_vcf_lines(
+            handle,
+            genome_build=genome_build,
+            source_label=str(source_path),
+        )
+
+
+def parse_vcf_text(
+    content: str,
+    *,
+    genome_build: str,
+    source_label: str = "uploaded VCF",
+) -> List[CanonicalVariant]:
+    """Parse the supported VCF subset from in-memory text without temporary files."""
+
+    if not isinstance(content, str):
+        raise VariantNormalizationError("VCF content must be text")
+    return _parse_vcf_lines(
+        content.splitlines(),
+        genome_build=genome_build,
+        source_label=source_label,
+    )
+
+
+def _parse_vcf_lines(
+    lines: Iterable[str],
+    *,
+    genome_build: str,
+    source_label: str,
+) -> List[CanonicalVariant]:
+    """Shared deterministic parser implementation for file and in-memory input."""
+
     variants: List[CanonicalVariant] = []
     saw_column_header = False
-    with Path(path).open("r", encoding="utf-8") as handle:
-        for line_number, raw_line in enumerate(handle, start=1):
-            line = raw_line.rstrip("\r\n")
-            if not line:
-                continue
-            if line.startswith("##"):
-                continue
-            if line.startswith("#CHROM"):
-                columns = line.split("\t")
-                if columns[:8] != ["#CHROM", "POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO"]:
-                    raise VariantNormalizationError(
-                        f"{path}:{line_number}: expected the standard first eight VCF columns"
-                    )
-                saw_column_header = True
-                continue
-            if line.startswith("#"):
-                raise VariantNormalizationError(f"{path}:{line_number}: unrecognized VCF header line")
-            if not saw_column_header:
-                raise VariantNormalizationError(
-                    f"{path}:{line_number}: data encountered before #CHROM header"
-                )
-
+    for line_number, raw_line in enumerate(lines, start=1):
+        line = raw_line.rstrip("\r\n")
+        if not line:
+            continue
+        if line.startswith("##"):
+            continue
+        if line.startswith("#CHROM"):
             columns = line.split("\t")
-            if len(columns) < 8:
+            if columns[:8] != ["#CHROM", "POS", "ID", "REF", "ALT", "QUAL", "FILTER", "INFO"]:
                 raise VariantNormalizationError(
-                    f"{path}:{line_number}: expected at least eight tab-separated columns"
+                    f"{source_label}:{line_number}: expected the standard first eight VCF columns"
                 )
-            chromosome, raw_position, record_id, reference, alt_field = columns[:5]
-            try:
-                position = int(raw_position)
-            except ValueError as exc:
-                raise VariantNormalizationError(
-                    f"{path}:{line_number}: POS must be an integer"
-                ) from exc
-            alternates = alt_field.split(",")
-            if any(not allele or allele == "." for allele in alternates):
-                raise VariantNormalizationError(f"{path}:{line_number}: ALT is missing")
-            for alt_index, alternate in enumerate(alternates, start=1):
-                base_id = record_id if record_id != "." else (
-                    f"{normalize_chromosome(chromosome)}-{position}-{reference.upper()}-{alternate.upper()}"
+            saw_column_header = True
+            continue
+        if line.startswith("#"):
+            raise VariantNormalizationError(
+                f"{source_label}:{line_number}: unrecognized VCF header line"
+            )
+        if not saw_column_header:
+            raise VariantNormalizationError(
+                f"{source_label}:{line_number}: data encountered before #CHROM header"
+            )
+
+        columns = line.split("\t")
+        if len(columns) < 8:
+            raise VariantNormalizationError(
+                f"{source_label}:{line_number}: expected at least eight tab-separated columns"
+            )
+        chromosome, raw_position, record_id, reference, alt_field = columns[:5]
+        try:
+            position = int(raw_position)
+        except ValueError as exc:
+            raise VariantNormalizationError(
+                f"{source_label}:{line_number}: POS must be an integer"
+            ) from exc
+        alternates = alt_field.split(",")
+        if any(not allele or allele == "." for allele in alternates):
+            raise VariantNormalizationError(f"{source_label}:{line_number}: ALT is missing")
+        for alt_index, alternate in enumerate(alternates, start=1):
+            base_id = record_id if record_id != "." else (
+                f"{normalize_chromosome(chromosome)}-{position}-{reference.upper()}-{alternate.upper()}"
+            )
+            variant_id = (
+                f"{base_id}:ALT{alt_index}" if len(alternates) > 1 else base_id
+            )
+            variants.append(
+                normalize_variant(
+                    variant_id=variant_id,
+                    genome_build=genome_build,
+                    chromosome=chromosome,
+                    position=position,
+                    reference=reference,
+                    alternate=alternate,
                 )
-                variant_id = (
-                    f"{base_id}:ALT{alt_index}" if len(alternates) > 1 else base_id
-                )
-                variants.append(
-                    normalize_variant(
-                        variant_id=variant_id,
-                        genome_build=genome_build,
-                        chromosome=chromosome,
-                        position=position,
-                        reference=reference,
-                        alternate=alternate,
-                    )
-                )
+            )
     if not saw_column_header:
-        raise VariantNormalizationError(f"{path}: missing #CHROM header")
+        raise VariantNormalizationError(f"{source_label}: missing #CHROM header")
     return variants

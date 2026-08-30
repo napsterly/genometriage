@@ -8,6 +8,7 @@
 | V2 | Independent verification of every V1 material claim, followed by deterministic safe report assembly, to remove weak claims without reprioritizing | `results/verified-v2.json`: Recall@3 1.000, 2 false positives, review burden 16, claim support precision 1.000; mean runtime 5.601s and 69,517 total system tokens | Did not earn incremental complexity: it matched V1 shortlist quality while adding runtime/tokens. Preserve the artifact, but do not retain V2 as the active shortlist stage. |
 | V3 conflict arbitration | Hypothesis: candidate-level arbitration over evidence direction, strength, and semantic dimension can remove contextually weak/conflicted V1 candidates without suppressing relevant variants. Implementation: frozen deterministic `conflict_arbitration_v1`, no added model calls, no candidate promotion/reordering. | Regression `benchmark_v1`: Recall@3 1.000→0.909, FP 2→2, burden 16→14; `GT-004` loses both relevant candidates. Held-out conflict: Recall@3 1.000→1.000, FP 4→0, burden 17→13, shortlist precision 0.764706→1.000000. See `results/phase3/COMPARISON.md` and `results/phase3/failures.jsonl`. | **Revise, not global default.** It earns minimal deterministic complexity on explicitly dimensioned conflict evidence, but fails backward-compatible recall. The frozen policy is not tuned post hoc; a revised policy must be V3.1 and separately preregistered. |
 | Public benchmark | Test V1/V3 generalization on a separately frozen real-public ClinVar subset rather than invented loci. Ten cases/30 candidates were selected and labeled deterministically before model prediction; exact VCV versions and provenance are retained. | Public V1→V3: Recall@3 1.000→1.000, FP 1→0, burden 11→10, shortlist precision 0.909091→1.000000, claim support precision 0.954545→1.000000. Label mix: five single-submitter, four multiple-submitter/no-conflict, one expert-panel relevant record. | Useful evidence of performance on this fixed public proxy benchmark, not proof of clinical validity or universal generalization. Keep the track and broaden independent curation/review tiers before stronger claims. |
+| Phase 4 productization | Package the retained V1 decision into a reliable judge-facing workflow without changing models, prompts, benchmark labels, predictions, or results. Add an offline replay app, same-case V0/V1 view, aggregate dashboard, improvement journey, five artifact-backed trajectories, and submission documentation. | `docs/PHASE4_INPUT_FREEZE.json` guards 18 retained inputs; `scripts/validate_phase4.py` checks hashes, replay/safety labels, trajectory boundaries, provenance, and secrets. The app smoke test covers all three tracks. No new model run or research metric is claimed. | **V1 remains the product/default.** Phase 4 earns product complexity by making the measured work inspectable and reproducible; it does not count as a new accuracy improvement. V2 stays non-retained and V3 stays experimental. |
 
 ## Phase 2 failure trajectory
 
@@ -39,5 +40,8 @@ dimension to `other`, so deterministic arbitration cannot recover missing contex
 Exact scores, rules, ranks, and evidence IDs are in
 `results/phase3/failures.jsonl`.
 
-The current stopping decision is to revise evidence-strength/dimension calibration.
-No Phase 4 or quantum iteration is claimed or implemented.
+The research stopping decision remains to revise evidence-strength/dimension
+calibration only in a separately preregistered future experiment. Phase 4 is the
+product/demo/submission layer; it does not alter that conclusion. No Phase 5,
+quantum iteration, broad agent architecture, or autonomous clinical workflow is
+claimed or implemented.

@@ -1,0 +1,625 @@
+{
+  "artifact_policy": {
+    "chain_of_thought_invented": false,
+    "content_scope": "Recorded instructions/configuration, deterministic preprocessing, retrieved evidence, structured model output, and evaluator feedback only.",
+    "execution_label": "Recorded benchmark execution / deterministic replay",
+    "hidden_reasoning_included": false,
+    "recorded_execution": true
+  },
+  "baseline_comparison": null,
+  "case_input": {
+    "candidate_count": 3,
+    "candidates": [
+      {
+        "consequence": "nonsense",
+        "gene": "PAH",
+        "input_representation": "GRCh38:12:102844399:G:T",
+        "normalized": {
+          "alternate": "T",
+          "canonical_id": "GRCh38:12:102844399:G:T",
+          "chromosome": "12",
+          "consequence": "nonsense",
+          "gene": "PAH",
+          "genome_build": "GRCh38",
+          "position": 102844399,
+          "reference": "G",
+          "variant_id": "GP009-V1"
+        },
+        "retrieved_evidence_count": 3,
+        "variant_id": "GP009-V1"
+      },
+      {
+        "consequence": "synonymous variant",
+        "gene": "PAH",
+        "input_representation": "GRCh38:12:102852922:C:T",
+        "normalized": {
+          "alternate": "T",
+          "canonical_id": "GRCh38:12:102852922:C:T",
+          "chromosome": "12",
+          "consequence": "synonymous variant",
+          "gene": "PAH",
+          "genome_build": "GRCh38",
+          "position": 102852922,
+          "reference": "C",
+          "variant_id": "GP009-V2"
+        },
+        "retrieved_evidence_count": 3,
+        "variant_id": "GP009-V2"
+      },
+      {
+        "consequence": "missense variant",
+        "gene": "PAH",
+        "input_representation": "GRCh38:12:102894770:A:G",
+        "normalized": {
+          "alternate": "G",
+          "canonical_id": "GRCh38:12:102894770:A:G",
+          "chromosome": "12",
+          "consequence": "missense variant",
+          "gene": "PAH",
+          "genome_build": "GRCh38",
+          "position": 102894770,
+          "reference": "A",
+          "variant_id": "GP009-V3"
+        },
+        "retrieved_evidence_count": 3,
+        "variant_id": "GP009-V3"
+      }
+    ],
+    "case_id": "GP-009",
+    "context": {
+      "family_observations": [],
+      "inheritance_hypothesis": null,
+      "phenotype_terms": [
+        "Phenylketonuria"
+      ],
+      "summary": "Public ClinVar-record prioritization exercise for target trait(s): Phenylketonuria. Candidate evidence is a pinned aggregate-record snapshot."
+    },
+    "data_origin": "appropriately_public"
+  },
+  "category": "public_clinvar_proxy",
+  "deterministic_preprocessing": {
+    "evidence_snapshot_sha256": "9e08a12746f9d60425217f6b0b9822129ca3cbdfe3d9f377f37b654fdbcd5f73",
+    "evidence_snapshot_version": "evidence_public_v1",
+    "normalization": [
+      {
+        "alternate": "T",
+        "canonical_id": "GRCh38:12:102844399:G:T",
+        "chromosome": "12",
+        "consequence": "nonsense",
+        "gene": "PAH",
+        "genome_build": "GRCh38",
+        "position": 102844399,
+        "reference": "G",
+        "variant_id": "GP009-V1"
+      },
+      {
+        "alternate": "T",
+        "canonical_id": "GRCh38:12:102852922:C:T",
+        "chromosome": "12",
+        "consequence": "synonymous variant",
+        "gene": "PAH",
+        "genome_build": "GRCh38",
+        "position": 102852922,
+        "reference": "C",
+        "variant_id": "GP009-V2"
+      },
+      {
+        "alternate": "G",
+        "canonical_id": "GRCh38:12:102894770:A:G",
+        "chromosome": "12",
+        "consequence": "missense variant",
+        "gene": "PAH",
+        "genome_build": "GRCh38",
+        "position": 102894770,
+        "reference": "A",
+        "variant_id": "GP009-V3"
+      }
+    ],
+    "retrieval_method": "exact normalized-allele match in a frozen local evidence store"
+  },
+  "evaluator_outcome": {
+    "ground_truth_variant_ids_exposed": false,
+    "metrics": {
+      "abstention_count": 0,
+      "case_id": "GP-009",
+      "citation_traceability_claim_count": 1,
+      "citation_traceability_error_count": 0,
+      "citation_traceability_error_rate": 0.0,
+      "claim_support_precision": 1.0,
+      "conflicting_evidence_count": 0,
+      "deterministic_runtime_seconds": null,
+      "difficulty": "moderate",
+      "error_message": null,
+      "estimated_cost_usd": 0.0,
+      "evaluated_claim_count": 1,
+      "external_model_runtime_seconds": 2.4208202000008896,
+      "false_positive_count": 0,
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0
+      },
+      "input_tokens": 6611,
+      "insufficient_evidence_count": 0,
+      "model_call_count": 1,
+      "output_tokens": 371,
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.3333333333333333,
+        "5": 0.2
+      },
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "relevant_count": 1,
+      "returned_count": 1,
+      "review_burden": 1,
+      "review_burden_at_full_recall": 1,
+      "runtime_seconds": 2.4208202000008896,
+      "semantically_supported_claim_count": 1,
+      "sent_for_human_review": 1,
+      "shortlist_precision": 1.0,
+      "shortlist_relevant_count": 1,
+      "shortlist_returned_count": 1,
+      "status": "evaluated",
+      "system_supported_claim_count": 1,
+      "total_tokens": 6982,
+      "unsupported_claim_count": 0,
+      "unsupported_claim_rate": 0.0
+    },
+    "mode": "explicit_evaluation_feedback"
+  },
+  "evidence_retrieved": {
+    "GP009-V1": [
+      {
+        "category": "provenance",
+        "cited_by_shortlist": true,
+        "direction": "supports",
+        "evidence_id": "CLINVAR:VCV002677430.1:germline-classification",
+        "original_source_record_id": "CLINVAR:VCV002677430.1:germline-classification",
+        "provenance": {
+          "data_origin": "appropriately_public",
+          "extraction_method": "deterministic_clinvar_esummary_transform_v1",
+          "license_or_terms_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "retrieved_at_utc": "2026-08-29T13:58:31+00:00",
+          "source_case_id": "GP-009",
+          "source_fixture": "data/cases/benchmark_public_v1.jsonl",
+          "source_fixture_sha256": "fb5cdeaa164919948a301a409ed4ffcfc88052bfa7d1edd0b6a63d1a3223c74b",
+          "source_record_sha256": "9274d6865b3cd3887aa9f47c972412736d4977bcfce2bf6ade65ab8691e91e92",
+          "source_release": "pinned VCV accession-version subset 2026-08-29",
+          "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "source_variant_id": "GP009-V1"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_public_v1",
+        "source": "NCBI ClinVar E-utilities pinned public subset",
+        "statement": "ClinVar aggregate germline classification: Pathogenic.",
+        "strength": "moderate"
+      },
+      {
+        "category": "provenance",
+        "cited_by_shortlist": true,
+        "direction": "supports",
+        "evidence_id": "CLINVAR:VCV002677430.1:review-status",
+        "original_source_record_id": "CLINVAR:VCV002677430.1:review-status",
+        "provenance": {
+          "data_origin": "appropriately_public",
+          "extraction_method": "deterministic_clinvar_esummary_transform_v1",
+          "license_or_terms_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "retrieved_at_utc": "2026-08-29T13:58:31+00:00",
+          "source_case_id": "GP-009",
+          "source_fixture": "data/cases/benchmark_public_v1.jsonl",
+          "source_fixture_sha256": "fb5cdeaa164919948a301a409ed4ffcfc88052bfa7d1edd0b6a63d1a3223c74b",
+          "source_record_sha256": "9274d6865b3cd3887aa9f47c972412736d4977bcfce2bf6ade65ab8691e91e92",
+          "source_release": "pinned VCV accession-version subset 2026-08-29",
+          "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "source_variant_id": "GP009-V1"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_public_v1",
+        "source": "NCBI ClinVar E-utilities pinned public subset",
+        "statement": "ClinVar aggregate germline review status: reviewed by expert panel.",
+        "strength": "strong"
+      },
+      {
+        "category": "phenotype_context",
+        "cited_by_shortlist": true,
+        "direction": "supports",
+        "evidence_id": "CLINVAR:VCV002677430.1:trait-context",
+        "original_source_record_id": "CLINVAR:VCV002677430.1:trait-context",
+        "provenance": {
+          "data_origin": "appropriately_public",
+          "extraction_method": "deterministic_clinvar_esummary_transform_v1",
+          "license_or_terms_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "retrieved_at_utc": "2026-08-29T13:58:31+00:00",
+          "source_case_id": "GP-009",
+          "source_fixture": "data/cases/benchmark_public_v1.jsonl",
+          "source_fixture_sha256": "fb5cdeaa164919948a301a409ed4ffcfc88052bfa7d1edd0b6a63d1a3223c74b",
+          "source_record_sha256": "9274d6865b3cd3887aa9f47c972412736d4977bcfce2bf6ade65ab8691e91e92",
+          "source_release": "pinned VCV accession-version subset 2026-08-29",
+          "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "source_variant_id": "GP009-V1"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_public_v1",
+        "source": "NCBI ClinVar E-utilities pinned public subset",
+        "statement": "The ClinVar aggregate record includes the case target trait(s): Phenylketonuria.",
+        "strength": "moderate"
+      }
+    ],
+    "GP009-V2": [
+      {
+        "category": "provenance",
+        "cited_by_shortlist": false,
+        "direction": "against",
+        "evidence_id": "CLINVAR:VCV000092748.35:germline-classification",
+        "original_source_record_id": "CLINVAR:VCV000092748.35:germline-classification",
+        "provenance": {
+          "data_origin": "appropriately_public",
+          "extraction_method": "deterministic_clinvar_esummary_transform_v1",
+          "license_or_terms_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "retrieved_at_utc": "2026-08-29T13:58:31+00:00",
+          "source_case_id": "GP-009",
+          "source_fixture": "data/cases/benchmark_public_v1.jsonl",
+          "source_fixture_sha256": "fb5cdeaa164919948a301a409ed4ffcfc88052bfa7d1edd0b6a63d1a3223c74b",
+          "source_record_sha256": "9274d6865b3cd3887aa9f47c972412736d4977bcfce2bf6ade65ab8691e91e92",
+          "source_release": "pinned VCV accession-version subset 2026-08-29",
+          "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "source_variant_id": "GP009-V2"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_public_v1",
+        "source": "NCBI ClinVar E-utilities pinned public subset",
+        "statement": "ClinVar aggregate germline classification: Benign.",
+        "strength": "moderate"
+      },
+      {
+        "category": "provenance",
+        "cited_by_shortlist": false,
+        "direction": "against",
+        "evidence_id": "CLINVAR:VCV000092748.35:review-status",
+        "original_source_record_id": "CLINVAR:VCV000092748.35:review-status",
+        "provenance": {
+          "data_origin": "appropriately_public",
+          "extraction_method": "deterministic_clinvar_esummary_transform_v1",
+          "license_or_terms_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "retrieved_at_utc": "2026-08-29T13:58:31+00:00",
+          "source_case_id": "GP-009",
+          "source_fixture": "data/cases/benchmark_public_v1.jsonl",
+          "source_fixture_sha256": "fb5cdeaa164919948a301a409ed4ffcfc88052bfa7d1edd0b6a63d1a3223c74b",
+          "source_record_sha256": "9274d6865b3cd3887aa9f47c972412736d4977bcfce2bf6ade65ab8691e91e92",
+          "source_release": "pinned VCV accession-version subset 2026-08-29",
+          "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "source_variant_id": "GP009-V2"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_public_v1",
+        "source": "NCBI ClinVar E-utilities pinned public subset",
+        "statement": "ClinVar aggregate germline review status: reviewed by expert panel.",
+        "strength": "strong"
+      },
+      {
+        "category": "phenotype_context",
+        "cited_by_shortlist": false,
+        "direction": "supports",
+        "evidence_id": "CLINVAR:VCV000092748.35:trait-context",
+        "original_source_record_id": "CLINVAR:VCV000092748.35:trait-context",
+        "provenance": {
+          "data_origin": "appropriately_public",
+          "extraction_method": "deterministic_clinvar_esummary_transform_v1",
+          "license_or_terms_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "retrieved_at_utc": "2026-08-29T13:58:31+00:00",
+          "source_case_id": "GP-009",
+          "source_fixture": "data/cases/benchmark_public_v1.jsonl",
+          "source_fixture_sha256": "fb5cdeaa164919948a301a409ed4ffcfc88052bfa7d1edd0b6a63d1a3223c74b",
+          "source_record_sha256": "9274d6865b3cd3887aa9f47c972412736d4977bcfce2bf6ade65ab8691e91e92",
+          "source_release": "pinned VCV accession-version subset 2026-08-29",
+          "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "source_variant_id": "GP009-V2"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_public_v1",
+        "source": "NCBI ClinVar E-utilities pinned public subset",
+        "statement": "The ClinVar aggregate record includes the case target trait(s): Phenylketonuria.",
+        "strength": "moderate"
+      }
+    ],
+    "GP009-V3": [
+      {
+        "category": "provenance",
+        "cited_by_shortlist": false,
+        "direction": "uncertain",
+        "evidence_id": "CLINVAR:VCV003393463.1:germline-classification",
+        "original_source_record_id": "CLINVAR:VCV003393463.1:germline-classification",
+        "provenance": {
+          "data_origin": "appropriately_public",
+          "extraction_method": "deterministic_clinvar_esummary_transform_v1",
+          "license_or_terms_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "retrieved_at_utc": "2026-08-29T13:58:31+00:00",
+          "source_case_id": "GP-009",
+          "source_fixture": "data/cases/benchmark_public_v1.jsonl",
+          "source_fixture_sha256": "fb5cdeaa164919948a301a409ed4ffcfc88052bfa7d1edd0b6a63d1a3223c74b",
+          "source_record_sha256": "9274d6865b3cd3887aa9f47c972412736d4977bcfce2bf6ade65ab8691e91e92",
+          "source_release": "pinned VCV accession-version subset 2026-08-29",
+          "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "source_variant_id": "GP009-V3"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_public_v1",
+        "source": "NCBI ClinVar E-utilities pinned public subset",
+        "statement": "ClinVar aggregate germline classification: Uncertain significance.",
+        "strength": "moderate"
+      },
+      {
+        "category": "provenance",
+        "cited_by_shortlist": false,
+        "direction": "uncertain",
+        "evidence_id": "CLINVAR:VCV003393463.1:review-status",
+        "original_source_record_id": "CLINVAR:VCV003393463.1:review-status",
+        "provenance": {
+          "data_origin": "appropriately_public",
+          "extraction_method": "deterministic_clinvar_esummary_transform_v1",
+          "license_or_terms_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "retrieved_at_utc": "2026-08-29T13:58:31+00:00",
+          "source_case_id": "GP-009",
+          "source_fixture": "data/cases/benchmark_public_v1.jsonl",
+          "source_fixture_sha256": "fb5cdeaa164919948a301a409ed4ffcfc88052bfa7d1edd0b6a63d1a3223c74b",
+          "source_record_sha256": "9274d6865b3cd3887aa9f47c972412736d4977bcfce2bf6ade65ab8691e91e92",
+          "source_release": "pinned VCV accession-version subset 2026-08-29",
+          "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "source_variant_id": "GP009-V3"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_public_v1",
+        "source": "NCBI ClinVar E-utilities pinned public subset",
+        "statement": "ClinVar aggregate germline review status: reviewed by expert panel.",
+        "strength": "strong"
+      },
+      {
+        "category": "phenotype_context",
+        "cited_by_shortlist": false,
+        "direction": "supports",
+        "evidence_id": "CLINVAR:VCV003393463.1:trait-context",
+        "original_source_record_id": "CLINVAR:VCV003393463.1:trait-context",
+        "provenance": {
+          "data_origin": "appropriately_public",
+          "extraction_method": "deterministic_clinvar_esummary_transform_v1",
+          "license_or_terms_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "retrieved_at_utc": "2026-08-29T13:58:31+00:00",
+          "source_case_id": "GP-009",
+          "source_fixture": "data/cases/benchmark_public_v1.jsonl",
+          "source_fixture_sha256": "fb5cdeaa164919948a301a409ed4ffcfc88052bfa7d1edd0b6a63d1a3223c74b",
+          "source_record_sha256": "9274d6865b3cd3887aa9f47c972412736d4977bcfce2bf6ade65ab8691e91e92",
+          "source_release": "pinned VCV accession-version subset 2026-08-29",
+          "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+          "source_variant_id": "GP009-V3"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_public_v1",
+        "source": "NCBI ClinVar E-utilities pinned public subset",
+        "statement": "The ClinVar aggregate record includes the case target trait(s): Phenylketonuria.",
+        "strength": "moderate"
+      }
+    ]
+  },
+  "experimental_follow_up": null,
+  "human_review_checkpoint": "A qualified reviewer must inspect the shortlist, evidence provenance, counterevidence, and uncertainty before any consequential interpretation.",
+  "model_input_summary": {
+    "candidate_variant_ids": [
+      "GP009-V1",
+      "GP009-V2",
+      "GP009-V3"
+    ],
+    "case_id": "GP-009",
+    "input_boundary": "V1 received model-visible context, normalized candidates, and only the exact frozen evidence retrieved for those candidates.",
+    "prompt_sha256": "6bd8d75a23bbd04aff7abdc2f0b2ae300259c727a4671fb679321bd33d537302",
+    "prompt_version": "evidence_grounded_v1",
+    "retrieved_evidence_ids": [
+      "CLINVAR:VCV000092748.35:germline-classification",
+      "CLINVAR:VCV000092748.35:review-status",
+      "CLINVAR:VCV000092748.35:trait-context",
+      "CLINVAR:VCV002677430.1:germline-classification",
+      "CLINVAR:VCV002677430.1:review-status",
+      "CLINVAR:VCV002677430.1:trait-context",
+      "CLINVAR:VCV003393463.1:germline-classification",
+      "CLINVAR:VCV003393463.1:review-status",
+      "CLINVAR:VCV003393463.1:trait-context"
+    ]
+  },
+  "model_structured_response": {
+    "arbitration_records": [],
+    "case_id": "GP-009",
+    "deterministic_runtime_seconds": null,
+    "escalated_uncertainty": false,
+    "estimated_cost_usd": 0.0,
+    "external_model_runtime_seconds": 2.4208202000008896,
+    "model": "gemini-3.5-flash-lite",
+    "model_call_count": 1,
+    "notes": "For research/expert review. Not a medical diagnosis.",
+    "prompt_version": "evidence_grounded_v1",
+    "provider_retry_errors": [],
+    "ranked_variants": [
+      {
+        "claims": [
+          {
+            "claim": "ClinVar classifies GP009-V1 as Pathogenic with expert panel review, linked to Phenylketonuria.",
+            "claim_id": "GP-009:GP009-V1:C1",
+            "evidence_ids": [
+              "CLINVAR:VCV002677430.1:germline-classification",
+              "CLINVAR:VCV002677430.1:review-status",
+              "CLINVAR:VCV002677430.1:trait-context"
+            ],
+            "interpretation": "supports_attention",
+            "status": "supported"
+          }
+        ],
+        "confidence": 0.95,
+        "evidence_source_ids": [
+          "CLINVAR:VCV002677430.1:germline-classification",
+          "CLINVAR:VCV002677430.1:review-status",
+          "CLINVAR:VCV002677430.1:trait-context"
+        ],
+        "rank": 1,
+        "reason": "ClinVar aggregate germline classification is Pathogenic, supporting attention for Phenylketonuria. For research/expert review. Not a medical diagnosis.",
+        "variant_id": "GP009-V1"
+      }
+    ],
+    "runtime_seconds": 2.4208202000008896,
+    "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+    "schema_version": "1.0",
+    "system": "evidence-grounded-v1",
+    "usage": {
+      "input_tokens": 6611,
+      "output_tokens": 371,
+      "total_tokens": 6982
+    },
+    "verified_claims": []
+  },
+  "provider_retries_or_failures": [],
+  "resulting_shortlist": [
+    {
+      "claims": [
+        {
+          "claim": "ClinVar classifies GP009-V1 as Pathogenic with expert panel review, linked to Phenylketonuria.",
+          "claim_id": "GP-009:GP009-V1:C1",
+          "evidence_ids": [
+            "CLINVAR:VCV002677430.1:germline-classification",
+            "CLINVAR:VCV002677430.1:review-status",
+            "CLINVAR:VCV002677430.1:trait-context"
+          ],
+          "interpretation": "supports_attention",
+          "status": "supported"
+        }
+      ],
+      "confidence": 0.95,
+      "counterevidence": [],
+      "evidence_ids": [
+        "CLINVAR:VCV002677430.1:germline-classification",
+        "CLINVAR:VCV002677430.1:review-status",
+        "CLINVAR:VCV002677430.1:trait-context"
+      ],
+      "gene": "PAH",
+      "normalized": {
+        "alternate": "T",
+        "canonical_id": "GRCh38:12:102844399:G:T",
+        "chromosome": "12",
+        "consequence": "nonsense",
+        "gene": "PAH",
+        "genome_build": "GRCh38",
+        "position": 102844399,
+        "reference": "G",
+        "variant_id": "GP009-V1"
+      },
+      "rank": 1,
+      "reason": "ClinVar aggregate germline classification is Pathogenic, supporting attention for Phenylketonuria. For research/expert review. Not a medical diagnosis.",
+      "supporting_evidence": [
+        {
+          "category": "provenance",
+          "cited_by_shortlist": true,
+          "direction": "supports",
+          "evidence_id": "CLINVAR:VCV002677430.1:germline-classification",
+          "original_source_record_id": "CLINVAR:VCV002677430.1:germline-classification",
+          "provenance": {
+            "data_origin": "appropriately_public",
+            "extraction_method": "deterministic_clinvar_esummary_transform_v1",
+            "license_or_terms_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+            "retrieved_at_utc": "2026-08-29T13:58:31+00:00",
+            "source_case_id": "GP-009",
+            "source_fixture": "data/cases/benchmark_public_v1.jsonl",
+            "source_fixture_sha256": "fb5cdeaa164919948a301a409ed4ffcfc88052bfa7d1edd0b6a63d1a3223c74b",
+            "source_record_sha256": "9274d6865b3cd3887aa9f47c972412736d4977bcfce2bf6ade65ab8691e91e92",
+            "source_release": "pinned VCV accession-version subset 2026-08-29",
+            "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+            "source_variant_id": "GP009-V1"
+          },
+          "snapshot_date": "2026-08-29",
+          "snapshot_version": "evidence_public_v1",
+          "source": "NCBI ClinVar E-utilities pinned public subset",
+          "statement": "ClinVar aggregate germline classification: Pathogenic.",
+          "strength": "moderate"
+        },
+        {
+          "category": "provenance",
+          "cited_by_shortlist": true,
+          "direction": "supports",
+          "evidence_id": "CLINVAR:VCV002677430.1:review-status",
+          "original_source_record_id": "CLINVAR:VCV002677430.1:review-status",
+          "provenance": {
+            "data_origin": "appropriately_public",
+            "extraction_method": "deterministic_clinvar_esummary_transform_v1",
+            "license_or_terms_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+            "retrieved_at_utc": "2026-08-29T13:58:31+00:00",
+            "source_case_id": "GP-009",
+            "source_fixture": "data/cases/benchmark_public_v1.jsonl",
+            "source_fixture_sha256": "fb5cdeaa164919948a301a409ed4ffcfc88052bfa7d1edd0b6a63d1a3223c74b",
+            "source_record_sha256": "9274d6865b3cd3887aa9f47c972412736d4977bcfce2bf6ade65ab8691e91e92",
+            "source_release": "pinned VCV accession-version subset 2026-08-29",
+            "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+            "source_variant_id": "GP009-V1"
+          },
+          "snapshot_date": "2026-08-29",
+          "snapshot_version": "evidence_public_v1",
+          "source": "NCBI ClinVar E-utilities pinned public subset",
+          "statement": "ClinVar aggregate germline review status: reviewed by expert panel.",
+          "strength": "strong"
+        },
+        {
+          "category": "phenotype_context",
+          "cited_by_shortlist": true,
+          "direction": "supports",
+          "evidence_id": "CLINVAR:VCV002677430.1:trait-context",
+          "original_source_record_id": "CLINVAR:VCV002677430.1:trait-context",
+          "provenance": {
+            "data_origin": "appropriately_public",
+            "extraction_method": "deterministic_clinvar_esummary_transform_v1",
+            "license_or_terms_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+            "retrieved_at_utc": "2026-08-29T13:58:31+00:00",
+            "source_case_id": "GP-009",
+            "source_fixture": "data/cases/benchmark_public_v1.jsonl",
+            "source_fixture_sha256": "fb5cdeaa164919948a301a409ed4ffcfc88052bfa7d1edd0b6a63d1a3223c74b",
+            "source_record_sha256": "9274d6865b3cd3887aa9f47c972412736d4977bcfce2bf6ade65ab8691e91e92",
+            "source_release": "pinned VCV accession-version subset 2026-08-29",
+            "source_url": "https://www.ncbi.nlm.nih.gov/clinvar/docs/maintenance_use/",
+            "source_variant_id": "GP009-V1"
+          },
+          "snapshot_date": "2026-08-29",
+          "snapshot_version": "evidence_public_v1",
+          "source": "NCBI ClinVar E-utilities pinned public subset",
+          "statement": "The ClinVar aggregate record includes the case target trait(s): Phenylketonuria.",
+          "strength": "moderate"
+        }
+      ],
+      "uncertainty_evidence": [],
+      "variant_id": "GP009-V1"
+    }
+  ],
+  "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+  "schema_version": "1.0",
+  "system_configuration": {
+    "deterministic_runtime_seconds": null,
+    "estimated_cost_usd": 0.0,
+    "external_model_runtime_seconds": 2.4208202000008896,
+    "model": "gemini-3.5-flash-lite",
+    "model_call_count": 1,
+    "model_call_count_source": "retained prediction field",
+    "name": "GenomeTriage V1",
+    "prompt_sha256": "6bd8d75a23bbd04aff7abdc2f0b2ae300259c727a4671fb679321bd33d537302",
+    "prompt_version": "evidence_grounded_v1",
+    "provider": "gemini",
+    "provider_retry_errors": [],
+    "recorded_at_utc": "2026-08-30T07:51:14.498708+00:00",
+    "runtime_seconds": 2.4208202000008896,
+    "system_version": "evidence-grounded-v1",
+    "usage": {
+      "input_tokens": 6611,
+      "output_tokens": 371,
+      "total_tokens": 6982
+    }
+  },
+  "title": "Pinned public ClinVar example",
+  "trajectory_id": "trajectory-public-gp009",
+  "why_selected": "A real public PAH locus with an expert-panel aggregate review record and versioned provenance."
+}

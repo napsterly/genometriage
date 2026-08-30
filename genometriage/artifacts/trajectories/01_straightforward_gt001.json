@@ -1,0 +1,600 @@
+{
+  "artifact_policy": {
+    "chain_of_thought_invented": false,
+    "content_scope": "Recorded instructions/configuration, deterministic preprocessing, retrieved evidence, structured model output, and evaluator feedback only.",
+    "execution_label": "Recorded benchmark execution / deterministic replay",
+    "hidden_reasoning_included": false,
+    "recorded_execution": true
+  },
+  "baseline_comparison": {
+    "added_by_v1": [],
+    "baseline_model": "gemini-3.1-flash-lite",
+    "baseline_ranked_variants": [
+      {
+        "claims": [],
+        "confidence": 0.95,
+        "evidence_source_ids": [
+          "GT001-E1",
+          "GT001-E2"
+        ],
+        "rank": 1,
+        "reason": "Strong evidence supports this variant: it is a de novo missense mutation with functional assay data showing reduced activity and segregation consistent with the phenotype.",
+        "variant_id": "GT001-V1"
+      }
+    ],
+    "baseline_review_burden": 1,
+    "baseline_system": "baseline-gemini",
+    "removed_by_v1": [],
+    "review_burden_reduction": 0,
+    "v1_ranked_variants": [
+      {
+        "claims": [
+          {
+            "claim": "Curated synthetic functional assay reports a large activity reduction for this exact allele.",
+            "claim_id": "GT-001:GT001-V1:C1",
+            "evidence_ids": [
+              "GT001-E1"
+            ],
+            "interpretation": "supports_attention",
+            "status": "supported"
+          },
+          {
+            "claim": "Synthetic segregation record confirms absence in both parents and phenotype concordance.",
+            "claim_id": "GT-001:GT001-V1:C2",
+            "evidence_ids": [
+              "GT001-E2"
+            ],
+            "interpretation": "supports_attention",
+            "status": "supported"
+          }
+        ],
+        "confidence": 0.95,
+        "evidence_source_ids": [
+          "GT001-E1",
+          "GT001-E2"
+        ],
+        "rank": 1,
+        "reason": "De novo variant with functional assay support and phenotype concordance.",
+        "variant_id": "GT001-V1"
+      }
+    ],
+    "v1_review_burden": 1
+  },
+  "case_input": {
+    "candidate_count": 5,
+    "candidates": [
+      {
+        "consequence": "missense",
+        "gene": "GTA1",
+        "input_representation": "GRCh38-synthetic:1:101001:G:A",
+        "normalized": {
+          "alternate": "A",
+          "canonical_id": "GRCh38-synthetic:1:101001:G:A",
+          "chromosome": "1",
+          "consequence": "missense",
+          "gene": "GTA1",
+          "genome_build": "GRCh38-synthetic",
+          "position": 101001,
+          "reference": "G",
+          "variant_id": "GT001-V1"
+        },
+        "retrieved_evidence_count": 2,
+        "variant_id": "GT001-V1"
+      },
+      {
+        "consequence": "synonymous",
+        "gene": "GTA1",
+        "input_representation": "GRCh38-synthetic:1:101040:C:T",
+        "normalized": {
+          "alternate": "T",
+          "canonical_id": "GRCh38-synthetic:1:101040:C:T",
+          "chromosome": "1",
+          "consequence": "synonymous",
+          "gene": "GTA1",
+          "genome_build": "GRCh38-synthetic",
+          "position": 101040,
+          "reference": "C",
+          "variant_id": "GT001-V2"
+        },
+        "retrieved_evidence_count": 1,
+        "variant_id": "GT001-V2"
+      },
+      {
+        "consequence": "missense",
+        "gene": "GTB1",
+        "input_representation": "GRCh38-synthetic:2:201005:A:G",
+        "normalized": {
+          "alternate": "G",
+          "canonical_id": "GRCh38-synthetic:2:201005:A:G",
+          "chromosome": "2",
+          "consequence": "missense",
+          "gene": "GTB1",
+          "genome_build": "GRCh38-synthetic",
+          "position": 201005,
+          "reference": "A",
+          "variant_id": "GT001-V3"
+        },
+        "retrieved_evidence_count": 1,
+        "variant_id": "GT001-V3"
+      },
+      {
+        "consequence": "intergenic",
+        "gene": null,
+        "input_representation": "GRCh38-synthetic:3:301008:T:C",
+        "normalized": {
+          "alternate": "C",
+          "canonical_id": "GRCh38-synthetic:3:301008:T:C",
+          "chromosome": "3",
+          "consequence": "intergenic",
+          "gene": null,
+          "genome_build": "GRCh38-synthetic",
+          "position": 301008,
+          "reference": "T",
+          "variant_id": "GT001-V4"
+        },
+        "retrieved_evidence_count": 0,
+        "variant_id": "GT001-V4"
+      },
+      {
+        "consequence": "intronic",
+        "gene": "GTC1",
+        "input_representation": "GRCh38-synthetic:4:401011:G:T",
+        "normalized": {
+          "alternate": "T",
+          "canonical_id": "GRCh38-synthetic:4:401011:G:T",
+          "chromosome": "4",
+          "consequence": "intronic",
+          "gene": "GTC1",
+          "genome_build": "GRCh38-synthetic",
+          "position": 401011,
+          "reference": "G",
+          "variant_id": "GT001-V5"
+        },
+        "retrieved_evidence_count": 0,
+        "variant_id": "GT001-V5"
+      }
+    ],
+    "case_id": "GT-001",
+    "context": {
+      "family_observations": [
+        "candidate absent from both synthetic parents"
+      ],
+      "inheritance_hypothesis": "de novo dominant",
+      "phenotype_terms": [
+        "synthetic progressive muscle weakness",
+        "synthetic elevated muscle enzyme"
+      ],
+      "summary": "Synthetic dominant-pattern case with early-onset muscle weakness and an unaffected-parent comparison."
+    },
+    "data_origin": "fully_synthetic"
+  },
+  "category": "straightforward_success",
+  "deterministic_preprocessing": {
+    "evidence_snapshot_sha256": "c0b632fd3a001678d947fc387ad7feeb94945acad7c805859e3f3a9d6ed33934",
+    "evidence_snapshot_version": "evidence_v1",
+    "normalization": [
+      {
+        "alternate": "A",
+        "canonical_id": "GRCh38-synthetic:1:101001:G:A",
+        "chromosome": "1",
+        "consequence": "missense",
+        "gene": "GTA1",
+        "genome_build": "GRCh38-synthetic",
+        "position": 101001,
+        "reference": "G",
+        "variant_id": "GT001-V1"
+      },
+      {
+        "alternate": "T",
+        "canonical_id": "GRCh38-synthetic:1:101040:C:T",
+        "chromosome": "1",
+        "consequence": "synonymous",
+        "gene": "GTA1",
+        "genome_build": "GRCh38-synthetic",
+        "position": 101040,
+        "reference": "C",
+        "variant_id": "GT001-V2"
+      },
+      {
+        "alternate": "G",
+        "canonical_id": "GRCh38-synthetic:2:201005:A:G",
+        "chromosome": "2",
+        "consequence": "missense",
+        "gene": "GTB1",
+        "genome_build": "GRCh38-synthetic",
+        "position": 201005,
+        "reference": "A",
+        "variant_id": "GT001-V3"
+      },
+      {
+        "alternate": "C",
+        "canonical_id": "GRCh38-synthetic:3:301008:T:C",
+        "chromosome": "3",
+        "consequence": "intergenic",
+        "gene": null,
+        "genome_build": "GRCh38-synthetic",
+        "position": 301008,
+        "reference": "T",
+        "variant_id": "GT001-V4"
+      },
+      {
+        "alternate": "T",
+        "canonical_id": "GRCh38-synthetic:4:401011:G:T",
+        "chromosome": "4",
+        "consequence": "intronic",
+        "gene": "GTC1",
+        "genome_build": "GRCh38-synthetic",
+        "position": 401011,
+        "reference": "G",
+        "variant_id": "GT001-V5"
+      }
+    ],
+    "retrieval_method": "exact normalized-allele match in a frozen local evidence store"
+  },
+  "evaluator_outcome": {
+    "ground_truth_variant_ids_exposed": false,
+    "metrics": {
+      "abstention_count": 0,
+      "case_id": "GT-001",
+      "citation_traceability_claim_count": 1,
+      "citation_traceability_error_count": 0,
+      "citation_traceability_error_rate": 0.0,
+      "claim_support_precision": 1.0,
+      "conflicting_evidence_count": 0,
+      "deterministic_runtime_seconds": null,
+      "difficulty": "straightforward",
+      "error_message": null,
+      "estimated_cost_usd": 0.0,
+      "evaluated_claim_count": 1,
+      "external_model_runtime_seconds": null,
+      "false_positive_count": 0,
+      "false_positives_at_k": {
+        "1": 0,
+        "3": 0,
+        "5": 0
+      },
+      "input_tokens": 2899,
+      "insufficient_evidence_count": 0,
+      "model_call_count": null,
+      "output_tokens": 297,
+      "precision_at_k": {
+        "1": 1.0,
+        "3": 0.3333333333333333,
+        "5": 0.2
+      },
+      "recall_at_k": {
+        "1": 1.0,
+        "3": 1.0,
+        "5": 1.0
+      },
+      "reciprocal_rank": 1.0,
+      "relevant_count": 1,
+      "returned_count": 1,
+      "review_burden": 1,
+      "review_burden_at_full_recall": 1,
+      "runtime_seconds": 2.440480799999932,
+      "semantically_supported_claim_count": 2,
+      "sent_for_human_review": 1,
+      "shortlist_precision": 1.0,
+      "shortlist_relevant_count": 1,
+      "shortlist_returned_count": 1,
+      "status": "evaluated",
+      "system_supported_claim_count": 2,
+      "total_tokens": 3196,
+      "unsupported_claim_count": 0,
+      "unsupported_claim_rate": 0.0
+    },
+    "mode": "explicit_evaluation_feedback"
+  },
+  "evidence_retrieved": {
+    "GT001-V1": [
+      {
+        "category": "other",
+        "cited_by_shortlist": true,
+        "direction": "supports",
+        "evidence_id": "GT001-E1",
+        "original_source_record_id": "GT001-E1",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GT-001",
+          "source_fixture": "data/cases/benchmark_v1.jsonl",
+          "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GT001-V1"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_v1",
+        "source": "GenomeTriage synthetic benchmark evidence",
+        "statement": "Curated synthetic functional assay reports a large activity reduction for this exact allele.",
+        "strength": "strong"
+      },
+      {
+        "category": "other",
+        "cited_by_shortlist": true,
+        "direction": "supports",
+        "evidence_id": "GT001-E2",
+        "original_source_record_id": "GT001-E2",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GT-001",
+          "source_fixture": "data/cases/benchmark_v1.jsonl",
+          "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GT001-V1"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_v1",
+        "source": "GenomeTriage synthetic benchmark evidence",
+        "statement": "Synthetic segregation record confirms absence in both parents and phenotype concordance.",
+        "strength": "strong"
+      }
+    ],
+    "GT001-V2": [
+      {
+        "category": "other",
+        "cited_by_shortlist": false,
+        "direction": "against",
+        "evidence_id": "GT001-E3",
+        "original_source_record_id": "GT001-E3",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GT-001",
+          "source_fixture": "data/cases/benchmark_v1.jsonl",
+          "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GT001-V2"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_v1",
+        "source": "GenomeTriage synthetic benchmark evidence",
+        "statement": "Common in the synthetic population and inherited from an unaffected parent.",
+        "strength": "strong"
+      }
+    ],
+    "GT001-V3": [
+      {
+        "category": "other",
+        "cited_by_shortlist": false,
+        "direction": "against",
+        "evidence_id": "GT001-E4",
+        "original_source_record_id": "GT001-E4",
+        "provenance": {
+          "data_origin": "fully_synthetic",
+          "extraction_method": "deterministic_fixture_extraction_v1",
+          "license_or_terms_url": null,
+          "retrieved_at_utc": null,
+          "source_case_id": "GT-001",
+          "source_fixture": "data/cases/benchmark_v1.jsonl",
+          "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+          "source_record_sha256": null,
+          "source_release": null,
+          "source_url": null,
+          "source_variant_id": "GT001-V3"
+        },
+        "snapshot_date": "2026-08-29",
+        "snapshot_version": "evidence_v1",
+        "source": "GenomeTriage synthetic benchmark evidence",
+        "statement": "Synthetic gene record does not overlap the case phenotype and the allele is too frequent for the proposed model.",
+        "strength": "moderate"
+      }
+    ],
+    "GT001-V4": [],
+    "GT001-V5": []
+  },
+  "experimental_follow_up": null,
+  "human_review_checkpoint": "A qualified reviewer must inspect the shortlist, evidence provenance, counterevidence, and uncertainty before any consequential interpretation.",
+  "model_input_summary": {
+    "candidate_variant_ids": [
+      "GT001-V1",
+      "GT001-V2",
+      "GT001-V3",
+      "GT001-V4",
+      "GT001-V5"
+    ],
+    "case_id": "GT-001",
+    "input_boundary": "V1 received model-visible context, normalized candidates, and only the exact frozen evidence retrieved for those candidates.",
+    "prompt_sha256": "6bd8d75a23bbd04aff7abdc2f0b2ae300259c727a4671fb679321bd33d537302",
+    "prompt_version": "evidence_grounded_v1",
+    "retrieved_evidence_ids": [
+      "GT001-E1",
+      "GT001-E2",
+      "GT001-E3",
+      "GT001-E4"
+    ]
+  },
+  "model_structured_response": {
+    "arbitration_records": [],
+    "case_id": "GT-001",
+    "deterministic_runtime_seconds": null,
+    "escalated_uncertainty": false,
+    "estimated_cost_usd": 0.0,
+    "external_model_runtime_seconds": null,
+    "model": "gemini-3.5-flash-lite",
+    "model_call_count": null,
+    "notes": "For research/expert review. Not a medical diagnosis.",
+    "prompt_version": "evidence_grounded_v1",
+    "provider_retry_errors": [],
+    "ranked_variants": [
+      {
+        "claims": [
+          {
+            "claim": "Curated synthetic functional assay reports a large activity reduction for this exact allele.",
+            "claim_id": "GT-001:GT001-V1:C1",
+            "evidence_ids": [
+              "GT001-E1"
+            ],
+            "interpretation": "supports_attention",
+            "status": "supported"
+          },
+          {
+            "claim": "Synthetic segregation record confirms absence in both parents and phenotype concordance.",
+            "claim_id": "GT-001:GT001-V1:C2",
+            "evidence_ids": [
+              "GT001-E2"
+            ],
+            "interpretation": "supports_attention",
+            "status": "supported"
+          }
+        ],
+        "confidence": 0.95,
+        "evidence_source_ids": [
+          "GT001-E1",
+          "GT001-E2"
+        ],
+        "rank": 1,
+        "reason": "De novo variant with functional assay support and phenotype concordance.",
+        "variant_id": "GT001-V1"
+      }
+    ],
+    "runtime_seconds": 2.440480799999932,
+    "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+    "schema_version": "1.0",
+    "system": "evidence-grounded-v1",
+    "usage": {
+      "input_tokens": 2899,
+      "output_tokens": 297,
+      "total_tokens": 3196
+    },
+    "verified_claims": []
+  },
+  "provider_retries_or_failures": [],
+  "resulting_shortlist": [
+    {
+      "claims": [
+        {
+          "claim": "Curated synthetic functional assay reports a large activity reduction for this exact allele.",
+          "claim_id": "GT-001:GT001-V1:C1",
+          "evidence_ids": [
+            "GT001-E1"
+          ],
+          "interpretation": "supports_attention",
+          "status": "supported"
+        },
+        {
+          "claim": "Synthetic segregation record confirms absence in both parents and phenotype concordance.",
+          "claim_id": "GT-001:GT001-V1:C2",
+          "evidence_ids": [
+            "GT001-E2"
+          ],
+          "interpretation": "supports_attention",
+          "status": "supported"
+        }
+      ],
+      "confidence": 0.95,
+      "counterevidence": [],
+      "evidence_ids": [
+        "GT001-E1",
+        "GT001-E2"
+      ],
+      "gene": "GTA1",
+      "normalized": {
+        "alternate": "A",
+        "canonical_id": "GRCh38-synthetic:1:101001:G:A",
+        "chromosome": "1",
+        "consequence": "missense",
+        "gene": "GTA1",
+        "genome_build": "GRCh38-synthetic",
+        "position": 101001,
+        "reference": "G",
+        "variant_id": "GT001-V1"
+      },
+      "rank": 1,
+      "reason": "De novo variant with functional assay support and phenotype concordance.",
+      "supporting_evidence": [
+        {
+          "category": "other",
+          "cited_by_shortlist": true,
+          "direction": "supports",
+          "evidence_id": "GT001-E1",
+          "original_source_record_id": "GT001-E1",
+          "provenance": {
+            "data_origin": "fully_synthetic",
+            "extraction_method": "deterministic_fixture_extraction_v1",
+            "license_or_terms_url": null,
+            "retrieved_at_utc": null,
+            "source_case_id": "GT-001",
+            "source_fixture": "data/cases/benchmark_v1.jsonl",
+            "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+            "source_record_sha256": null,
+            "source_release": null,
+            "source_url": null,
+            "source_variant_id": "GT001-V1"
+          },
+          "snapshot_date": "2026-08-29",
+          "snapshot_version": "evidence_v1",
+          "source": "GenomeTriage synthetic benchmark evidence",
+          "statement": "Curated synthetic functional assay reports a large activity reduction for this exact allele.",
+          "strength": "strong"
+        },
+        {
+          "category": "other",
+          "cited_by_shortlist": true,
+          "direction": "supports",
+          "evidence_id": "GT001-E2",
+          "original_source_record_id": "GT001-E2",
+          "provenance": {
+            "data_origin": "fully_synthetic",
+            "extraction_method": "deterministic_fixture_extraction_v1",
+            "license_or_terms_url": null,
+            "retrieved_at_utc": null,
+            "source_case_id": "GT-001",
+            "source_fixture": "data/cases/benchmark_v1.jsonl",
+            "source_fixture_sha256": "53a53fdc3334345d8a366f47d44df60373fa85aa4f97a138bac0e63b9012ad7c",
+            "source_record_sha256": null,
+            "source_release": null,
+            "source_url": null,
+            "source_variant_id": "GT001-V1"
+          },
+          "snapshot_date": "2026-08-29",
+          "snapshot_version": "evidence_v1",
+          "source": "GenomeTriage synthetic benchmark evidence",
+          "statement": "Synthetic segregation record confirms absence in both parents and phenotype concordance.",
+          "strength": "strong"
+        }
+      ],
+      "uncertainty_evidence": [],
+      "variant_id": "GT001-V1"
+    }
+  ],
+  "safety_disclaimer": "For research/expert review. Not a medical diagnosis.",
+  "schema_version": "1.0",
+  "system_configuration": {
+    "deterministic_runtime_seconds": null,
+    "estimated_cost_usd": 0.0,
+    "external_model_runtime_seconds": null,
+    "model": "gemini-3.5-flash-lite",
+    "model_call_count": 1,
+    "model_call_count_source": "reconstructed from the frozen V1 one-call-per-completed-case contract",
+    "name": "GenomeTriage V1",
+    "prompt_sha256": "6bd8d75a23bbd04aff7abdc2f0b2ae300259c727a4671fb679321bd33d537302",
+    "prompt_version": "evidence_grounded_v1",
+    "provider": "gemini",
+    "provider_retry_errors": [],
+    "recorded_at_utc": "2026-08-29T08:47:14.235401+00:00",
+    "runtime_seconds": 2.440480799999932,
+    "system_version": "evidence-grounded-v1",
+    "usage": {
+      "input_tokens": 2899,
+      "output_tokens": 297,
+      "total_tokens": 3196
+    }
+  },
+  "title": "Straightforward V1 success",
+  "trajectory_id": "trajectory-straightforward-gt001",
+  "why_selected": "A single supported candidate is ranked first without uncertainty escalation."
+}

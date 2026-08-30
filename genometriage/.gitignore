@@ -18,6 +18,10 @@ predictions/*.json
 results/*.json
 predictions/*.tmp
 results/*.tmp
+predictions/replay/
+results/replay/
+predictions/live/
+results/live/
 
 # Retain the validated Phase 1 baseline evidence.
 !predictions/baseline-gemini.json
